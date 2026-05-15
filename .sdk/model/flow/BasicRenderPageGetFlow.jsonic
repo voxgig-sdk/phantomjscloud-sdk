@@ -1,0 +1,32 @@
+# BasicRenderPageGetFlow
+
+main: kit: flow: BasicRenderPageGetFlow:
+{
+  entity: "render_page_get",
+  kind: "basic",
+  name: "BasicRenderPageGetFlow",
+  step: [
+    {
+      input: {
+        ref: "render_page_get_ref01",
+        srcdatavar: "render_page_get_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "render_page_get01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-render_page_get_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicRenderPageGetFlow"
+}

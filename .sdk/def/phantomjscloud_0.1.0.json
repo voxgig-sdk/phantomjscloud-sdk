@@ -1,0 +1,565 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "PhantomJsCloud API",
+    "description": "PhantomJsCloud API offers a REST-like, JSON-based interface for web page rendering and automation. It allows you to submit page requests and receive various output formats like JPEG, PNG, and PDF while handling page interactions via an automation API.",
+    "version": "2.0.0",
+    "contact": {
+      "name": "PhantomJsCloud Support",
+      "url": "https://phantomjscloud.com/docs/"
+    },
+    "termsOfService": "https://phantomjscloud.com/docs/"
+  },
+  "servers": [
+    {
+      "url": "https://phantomjscloud.com/api/browser/v2",
+      "description": "PhantomJsCloud API Server"
+    }
+  ],
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ],
+  "paths": {
+    "/{apiKey}/": {
+      "get": {
+        "summary": "Render page using GET request",
+        "description": "Submit a page request via GET method with query parameters to render a web page in various formats",
+        "operationId": "renderPageGet",
+        "tags": [
+          "Page Rendering"
+        ],
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "path",
+            "required": true,
+            "description": "Your API key for authentication. Use 'a-demo-key-with-low-quota-per-ip-address' for demo (limited to 100 requests/day)",
+            "schema": {
+              "type": "string"
+            },
+            "example": "ak-012345-abcde-012345-abcde-012345"
+          },
+          {
+            "name": "request",
+            "in": "query",
+            "required": false,
+            "description": "JSON-encoded PageRequest object containing rendering parameters",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful page render",
+            "headers": {
+              "X-PhantomJsCloud-Page-Cost": {
+                "description": "Cost of the page request in credits",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-PhantomJsCloud-Remaining-Quota": {
+                "description": "Remaining quota for your API key",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "image/jpeg": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "image/png": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "application/pdf": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests - Quota exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad Gateway - Server error (check ExpectContinue header)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Render page using POST request",
+        "description": "Submit a page request via POST method with JSON payload to render a web page in various formats. This is the most direct way of interacting with PhantomJsCloud.",
+        "operationId": "renderPagePost",
+        "tags": [
+          "Page Rendering"
+        ],
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "path",
+            "required": true,
+            "description": "Your API key for authentication. Use 'a-demo-key-with-low-quota-per-ip-address' for demo (limited to 100 requests/day)",
+            "schema": {
+              "type": "string"
+            },
+            "example": "ak-012345-abcde-012345-abcde-012345"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "PageRequest object containing all rendering parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PageRequest"
+              },
+              "examples": {
+                "basicScreenshot": {
+                  "summary": "Basic JPEG screenshot",
+                  "value": {
+                    "url": "https://example.com",
+                    "renderType": "jpeg"
+                  }
+                },
+                "pdfRender": {
+                  "summary": "PDF render",
+                  "value": {
+                    "url": "https://example.com",
+                    "renderType": "pdf"
+                  }
+                },
+                "textExtraction": {
+                  "summary": "Plain text extraction",
+                  "value": {
+                    "url": "https://example.com",
+                    "renderType": "plainText"
+                  }
+                },
+                "withProxy": {
+                  "summary": "Using anonymous proxy",
+                  "value": {
+                    "url": "https://phantomjscloud.com/examples/helpers/requestdata",
+                    "renderType": "jpeg",
+                    "proxy": "anon-any"
+                  }
+                },
+                "buttonClick": {
+                  "summary": "Click button and wait",
+                  "value": {
+                    "url": "https://phantomjscloud.com/static-samples/button-click.html",
+                    "renderType": "jpeg",
+                    "overseerScript": "page.manualWait(); await page.waitForSelector(\"button#dateBtn\"); page.click(\"button#dateBtn\"); await page.waitForFunction(()=>document.querySelector(\"#demo_result\").textContent!=\"\"); page.done();"
+                  }
+                },
+                "autoLogin": {
+                  "summary": "Auto-login example",
+                  "value": {
+                    "url": "https://www.linkedin.com/uas/login",
+                    "renderType": "jpeg",
+                    "overseerScript": "let _user=\"USER@EXAMPLE.COM\"; let _pass=\"PASSWORD\"; await page.waitForSelector(\"input#username\"); await page.type(\"input#username\",_user,{delay:50}); await page.type(\"input#password\",_pass,{delay:50}); page.click(\"button[type=submit]\"); await page.waitForNavigation();"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful page render",
+            "headers": {
+              "X-PhantomJsCloud-Page-Cost": {
+                "description": "Cost of the page request in credits",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-PhantomJsCloud-Remaining-Quota": {
+                "description": "Remaining quota for your API key",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "image/jpeg": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "image/png": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "application/pdf": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests - Quota exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Bad Gateway - Server error (check ExpectContinue header)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "path",
+        "name": "apiKey",
+        "description": "API key for authentication. Obtain from Dashboard.PhantomJsCloud.com. Demo key: 'a-demo-key-with-low-quota-per-ip-address' (100 requests/day limit)"
+      }
+    },
+    "schemas": {
+      "PageRequest": {
+        "type": "object",
+        "required": [
+          "url"
+        ],
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "The URL of the page to render",
+            "example": "https://example.com"
+          },
+          "renderType": {
+            "type": "string",
+            "enum": [
+              "plainText",
+              "jpg",
+              "jpeg",
+              "png",
+              "pdf",
+              "html",
+              "automation"
+            ],
+            "default": "plainText",
+            "description": "Output format: plainText (web scraping), jpg/jpeg/png (screenshots), pdf (archiving), html (native form), automation (advanced control)"
+          },
+          "overseerScript": {
+            "type": "string",
+            "description": "JavaScript code for page automation (ES2018 syntax). Allows clicking, typing, waiting for elements, navigation, etc.",
+            "example": "await page.waitForSelector('button'); page.click('button');"
+          },
+          "proxy": {
+            "type": "string",
+            "description": "Proxy configuration: 'anon-any' (anonymous worldwide), 'anon-{country}' (country-specific), 'geo-{country}' (static IP), or 'custom-{url}:{port}:{user}:{pass}'",
+            "example": "anon-any"
+          },
+          "outputAsJson": {
+            "type": "boolean",
+            "description": "Return response metadata as JSON including page events, resources loaded, errors, etc.",
+            "default": false
+          },
+          "requestSettings": {
+            "$ref": "#/components/schemas/RequestSettings"
+          },
+          "suppressJson": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of JSON response fields to suppress for reduced verbosity"
+          }
+        }
+      },
+      "RequestSettings": {
+        "type": "object",
+        "properties": {
+          "clearCache": {
+            "type": "boolean",
+            "description": "Force all resources to reload instead of using cache",
+            "default": false
+          },
+          "doneWhen": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DoneWhenEvent"
+            },
+            "description": "Define when the page is considered 'done' loading"
+          }
+        }
+      },
+      "DoneWhenEvent": {
+        "type": "object",
+        "properties": {
+          "event": {
+            "type": "string",
+            "enum": [
+              "domReady",
+              "loadFinished"
+            ],
+            "description": "Event to trigger completion: 'domReady' (DomContentLoaded) or 'loadFinished' (full load)"
+          }
+        }
+      },
+      "PageResponse": {
+        "type": "object",
+        "description": "Response when outputAsJson is true",
+        "properties": {
+          "pageResponses": {
+            "type": "object",
+            "properties": {
+              "events": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PageEvent"
+                },
+                "description": "Array of events that occurred during page load"
+              }
+            }
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "HTTP status code of the rendered page"
+          },
+          "content": {
+            "type": "string",
+            "description": "Rendered content based on renderType"
+          }
+        }
+      },
+      "PageEvent": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "enum": [
+              "resourceRequested",
+              "resourceReceived",
+              "browserError"
+            ],
+            "description": "Type of event"
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp of the event"
+          },
+          "value": {
+            "type": "object",
+            "description": "Event-specific data"
+          }
+        }
+      },
+      "ResourceRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for the resource request"
+          },
+          "method": {
+            "type": "string",
+            "description": "HTTP method used"
+          },
+          "url": {
+            "type": "string",
+            "description": "URL of the requested resource"
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the request was made"
+          },
+          "headers": {
+            "type": "object",
+            "description": "Request headers (may be suppressed)"
+          }
+        }
+      },
+      "ResourceResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier matching the request"
+          },
+          "url": {
+            "type": "string",
+            "description": "URL of the resource"
+          },
+          "status": {
+            "type": "integer",
+            "description": "HTTP status code"
+          },
+          "statusText": {
+            "type": "string",
+            "description": "HTTP status text"
+          },
+          "contentType": {
+            "type": "string",
+            "description": "Content-Type of the response"
+          },
+          "bodySize": {
+            "type": "integer",
+            "description": "Size of the response body in bytes"
+          },
+          "stage": {
+            "type": "string",
+            "enum": [
+              "start",
+              "end"
+            ],
+            "description": "Stage of the response (start or end)"
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the response was received"
+          },
+          "headers": {
+            "type": "object",
+            "description": "Response headers (may be suppressed)"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "statusCode": {
+            "type": "integer",
+            "description": "HTTP status code"
+          },
+          "message": {
+            "type": "string",
+            "description": "Detailed error description"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Page Rendering",
+      "description": "Endpoints for rendering web pages in various formats and performing page automation"
+    }
+  ],
+  "externalDocs": {
+    "description": "Full PhantomJsCloud Documentation",
+    "url": "https://phantomjscloud.com/docs/"
+  }
+}

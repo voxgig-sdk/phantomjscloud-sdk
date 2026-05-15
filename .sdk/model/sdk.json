@@ -1,0 +1,521 @@
+{
+  "name": "phantomjscloud",
+  "origin": "voxgig-sdk",
+  "def": "phantomjscloud_0.1.0.json",
+  "main": {
+    "kit": {
+      "info": {
+        "contact": {
+          "name": "PhantomJsCloud Support",
+          "url": "https://phantomjscloud.com/docs/"
+        },
+        "description": "PhantomJsCloud API offers a REST-like, JSON-based interface for web page rendering and automation. It allows you to submit page requests and receive various output formats like JPEG, PNG, and PDF while handling page interactions via an automation API.",
+        "servers": [
+          {
+            "description": "PhantomJsCloud API Server",
+            "url": "https://phantomjscloud.com/api/browser/v2"
+          }
+        ],
+        "termsOfService": "https://phantomjscloud.com/docs/",
+        "title": "PhantomJsCloud API",
+        "version": "2.0.0"
+      },
+      "config": {
+        "auth": {
+          "prefix": "Bearer"
+        },
+        "headers": {
+          "content-type": "application/json"
+        }
+      },
+      "entity": {
+        "render_page_get": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "content",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "page_response",
+              "req": false,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "status_code",
+              "req": false,
+              "type": "`$INTEGER`",
+              "active": true
+            }
+          ],
+          "name": "render_page_get",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "example": "ak-012345-abcde-012345-abcde-012345",
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "api_key",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "request",
+                        "orig": "request",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/{apiKey}/",
+                  "parts": [
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "apiKey": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "id",
+                      "request"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "render_page_post": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "content",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "output_as_json",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "overseer_script",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "page_response",
+              "req": false,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "proxy",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "render_type",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "request_setting",
+              "req": false,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "status_code",
+              "req": false,
+              "type": "`$INTEGER`",
+              "active": true
+            },
+            {
+              "name": "suppress_json",
+              "req": false,
+              "type": "`$ARRAY`",
+              "active": true
+            },
+            {
+              "name": "url",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "name": "render_page_post",
+          "op": {
+            "create": {
+              "name": "create",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "example": "ak-012345-abcde-012345-abcde-012345",
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "api_key",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "POST",
+                  "orig": "/{apiKey}/",
+                  "parts": [
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "apiKey": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "id"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        }
+      },
+      "feature": {
+        "test": {
+          "name": "test",
+          "title": "In-memory mock transport for testing without a live server",
+          "version": "0.0.1",
+          "active": true,
+          "config": {
+            "options": {
+              "active": false
+            }
+          },
+          "hook": {
+            "PostConstruct": {
+              "active": true,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": true,
+              "await": false
+            },
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
+            "PrePoint": {
+              "active": true
+            },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
+            "PreRequest": {
+              "active": true,
+              "await": false
+            },
+            "PreResponse": {
+              "active": true,
+              "await": false
+            },
+            "PreResult": {
+              "active": true,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            }
+          },
+          "target": {
+            "ts": {
+              "deps": {}
+            },
+            "go": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            }
+          }
+        }
+      },
+      "flow": {
+        "BasicRenderPageGetFlow": {
+          "entity": "render_page_get",
+          "kind": "basic",
+          "name": "BasicRenderPageGetFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "render_page_get_ref01",
+                "srcdatavar": "render_page_get_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "render_page_get01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-render_page_get_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicRenderPageGetFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicRenderPagePostFlow": {
+          "entity": "render_page_post",
+          "kind": "basic",
+          "name": "BasicRenderPagePostFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "render_page_post_ref01"
+              },
+              "match": {
+                "api_key": "api_key01"
+              },
+              "op": "create",
+              "active": true,
+              "data": {},
+              "spec": [],
+              "valid": []
+            }
+          ],
+          "key$": "BasicRenderPagePostFlow",
+          "active": true,
+          "param": {}
+        }
+      },
+      "target": {
+        "ts": {
+          "title": "TypeScript",
+          "ext": "ts",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "phantomjscloud"
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "deps": {
+            "dotenv": {
+              "active": true,
+              "version": "^17.4.2",
+              "kind": "dev"
+            },
+            "typescript": {
+              "active": true,
+              "version": "^5.9.3",
+              "kind": "dev"
+            },
+            "@types/node": {
+              "active": true,
+              "version": "^25.6.0",
+              "kind": "dev"
+            }
+          },
+          "name": "ts",
+          "active": true
+        },
+        "go": {
+          "title": "Golang",
+          "ext": "go",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "phantomjscloud"
+          },
+          "srcfeature": false,
+          "deps": {
+            "github.com/voxgig/struct": {
+              "active": true,
+              "version": "v0.0.0",
+              "replace": "./utility/struct",
+              "kind": "prod"
+            }
+          },
+          "name": "go",
+          "active": true
+        },
+        "lua": {
+          "title": "Lua",
+          "ext": "lua",
+          "comment": {
+            "line": "--"
+          },
+          "module": {
+            "name": "phantomjscloud"
+          },
+          "srcfeature": false,
+          "deps": {
+            "dkjson": {
+              "active": true,
+              "version": "2.5",
+              "kind": "prod"
+            }
+          },
+          "name": "lua",
+          "active": true
+        },
+        "php": {
+          "title": "PHP",
+          "ext": "php",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "phantomjscloud"
+          },
+          "srcfeature": false,
+          "deps": {},
+          "name": "php",
+          "active": true
+        },
+        "py": {
+          "title": "Python",
+          "ext": "py",
+          "comment": {
+            "line": "#"
+          },
+          "module": {
+            "name": "phantomjscloud"
+          },
+          "srcfeature": false,
+          "deps": {
+            "requests": {
+              "active": true,
+              "version": "2.33",
+              "kind": "prod"
+            }
+          },
+          "name": "py",
+          "active": true
+        },
+        "rb": {
+          "title": "Ruby",
+          "ext": "rb",
+          "comment": {
+            "line": "#"
+          },
+          "module": {
+            "name": "phantomjscloud"
+          },
+          "srcfeature": false,
+          "deps": {
+            "voxgig-struct": {
+              "active": true,
+              "version": "0.0.10",
+              "kind": "prod"
+            },
+            "json": {
+              "active": true,
+              "version": "0",
+              "kind": "prod"
+            }
+          },
+          "name": "rb",
+          "active": true
+        }
+      },
+      "option": {}
+    },
+    "def": {
+      "desc": ""
+    },
+    "api": {
+      "guide": {},
+      "entity": {}
+    }
+  },
+  "name__orig": "phantomjscloud",
+  "Name": "Phantomjscloud",
+  "name_": "phantomjscloud",
+  "name-": "phantomjscloud",
+  "NAME": "PHANTOMJSCLOUD"
+}

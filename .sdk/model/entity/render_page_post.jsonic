@@ -1,0 +1,104 @@
+# Entity: render_page_post
+
+main: kit: entity: render_page_post: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "content"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "output_as_json"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "overseer_script"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "page_response"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "proxy"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "render_type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "request_setting"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "status_code"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "suppress_json"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "url"
+      req: true
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "render_page_post"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "ak-012345-abcde-012345-abcde-012345"
+                kind: "param"
+                name: "id"
+                orig: "api_key"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/{apiKey}/"
+          parts: [
+            "{id}"
+          ]
+          rename: {
+            param: {
+              apiKey: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,79 @@
+# Entity: render_page_get
+
+main: kit: entity: render_page_get: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "content"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "page_response"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "status_code"
+      req: false
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "render_page_get"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                example: "ak-012345-abcde-012345-abcde-012345"
+                kind: "param"
+                name: "id"
+                orig: "api_key"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                kind: "query"
+                name: "request"
+                orig: "request"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/{apiKey}/"
+          parts: [
+            "{id}"
+          ]
+          rename: {
+            param: {
+              apiKey: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+              "request"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

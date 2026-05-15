@@ -1,0 +1,22 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 2
+  metrics: count: path: 1
+  metrics: count: method: 2
+
+  entity: render_page_get: {
+    path: "/{apiKey}/": {
+      rename: param: "apiKey": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: render_page_post: {
+    path: "/{apiKey}/": {
+      rename: param: "apiKey": *"id"
+      op: create: method: *POST
+    }
+  }
+
+}

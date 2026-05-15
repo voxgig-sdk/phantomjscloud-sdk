@@ -1,0 +1,22 @@
+# BasicRenderPagePostFlow
+
+main: kit: flow: BasicRenderPagePostFlow:
+{
+  entity: "render_page_post",
+  kind: "basic",
+  name: "BasicRenderPagePostFlow",
+  step: [
+    {
+      input: {
+        ref: "render_page_post_ref01"
+      }
+
+      match: {
+        api_key: "api_key01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicRenderPagePostFlow"
+}

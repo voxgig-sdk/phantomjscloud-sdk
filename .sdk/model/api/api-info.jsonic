@@ -1,0 +1,25 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "PhantomJsCloud Support"
+        url: "https://phantomjscloud.com/docs/"
+      }
+      description: "PhantomJsCloud API offers a REST-like, JSON-based interface for web page rendering and automation. It allows you to submit page requests and receive various output formats like JPEG, PNG, and PDF while handling page interactions via an automation API."
+      servers: [
+        {
+          description: "PhantomJsCloud API Server"
+          url: "https://phantomjscloud.com/api/browser/v2"
+        }
+      ]
+      termsOfService: "https://phantomjscloud.com/docs/"
+      title: "PhantomJsCloud API"
+      version: "2.0.0"
+    }
+  }
+}
+
+}
