@@ -1,10 +1,10 @@
 package voxgigphantomjscloudsdk
 
 import (
-	"github.com/voxgig-sdk/phantomjscloud-sdk/core"
-	"github.com/voxgig-sdk/phantomjscloud-sdk/entity"
-	"github.com/voxgig-sdk/phantomjscloud-sdk/feature"
-	_ "github.com/voxgig-sdk/phantomjscloud-sdk/utility"
+	"github.com/voxgig-sdk/phantomjscloud-sdk/go/core"
+	"github.com/voxgig-sdk/phantomjscloud-sdk/go/entity"
+	"github.com/voxgig-sdk/phantomjscloud-sdk/go/feature"
+	_ "github.com/voxgig-sdk/phantomjscloud-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

@@ -4,17 +4,20 @@
       "RENDER_PAGE_GET00": {
         "content": "s1e",
         "page_response": {},
-        "status_code": "s20"
+        "status_code": "s20",
+        "id": "RENDER_PAGE_GET00"
       },
       "RENDER_PAGE_GET01": {
         "content": "s3c",
         "page_response": {},
-        "status_code": "s3e"
+        "status_code": "s3e",
+        "id": "RENDER_PAGE_GET01"
       },
       "RENDER_PAGE_GET02": {
         "content": "s5a",
         "page_response": {},
-        "status_code": "s5c"
+        "status_code": "s5c",
+        "id": "RENDER_PAGE_GET02"
       }
     }
   },

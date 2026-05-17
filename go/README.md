@@ -5,14 +5,14 @@ The Golang SDK for the Phantomjscloud API. Provides an entity-oriented interface
 
 ## Install
 ```bash
-go get github.com/voxgig-sdk/phantomjscloud-sdk
+go get github.com/voxgig-sdk/phantomjscloud-sdk/go
 ```
 
 If the module is not yet published to a registry, use a `replace` directive
 in your `go.mod` to point to a local checkout:
 
 ```bash
-go mod edit -replace github.com/voxgig-sdk/phantomjscloud-sdk=../path/to/github.com/voxgig-sdk/phantomjscloud-sdk
+go mod edit -replace github.com/voxgig-sdk/phantomjscloud-sdk/go=../path/to/github.com/voxgig-sdk/phantomjscloud-sdk/go
 ```
 
 
@@ -30,8 +30,8 @@ import (
     "fmt"
     "os"
 
-    sdk "github.com/voxgig-sdk/phantomjscloud-sdk"
-    "github.com/voxgig-sdk/phantomjscloud-sdk/core"
+    sdk "github.com/voxgig-sdk/phantomjscloud-sdk/go"
+    "github.com/voxgig-sdk/phantomjscloud-sdk/go/core"
 )
 
 func main() {
@@ -366,7 +366,7 @@ Use `core.ToMapAny()` to safely cast results and nested data.
 ### Package structure
 
 ```
-github.com/voxgig-sdk/phantomjscloud-sdk/
+github.com/voxgig-sdk/phantomjscloud-sdk/go/
 ├── phantomjscloud.go        # Root package — type aliases and constructors
 ├── core/               # SDK core — client, types, pipeline
 ├── entity/             # Entity implementations
@@ -375,7 +375,7 @@ github.com/voxgig-sdk/phantomjscloud-sdk/
 └── test/               # Test suites
 ```
 
-The root package (`github.com/voxgig-sdk/phantomjscloud-sdk`) re-exports everything needed
+The root package (`github.com/voxgig-sdk/phantomjscloud-sdk/go`) re-exports everything needed
 for normal use. Import sub-packages only when you need specific types
 like `core.ToMapAny`.
 

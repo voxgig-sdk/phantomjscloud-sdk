@@ -11,7 +11,8 @@
         "request_setting": {},
         "status_code": "s6b",
         "suppress_json": [],
-        "url": "s6d"
+        "url": "s6d",
+        "id": "RENDER_PAGE_POST00"
       },
       "RENDER_PAGE_POST01": {
         "content": "sc8",
@@ -23,7 +24,8 @@
         "request_setting": {},
         "status_code": "scf",
         "suppress_json": [],
-        "url": "sd1"
+        "url": "sd1",
+        "id": "RENDER_PAGE_POST01"
       },
       "RENDER_PAGE_POST02": {
         "content": "s12c",
@@ -35,7 +37,8 @@
         "request_setting": {},
         "status_code": "s133",
         "suppress_json": [],
-        "url": "s135"
+        "url": "s135",
+        "id": "RENDER_PAGE_POST02"
       }
     }
   },

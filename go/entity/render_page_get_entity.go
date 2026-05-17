@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/phantomjscloud-sdk/core"
+	"github.com/voxgig-sdk/phantomjscloud-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/phantomjscloud-sdk/go/utility/struct"
 )
 
 type RenderPageGetEntity struct {

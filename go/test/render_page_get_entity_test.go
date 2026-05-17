@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/phantomjscloud-sdk"
-	"github.com/voxgig-sdk/phantomjscloud-sdk/core"
+	sdk "github.com/voxgig-sdk/phantomjscloud-sdk/go"
+	"github.com/voxgig-sdk/phantomjscloud-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/phantomjscloud-sdk/go/utility/struct"
 )
 
 func TestRenderPageGetEntity(t *testing.T) {

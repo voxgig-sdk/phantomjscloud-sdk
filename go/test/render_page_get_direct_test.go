@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/phantomjscloud-sdk"
-	"github.com/voxgig-sdk/phantomjscloud-sdk/core"
+	sdk "github.com/voxgig-sdk/phantomjscloud-sdk/go"
+	"github.com/voxgig-sdk/phantomjscloud-sdk/go/core"
 )
 
 func TestRenderPageGetDirect(t *testing.T) {

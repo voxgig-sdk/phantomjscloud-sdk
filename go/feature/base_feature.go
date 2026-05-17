@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/phantomjscloud-sdk/core"
+	"github.com/voxgig-sdk/phantomjscloud-sdk/go/core"
 )
 
 type BaseFeature struct {
