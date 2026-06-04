@@ -110,14 +110,12 @@ func render_page_getDirectSetup(mockres any) *render_page_getDirectSetupResult {
 	env := envOverride(map[string]any{
 		"PHANTOMJSCLOUD_TEST_RENDER_PAGE_GET_ENTID": map[string]any{},
 		"PHANTOMJSCLOUD_TEST_LIVE":    "FALSE",
-		"PHANTOMJSCLOUD_APIKEY":       "NONE",
 	})
 
 	live := env["PHANTOMJSCLOUD_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["PHANTOMJSCLOUD_APIKEY"],
 		}
 		client := sdk.NewPhantomjscloudSDK(mergedOpts)
 

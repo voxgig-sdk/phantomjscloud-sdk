@@ -85,7 +85,6 @@ function render_page_get_basic_setup($extra)
         "PHANTOMJSCLOUD_TEST_RENDER_PAGE_GET_ENTID" => $idmap,
         "PHANTOMJSCLOUD_TEST_LIVE" => "FALSE",
         "PHANTOMJSCLOUD_TEST_EXPLAIN" => "FALSE",
-        "PHANTOMJSCLOUD_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +96,6 @@ function render_page_get_basic_setup($extra)
     if ($env["PHANTOMJSCLOUD_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["PHANTOMJSCLOUD_APIKEY"],
             ],
             $extra ?? [],
         ]);

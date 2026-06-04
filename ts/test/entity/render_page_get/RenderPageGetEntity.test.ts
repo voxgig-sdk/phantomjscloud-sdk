@@ -111,7 +111,6 @@ function basicSetup(extra?: any) {
     'PHANTOMJSCLOUD_TEST_RENDER_PAGE_GET_ENTID': idmap,
     'PHANTOMJSCLOUD_TEST_LIVE': 'FALSE',
     'PHANTOMJSCLOUD_TEST_EXPLAIN': 'FALSE',
-    'PHANTOMJSCLOUD_APIKEY': 'NONE',
   })
 
   idmap = env['PHANTOMJSCLOUD_TEST_RENDER_PAGE_GET_ENTID']
@@ -121,7 +120,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new PhantomjscloudSDK(merge([
       {
-        apikey: env.PHANTOMJSCLOUD_APIKEY,
       },
       extra
     ]))

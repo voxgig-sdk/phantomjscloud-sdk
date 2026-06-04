@@ -70,14 +70,12 @@ function render_page_get_direct_setup(mockres)
   local env = runner.env_override({
     ["PHANTOMJSCLOUD_TEST_RENDER_PAGE_GET_ENTID"] = {},
     ["PHANTOMJSCLOUD_TEST_LIVE"] = "FALSE",
-    ["PHANTOMJSCLOUD_APIKEY"] = "NONE",
   })
 
   local live = env["PHANTOMJSCLOUD_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["PHANTOMJSCLOUD_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

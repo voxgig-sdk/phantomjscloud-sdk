@@ -18,7 +18,18 @@
         ],
         "termsOfService": "https://phantomjscloud.com/docs/",
         "title": "PhantomJsCloud API",
-        "version": "2.0.0"
+        "version": "2.0.0",
+        "tagline": "Render and automate web pages, returning JPEG/PNG/PDF screenshots, plain text, HTML, or scripted automation results",
+        "homepage": "https://phantomjscloud.com/",
+        "docs_url": "https://phantomjscloud.com/docs/",
+        "license_short": "Commercial API key required; free tier available (~500 pages/day); demo key has very low per-IP quota.",
+        "license_md": "- Commercial service from PhantomJsCloud — sign up at [phantomjscloud.com](https://phantomjscloud.com/) for a personal API key.\n- Free tier reportedly allows around 500 pages per day; paid plans raise quotas and remove restrictions.\n- A shared demo key (`a-demo-key-with-low-quota-per-ip-address`) is provided for testing only and is throttled per IP.\n- See the [PhantomJsCloud documentation](https://phantomjscloud.com/docs/) for the latest terms, pricing, and quota details.",
+        "about_md": "[PhantomJsCloud](https://phantomjscloud.com/) is a hosted headless-browser service that exposes a REST-like, JSON-based interface for rendering and automating web pages. You submit a `PageRequest` describing the URL and how to render it, and the service returns the output in the format you ask for.\n\nWhat you can get from the API:\n\n- **plainText** — fully executed page text, useful for scraping JavaScript-driven sites\n- **html** — the rendered HTML\n- **jpeg / jpg / png** — screenshots, previews, and thumbnails\n- **pdf** — page archives and reports\n- **automation** — scripted workflows with keyboard, mouse and touchscreen events, multi-step navigation, element waits, and multiple captured renders; supports a Puppeteer-compatible API inside an ES2018 sandbox\n\nAuthentication is by API key embedded in the URL path (`/api/browser/v2/ak-<YOUR-KEY>/`). The docs recommend starting at around 10 parallel requests and ramping up by one every three seconds, backing off for ~45 seconds on HTTP 429 or 503. Response headers expose billing cost, remaining credit, the final URL after redirects, and a suggested download filename. Optional proxy routing through static US IPs or anonymous proxies in 14+ countries is also available.",
+        "entity_desc": {
+          "render_page_get": "Render a page via a GET request, with the `PageRequest` JSON encoded into the URL — convenient for embedding renders directly in `<img>` or `<a>` tags.",
+          "render_page_post": "Render a page via a POST request, sending the full `PageRequest` JSON as the body — the standard way to drive screenshots, PDFs, scraping, and automation scripts."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -26,7 +37,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "render_page_get": {

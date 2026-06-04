@@ -79,14 +79,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'PHANTOMJSCLOUD_TEST_RENDER_PAGE_GET_ENTID': {},
     'PHANTOMJSCLOUD_TEST_LIVE': 'FALSE',
-    'PHANTOMJSCLOUD_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.PHANTOMJSCLOUD_TEST_LIVE
 
   if (live) {
     const client = new PhantomjscloudSDK({
-      apikey: env.PHANTOMJSCLOUD_APIKEY,
     })
 
     let idmap: any = env['PHANTOMJSCLOUD_TEST_RENDER_PAGE_GET_ENTID']

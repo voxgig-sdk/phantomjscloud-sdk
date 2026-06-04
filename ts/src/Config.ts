@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://phantomjscloud.com/api/browser/v2',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },

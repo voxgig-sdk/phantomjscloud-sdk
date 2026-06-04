@@ -91,7 +91,6 @@ def _render_page_get_basic_setup(extra):
         "PHANTOMJSCLOUD_TEST_RENDER_PAGE_GET_ENTID": idmap,
         "PHANTOMJSCLOUD_TEST_LIVE": "FALSE",
         "PHANTOMJSCLOUD_TEST_EXPLAIN": "FALSE",
-        "PHANTOMJSCLOUD_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +101,6 @@ def _render_page_get_basic_setup(extra):
     if env.get("PHANTOMJSCLOUD_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("PHANTOMJSCLOUD_APIKEY"),
             },
             extra or {},
         ])
