@@ -1,22 +1,8 @@
 # Phantomjscloud SDK
 
-Render and automate web pages, returning JPEG/PNG/PDF screenshots, plain text, HTML, or scripted automation results
+PhantomJsCloud API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About PhantomJsCloud API
-
-[PhantomJsCloud](https://phantomjscloud.com/) is a hosted headless-browser service that exposes a REST-like, JSON-based interface for rendering and automating web pages. You submit a `PageRequest` describing the URL and how to render it, and the service returns the output in the format you ask for.
-
-What you can get from the API:
-
-- **plainText** — fully executed page text, useful for scraping JavaScript-driven sites
-- **html** — the rendered HTML
-- **jpeg / jpg / png** — screenshots, previews, and thumbnails
-- **pdf** — page archives and reports
-- **automation** — scripted workflows with keyboard, mouse and touchscreen events, multi-step navigation, element waits, and multiple captured renders; supports a Puppeteer-compatible API inside an ES2018 sandbox
-
-Authentication is by API key embedded in the URL path (`/api/browser/v2/ak-<YOUR-KEY>/`). The docs recommend starting at around 10 parallel requests and ramping up by one every three seconds, backing off for ~45 seconds on HTTP 429 or 503. Response headers expose billing cost, remaining credit, the final URL after redirects, and a suggested download filename. Optional proxy routing through static US IPs or anonymous proxies in 14+ countries is also available.
 
 ## Try it
 
@@ -50,27 +36,31 @@ gem install phantomjscloud-sdk
 luarocks install phantomjscloud-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { PhantomjscloudSDK } from 'phantomjscloud'
 
-const client = new PhantomjscloudSDK({})
+const client = new PhantomjscloudSDK({
+  apikey: process.env.PHANTOMJSCLOUD_APIKEY,
+})
 
+// Load renderpageget data
+const renderpageget = await client.RenderPageGet().load({})
+console.log(renderpageget.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -100,8 +90,8 @@ The API exposes 2 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **RenderPageGet** | Render a page via a GET request, with the `PageRequest` JSON encoded into the URL — convenient for embedding renders directly in `<img>` or `<a>` tags. | `/{apiKey}/` |
-| **RenderPagePost** | Render a page via a POST request, sending the full `PageRequest` JSON as the body — the standard way to drive screenshots, PDFs, scraping, and automation scripts. | `/{apiKey}/` |
+| **RenderPageGet** |  | `/{apiKey}/` |
+| **RenderPagePost** |  | `/{apiKey}/` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -111,15 +101,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from phantomjscloud_sdk import PhantomjscloudSDK
 
-client = PhantomjscloudSDK({})
+client = PhantomjscloudSDK({
+    "apikey": os.environ.get("PHANTOMJSCLOUD_APIKEY"),
+})
 
 
 # Load a specific renderpageget
-renderpageget, err = client.RenderPageGet(None).load(
-    {"id": "example_id"}, None
-)
+renderpageget, err = client.RenderPageGet().load({"id": "example_id"})
+print(renderpageget)
 ```
 
 ### PHP
@@ -128,13 +120,14 @@ renderpageget, err = client.RenderPageGet(None).load(
 <?php
 require_once 'phantomjscloud_sdk.php';
 
-$client = new PhantomjscloudSDK([]);
+$client = new PhantomjscloudSDK([
+    "apikey" => getenv("PHANTOMJSCLOUD_APIKEY"),
+]);
 
 
 // Load a specific renderpageget
-[$renderpageget, $err] = $client->RenderPageGet(null)->load(
-    ["id" => "example_id"], null
-);
+[$renderpageget, $err] = $client->RenderPageGet()->load(["id" => "example_id"]);
+print_r($renderpageget);
 ```
 
 ### Golang
@@ -142,8 +135,13 @@ $client = new PhantomjscloudSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/phantomjscloud-sdk/go"
 
-client := sdk.NewPhantomjscloudSDK(map[string]any{})
+client := sdk.NewPhantomjscloudSDK(map[string]any{
+    "apikey": os.Getenv("PHANTOMJSCLOUD_APIKEY"),
+})
 
+// Load renderpageget data
+renderpageget, err := client.RenderPageGet(nil).Load(map[string]any{}, nil)
+fmt.Println(renderpageget)
 ```
 
 ### Ruby
@@ -151,13 +149,14 @@ client := sdk.NewPhantomjscloudSDK(map[string]any{})
 ```ruby
 require_relative "Phantomjscloud_sdk"
 
-client = PhantomjscloudSDK.new({})
+client = PhantomjscloudSDK.new({
+  "apikey" => ENV["PHANTOMJSCLOUD_APIKEY"],
+})
 
 
 # Load a specific renderpageget
-renderpageget, err = client.RenderPageGet(nil).load(
-  { "id" => "example_id" }, nil
-)
+renderpageget, err = client.RenderPageGet().load({ "id" => "example_id" })
+puts renderpageget
 ```
 
 ### Lua
@@ -165,13 +164,14 @@ renderpageget, err = client.RenderPageGet(nil).load(
 ```lua
 local sdk = require("phantomjscloud_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("PHANTOMJSCLOUD_APIKEY"),
+})
 
 
 -- Load a specific renderpageget
-local renderpageget, err = client:RenderPageGet(nil):load(
-  { id = "example_id" }, nil
-)
+local renderpageget, err = client:RenderPageGet():load({ id = "example_id" })
+print(renderpageget)
 ```
 
 ## Unit testing in offline mode
@@ -190,25 +190,21 @@ const result = await client.RenderPageGet().load({ id: 'test01' })
 ### Python
 
 ```python
-client = PhantomjscloudSDK.test(None, None)
-result, err = client.RenderPageGet(None).load(
-    {"id": "test01"}, None
-)
+client = PhantomjscloudSDK.test()
+result, err = client.RenderPageGet().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = PhantomjscloudSDK::test(null, null);
-[$result, $err] = $client->RenderPageGet(null)->load(
-    ["id" => "test01"], null
-);
+$client = PhantomjscloudSDK::test();
+[$result, $err] = $client->RenderPageGet()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.RenderPageGet(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -217,19 +213,15 @@ result, err := client.RenderPageGet(nil).Load(
 ### Ruby
 
 ```ruby
-client = PhantomjscloudSDK.test(nil, nil)
-result, err = client.RenderPageGet(nil).load(
-  { "id" => "test01" }, nil
-)
+client = PhantomjscloudSDK.test
+result, err = client.RenderPageGet().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:RenderPageGet(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:RenderPageGet():load({ id = "test01" })
 ```
 
 ## How it works
@@ -333,16 +325,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the PhantomJsCloud API
-
-- Upstream: [https://phantomjscloud.com/](https://phantomjscloud.com/)
-- API docs: [https://phantomjscloud.com/docs/](https://phantomjscloud.com/docs/)
-
-- Commercial service from PhantomJsCloud — sign up at [phantomjscloud.com](https://phantomjscloud.com/) for a personal API key.
-- Free tier reportedly allows around 500 pages per day; paid plans raise quotas and remove restrictions.
-- A shared demo key (`a-demo-key-with-low-quota-per-ip-address`) is provided for testing only and is throttled per IP.
-- See the [PhantomJsCloud documentation](https://phantomjscloud.com/docs/) for the latest terms, pricing, and quota details.
 
 ---
 

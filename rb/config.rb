@@ -15,6 +15,9 @@ module PhantomjscloudConfig
       },
       "options" => {
         "base" => "https://phantomjscloud.com/api/browser/v2",
+        "auth" => {
+          "prefix" => "Bearer",
+        },
         "headers" => {
           "content-type" => "application/json",
         },
@@ -27,53 +30,55 @@ module PhantomjscloudConfig
         "render_page_get" => {
           "fields" => [
             {
+              "active" => true,
               "name" => "content",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 0,
             },
             {
+              "active" => true,
               "name" => "page_response",
               "req" => false,
               "type" => "`$OBJECT`",
-              "active" => true,
               "index$" => 1,
             },
             {
+              "active" => true,
               "name" => "status_code",
               "req" => false,
               "type" => "`$INTEGER`",
-              "active" => true,
               "index$" => 2,
             },
           ],
           "name" => "render_page_get",
           "op" => {
             "load" => {
+              "input" => "data",
               "name" => "load",
               "points" => [
                 {
+                  "active" => true,
                   "args" => {
                     "params" => [
                       {
+                        "active" => true,
                         "example" => "ak-012345-abcde-012345-abcde-012345",
                         "kind" => "param",
                         "name" => "id",
                         "orig" => "api_key",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                     "query" => [
                       {
+                        "active" => true,
                         "kind" => "query",
                         "name" => "request",
                         "orig" => "request",
                         "reqd" => false,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -97,11 +102,9 @@ module PhantomjscloudConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 0,
                 },
               ],
-              "input" => "data",
               "key$" => "load",
             },
           },
@@ -112,92 +115,94 @@ module PhantomjscloudConfig
         "render_page_post" => {
           "fields" => [
             {
+              "active" => true,
               "name" => "content",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 0,
             },
             {
+              "active" => true,
               "name" => "output_as_json",
               "req" => false,
               "type" => "`$BOOLEAN`",
-              "active" => true,
               "index$" => 1,
             },
             {
+              "active" => true,
               "name" => "overseer_script",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 2,
             },
             {
+              "active" => true,
               "name" => "page_response",
               "req" => false,
               "type" => "`$OBJECT`",
-              "active" => true,
               "index$" => 3,
             },
             {
+              "active" => true,
               "name" => "proxy",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 4,
             },
             {
+              "active" => true,
               "name" => "render_type",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 5,
             },
             {
+              "active" => true,
               "name" => "request_setting",
               "req" => false,
               "type" => "`$OBJECT`",
-              "active" => true,
               "index$" => 6,
             },
             {
+              "active" => true,
               "name" => "status_code",
               "req" => false,
               "type" => "`$INTEGER`",
-              "active" => true,
               "index$" => 7,
             },
             {
+              "active" => true,
               "name" => "suppress_json",
               "req" => false,
               "type" => "`$ARRAY`",
-              "active" => true,
               "index$" => 8,
             },
             {
+              "active" => true,
               "name" => "url",
               "req" => true,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 9,
             },
           ],
           "name" => "render_page_post",
           "op" => {
             "create" => {
+              "input" => "data",
               "name" => "create",
               "points" => [
                 {
+                  "active" => true,
                   "args" => {
                     "params" => [
                       {
+                        "active" => true,
                         "example" => "ak-012345-abcde-012345-abcde-012345",
                         "kind" => "param",
                         "name" => "id",
                         "orig" => "api_key",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -220,11 +225,9 @@ module PhantomjscloudConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 0,
                 },
               ],
-              "input" => "data",
               "key$" => "create",
             },
           },

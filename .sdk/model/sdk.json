@@ -1,42 +1,13 @@
 {
-  "name": "phantomjscloud",
-  "origin": "voxgig-sdk",
   "def": "phantomjscloud_0.1.0.json",
   "main": {
+    "def": {
+      "desc": ""
+    },
     "kit": {
-      "info": {
-        "contact": {
-          "name": "PhantomJsCloud Support",
-          "url": "https://phantomjscloud.com/docs/"
-        },
-        "description": "PhantomJsCloud API offers a REST-like, JSON-based interface for web page rendering and automation. It allows you to submit page requests and receive various output formats like JPEG, PNG, and PDF while handling page interactions via an automation API.",
-        "servers": [
-          {
-            "description": "PhantomJsCloud API Server",
-            "url": "https://phantomjscloud.com/api/browser/v2"
-          }
-        ],
-        "termsOfService": "https://phantomjscloud.com/docs/",
-        "title": "PhantomJsCloud API",
-        "version": "2.0.0",
-        "tagline": "Render and automate web pages, returning JPEG/PNG/PDF screenshots, plain text, HTML, or scripted automation results",
-        "homepage": "https://phantomjscloud.com/",
-        "docs_url": "https://phantomjscloud.com/docs/",
-        "license_short": "Commercial API key required; free tier available (~500 pages/day); demo key has very low per-IP quota.",
-        "license_md": "- Commercial service from PhantomJsCloud — sign up at [phantomjscloud.com](https://phantomjscloud.com/) for a personal API key.\n- Free tier reportedly allows around 500 pages per day; paid plans raise quotas and remove restrictions.\n- A shared demo key (`a-demo-key-with-low-quota-per-ip-address`) is provided for testing only and is throttled per IP.\n- See the [PhantomJsCloud documentation](https://phantomjscloud.com/docs/) for the latest terms, pricing, and quota details.",
-        "about_md": "[PhantomJsCloud](https://phantomjscloud.com/) is a hosted headless-browser service that exposes a REST-like, JSON-based interface for rendering and automating web pages. You submit a `PageRequest` describing the URL and how to render it, and the service returns the output in the format you ask for.\n\nWhat you can get from the API:\n\n- **plainText** — fully executed page text, useful for scraping JavaScript-driven sites\n- **html** — the rendered HTML\n- **jpeg / jpg / png** — screenshots, previews, and thumbnails\n- **pdf** — page archives and reports\n- **automation** — scripted workflows with keyboard, mouse and touchscreen events, multi-step navigation, element waits, and multiple captured renders; supports a Puppeteer-compatible API inside an ES2018 sandbox\n\nAuthentication is by API key embedded in the URL path (`/api/browser/v2/ak-<YOUR-KEY>/`). The docs recommend starting at around 10 parallel requests and ramping up by one every three seconds, backing off for ~45 seconds on HTTP 429 or 503. Response headers expose billing cost, remaining credit, the final URL after redirects, and a suggested download filename. Optional proxy routing through static US IPs or anonymous proxies in 14+ countries is also available.",
-        "entity_desc": {
-          "render_page_get": "Render a page via a GET request, with the `PageRequest` JSON encoded into the URL — convenient for embedding renders directly in `<img>` or `<a>` tags.",
-          "render_page_post": "Render a page via a POST request, sending the full `PageRequest` JSON as the body — the standard way to drive screenshots, PDFs, scraping, and automation scripts."
-        },
-        "auth": false
-      },
       "config": {
         "auth": {
           "prefix": "Bearer"
-        },
-        "headers": {
-          "content-type": "application/json"
         },
         "docs_order": [
           "ts",
@@ -45,59 +16,65 @@
           "go",
           "rb",
           "lua"
-        ]
+        ],
+        "headers": {
+          "content-type": "application/json"
+        }
       },
       "entity": {
         "render_page_get": {
+          "active": true,
           "alias": {
             "field": {}
           },
           "fields": [
             {
+              "active": true,
               "name": "content",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "page_response",
               "req": false,
-              "type": "`$OBJECT`",
-              "active": true
+              "type": "`$OBJECT`"
             },
             {
+              "active": true,
               "name": "status_code",
               "req": false,
-              "type": "`$INTEGER`",
-              "active": true
+              "type": "`$INTEGER`"
             }
           ],
           "name": "render_page_get",
           "op": {
             "load": {
+              "input": "data",
               "name": "load",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "params": [
                       {
+                        "active": true,
                         "example": "ak-012345-abcde-012345-abcde-012345",
                         "kind": "param",
                         "name": "id",
                         "orig": "api_key",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ],
                     "query": [
                       {
+                        "active": true,
                         "kind": "query",
                         "name": "request",
                         "orig": "request",
                         "reqd": false,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -120,100 +97,100 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
           "relations": {
             "ancestors": []
           }
         },
         "render_page_post": {
+          "active": true,
           "alias": {
             "field": {}
           },
           "fields": [
             {
+              "active": true,
               "name": "content",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "output_as_json",
               "req": false,
-              "type": "`$BOOLEAN`",
-              "active": true
+              "type": "`$BOOLEAN`"
             },
             {
+              "active": true,
               "name": "overseer_script",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "page_response",
               "req": false,
-              "type": "`$OBJECT`",
-              "active": true
+              "type": "`$OBJECT`"
             },
             {
+              "active": true,
               "name": "proxy",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "render_type",
               "req": false,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             },
             {
+              "active": true,
               "name": "request_setting",
               "req": false,
-              "type": "`$OBJECT`",
-              "active": true
+              "type": "`$OBJECT`"
             },
             {
+              "active": true,
               "name": "status_code",
               "req": false,
-              "type": "`$INTEGER`",
-              "active": true
+              "type": "`$INTEGER`"
             },
             {
+              "active": true,
               "name": "suppress_json",
               "req": false,
-              "type": "`$ARRAY`",
-              "active": true
+              "type": "`$ARRAY`"
             },
             {
+              "active": true,
               "name": "url",
               "req": true,
-              "type": "`$STRING`",
-              "active": true
+              "type": "`$STRING`"
             }
           ],
           "name": "render_page_post",
           "op": {
             "create": {
+              "input": "data",
               "name": "create",
               "points": [
                 {
+                  "active": true,
                   "args": {
                     "params": [
                       {
+                        "active": true,
                         "example": "ak-012345-abcde-012345-abcde-012345",
                         "kind": "param",
                         "name": "id",
                         "orig": "api_key",
                         "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
+                        "type": "`$STRING`"
                       }
                     ]
                   },
@@ -235,14 +212,11 @@
                   "transform": {
                     "req": "`reqdata`",
                     "res": "`body`"
-                  },
-                  "active": true
+                  }
                 }
-              ],
-              "input": "data"
+              ]
             }
           },
-          "active": true,
           "relations": {
             "ancestors": []
           }
@@ -250,9 +224,6 @@
       },
       "feature": {
         "test": {
-          "name": "test",
-          "title": "In-memory mock transport for testing without a live server",
-          "version": "0.0.1",
           "active": true,
           "config": {
             "options": {
@@ -260,6 +231,14 @@
             }
           },
           "hook": {
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
             "PostConstruct": {
               "active": true,
               "await": false
@@ -268,25 +247,11 @@
               "active": true,
               "await": false
             },
-            "SetData": {
-              "active": true,
-              "await": false
-            },
-            "GetData": {
-              "active": true,
-              "await": false
-            },
-            "SetMatch": {
-              "active": true
-            },
-            "GetMatch": {
-              "active": true,
+            "PostOperation": {
+              "active": false,
               "await": false
             },
             "PrePoint": {
-              "active": true
-            },
-            "PreSpec": {
               "active": true,
               "await": false
             },
@@ -302,20 +267,32 @@
               "active": true,
               "await": false
             },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
             "PreTarget": {
               "active": false,
               "await": false
             },
-            "PostOperation": {
-              "active": false,
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true,
               "await": false
             }
           },
+          "name": "test",
           "target": {
-            "ts": {
+            "go": {
               "deps": {}
             },
-            "go": {
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
               "deps": {}
             },
             "lua": {
@@ -330,22 +307,26 @@
             "rb": {
               "deps": {}
             },
-            "go-cli": {
-              "deps": {}
-            },
-            "go-mcp": {
+            "ts": {
               "deps": {}
             }
-          }
+          },
+          "title": "In-memory mock transport for testing without a live server",
+          "version": "0.0.1"
         }
       },
       "flow": {
         "BasicRenderPageGetFlow": {
+          "active": true,
           "entity": "render_page_get",
+          "key$": "BasicRenderPageGetFlow",
           "kind": "basic",
           "name": "BasicRenderPageGetFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "render_page_get_ref01",
                 "srcdatavar": "render_page_get_ref01_data",
@@ -355,6 +336,7 @@
                 "id": "render_page_get01"
               },
               "op": "load",
+              "spec": [],
               "valid": [
                 {
                   "apply": "TextFieldMark",
@@ -362,22 +344,21 @@
                     "mark": "Mark01-render_page_get_ref01"
                   }
                 }
-              ],
-              "active": true,
-              "data": {},
-              "spec": []
+              ]
             }
-          ],
-          "key$": "BasicRenderPageGetFlow",
-          "active": true,
-          "param": {}
+          ]
         },
         "BasicRenderPagePostFlow": {
+          "active": true,
           "entity": "render_page_post",
+          "key$": "BasicRenderPagePostFlow",
           "kind": "basic",
           "name": "BasicRenderPagePostFlow",
+          "param": {},
           "step": [
             {
+              "active": true,
+              "data": {},
               "input": {
                 "ref": "render_page_post_ref01"
               },
@@ -385,27 +366,55 @@
                 "api_key": "api_key01"
               },
               "op": "create",
-              "active": true,
-              "data": {},
               "spec": [],
               "valid": []
             }
-          ],
-          "key$": "BasicRenderPagePostFlow",
-          "active": true,
-          "param": {}
+          ]
         }
       },
+      "info": {
+        "contact": {
+          "name": "PhantomJsCloud Support",
+          "url": "https://phantomjscloud.com/docs/"
+        },
+        "description": "PhantomJsCloud API offers a REST-like, JSON-based interface for web page rendering and automation. It allows you to submit page requests and receive various output formats like JPEG, PNG, and PDF while handling page interactions via an automation API.",
+        "servers": [
+          {
+            "description": "PhantomJsCloud API Server",
+            "url": "https://phantomjscloud.com/api/browser/v2"
+          }
+        ],
+        "termsOfService": "https://phantomjscloud.com/docs/",
+        "title": "PhantomJsCloud API",
+        "version": "2.0.0"
+      },
+      "option": {},
       "target": {
-        "go-cli": {
-          "title": "Go CLI",
-          "ext": "go",
+        "go": {
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "go",
           "module": {
             "name": "phantomjscloud"
           },
+          "name": "go",
+          "srcfeature": false,
+          "title": "Golang"
+        },
+        "go-cli": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "module": {
+            "name": "phantomjscloud"
+          },
+          "name": "go-cli",
           "phase": {
             "entity": {
               "active": false
@@ -420,19 +429,19 @@
               "active": false
             }
           },
-          "deps": {},
-          "name": "go-cli",
-          "active": true
+          "title": "Go CLI"
         },
         "go-mcp": {
-          "title": "Go MCP server",
-          "ext": "go",
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "go",
           "module": {
             "name": "phantomjscloud"
           },
+          "name": "go-mcp",
           "phase": {
             "entity": {
               "active": false
@@ -447,138 +456,120 @@
               "active": false
             }
           },
-          "deps": {},
-          "name": "go-mcp",
-          "active": true
-        },
-        "ts": {
-          "title": "TypeScript",
-          "ext": "ts",
-          "comment": {
-            "line": "//"
-          },
-          "module": {
-            "name": "phantomjscloud"
-          },
-          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
-          "deps": {
-            "dotenv": {
-              "active": true,
-              "version": "^17.4.2",
-              "kind": "dev"
-            },
-            "typescript": {
-              "active": true,
-              "version": "^5.9.3",
-              "kind": "dev"
-            },
-            "@types/node": {
-              "active": true,
-              "version": "^25.6.0",
-              "kind": "dev"
-            }
-          },
-          "name": "ts",
-          "active": true
-        },
-        "go": {
-          "title": "Golang",
-          "ext": "go",
-          "comment": {
-            "line": "//"
-          },
-          "module": {
-            "name": "phantomjscloud"
-          },
-          "srcfeature": false,
-          "deps": {},
-          "name": "go",
-          "active": true
+          "title": "Go MCP server"
         },
         "lua": {
-          "title": "Lua",
-          "ext": "lua",
+          "active": true,
           "comment": {
             "line": "--"
           },
-          "module": {
-            "name": "phantomjscloud"
-          },
-          "srcfeature": false,
           "deps": {
             "dkjson": {
               "active": true,
-              "version": "2.5",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "2.5"
             }
           },
+          "ext": "lua",
+          "module": {
+            "name": "phantomjscloud"
+          },
           "name": "lua",
-          "active": true
+          "srcfeature": false,
+          "title": "Lua"
         },
         "php": {
-          "title": "PHP",
-          "ext": "php",
+          "active": true,
           "comment": {
             "line": "//"
           },
+          "deps": {},
+          "ext": "php",
           "module": {
             "name": "phantomjscloud"
           },
-          "srcfeature": false,
-          "deps": {},
           "name": "php",
-          "active": true
+          "srcfeature": false,
+          "title": "PHP"
         },
         "py": {
-          "title": "Python",
-          "ext": "py",
+          "active": true,
           "comment": {
             "line": "#"
           },
-          "module": {
-            "name": "phantomjscloud"
-          },
-          "srcfeature": false,
           "deps": {
             "requests": {
               "active": true,
-              "version": "2.33",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "2.33"
             }
           },
-          "name": "py",
-          "active": true
-        },
-        "rb": {
-          "title": "Ruby",
-          "ext": "rb",
-          "comment": {
-            "line": "#"
-          },
+          "ext": "py",
           "module": {
             "name": "phantomjscloud"
           },
+          "name": "py",
           "srcfeature": false,
+          "title": "Python"
+        },
+        "rb": {
+          "active": true,
+          "comment": {
+            "line": "#"
+          },
           "deps": {
-            "voxgig-struct": {
-              "active": true,
-              "version": "0.0.10",
-              "kind": "prod"
-            },
             "json": {
               "active": true,
-              "version": "0",
-              "kind": "prod"
+              "kind": "prod",
+              "version": "0"
+            },
+            "voxgig-struct": {
+              "active": true,
+              "kind": "prod",
+              "version": "0.0.10"
             }
           },
+          "ext": "rb",
+          "module": {
+            "name": "phantomjscloud"
+          },
           "name": "rb",
-          "active": true
+          "srcfeature": false,
+          "title": "Ruby"
+        },
+        "ts": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {
+            "@types/node": {
+              "active": true,
+              "kind": "dev",
+              "version": "^25.6.0"
+            },
+            "dotenv": {
+              "active": true,
+              "kind": "dev",
+              "version": "^17.4.2"
+            },
+            "typescript": {
+              "active": true,
+              "kind": "dev",
+              "version": "^5.9.3"
+            }
+          },
+          "ext": "ts",
+          "module": {
+            "name": "phantomjscloud"
+          },
+          "name": "ts",
+          "title": "TypeScript"
         }
-      },
-      "option": {}
-    },
-    "def": {
-      "desc": ""
+      }
     }
-  }
+  },
+  "name": "phantomjscloud",
+  "origin": "voxgig-sdk"
 }

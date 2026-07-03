@@ -66,12 +66,14 @@ def _render_page_get_direct_setup(mockres):
     env = runner.env_override({
         "PHANTOMJSCLOUD_TEST_RENDER_PAGE_GET_ENTID": {},
         "PHANTOMJSCLOUD_TEST_LIVE": "FALSE",
+        "PHANTOMJSCLOUD_APIKEY": "NONE",
     })
 
     live = env.get("PHANTOMJSCLOUD_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("PHANTOMJSCLOUD_APIKEY"),
         }
         client = PhantomjscloudSDK(merged_opts)
         return {

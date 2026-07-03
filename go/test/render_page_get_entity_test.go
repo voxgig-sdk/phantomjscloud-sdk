@@ -117,6 +117,7 @@ func render_page_getBasicSetup(extra map[string]any) *entityTestSetup {
 		"PHANTOMJSCLOUD_TEST_RENDER_PAGE_GET_ENTID": idmap,
 		"PHANTOMJSCLOUD_TEST_LIVE":      "FALSE",
 		"PHANTOMJSCLOUD_TEST_EXPLAIN":   "FALSE",
+		"PHANTOMJSCLOUD_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["PHANTOMJSCLOUD_TEST_RENDER_PAGE_GET_ENTID"])
@@ -127,6 +128,7 @@ func render_page_getBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["PHANTOMJSCLOUD_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["PHANTOMJSCLOUD_APIKEY"],
 			},
 			extra,
 		})

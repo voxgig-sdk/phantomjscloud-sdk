@@ -15,6 +15,9 @@ def make_config():
         },
         "options": {
             "base": "https://phantomjscloud.com/api/browser/v2",
+            "auth": {
+                "prefix": "Bearer",
+            },
             "headers": {
         "content-type": "application/json",
       },
@@ -27,53 +30,55 @@ def make_config():
       "render_page_get": {
         "fields": [
           {
+            "active": True,
             "name": "content",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 0,
           },
           {
+            "active": True,
             "name": "page_response",
             "req": False,
             "type": "`$OBJECT`",
-            "active": True,
             "index$": 1,
           },
           {
+            "active": True,
             "name": "status_code",
             "req": False,
             "type": "`$INTEGER`",
-            "active": True,
             "index$": 2,
           },
         ],
         "name": "render_page_get",
         "op": {
           "load": {
+            "input": "data",
             "name": "load",
             "points": [
               {
+                "active": True,
                 "args": {
                   "params": [
                     {
+                      "active": True,
                       "example": "ak-012345-abcde-012345-abcde-012345",
                       "kind": "param",
                       "name": "id",
                       "orig": "api_key",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                   "query": [
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "request",
                       "orig": "request",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -97,11 +102,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 0,
               },
             ],
-            "input": "data",
             "key$": "load",
           },
         },
@@ -112,92 +115,94 @@ def make_config():
       "render_page_post": {
         "fields": [
           {
+            "active": True,
             "name": "content",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 0,
           },
           {
+            "active": True,
             "name": "output_as_json",
             "req": False,
             "type": "`$BOOLEAN`",
-            "active": True,
             "index$": 1,
           },
           {
+            "active": True,
             "name": "overseer_script",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 2,
           },
           {
+            "active": True,
             "name": "page_response",
             "req": False,
             "type": "`$OBJECT`",
-            "active": True,
             "index$": 3,
           },
           {
+            "active": True,
             "name": "proxy",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 4,
           },
           {
+            "active": True,
             "name": "render_type",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 5,
           },
           {
+            "active": True,
             "name": "request_setting",
             "req": False,
             "type": "`$OBJECT`",
-            "active": True,
             "index$": 6,
           },
           {
+            "active": True,
             "name": "status_code",
             "req": False,
             "type": "`$INTEGER`",
-            "active": True,
             "index$": 7,
           },
           {
+            "active": True,
             "name": "suppress_json",
             "req": False,
             "type": "`$ARRAY`",
-            "active": True,
             "index$": 8,
           },
           {
+            "active": True,
             "name": "url",
             "req": True,
             "type": "`$STRING`",
-            "active": True,
             "index$": 9,
           },
         ],
         "name": "render_page_post",
         "op": {
           "create": {
+            "input": "data",
             "name": "create",
             "points": [
               {
+                "active": True,
                 "args": {
                   "params": [
                     {
+                      "active": True,
                       "example": "ak-012345-abcde-012345-abcde-012345",
                       "kind": "param",
                       "name": "id",
                       "orig": "api_key",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -220,11 +225,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 0,
               },
             ],
-            "input": "data",
             "key$": "create",
           },
         },
