@@ -10,7 +10,7 @@ The TypeScript SDK for the Phantomjscloud API — a type-safe, entity-oriented c
 
 ## Install
 ```bash
-npm install phantomjscloud
+npm install @voxgig-sdk/phantomjscloud
 ```
 ## Tutorial: your first API call
 

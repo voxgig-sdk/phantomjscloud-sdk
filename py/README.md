@@ -10,7 +10,7 @@ The Python SDK for the Phantomjscloud API — an entity-oriented client followin
 
 ## Install
 ```bash
-pip install phantomjscloud-sdk
+pip install voxgig-sdk-phantomjscloud
 ```
 
 Or install from source:

@@ -10,13 +10,13 @@ The Ruby SDK for the Phantomjscloud API — an entity-oriented client using idio
 
 ## Install
 ```bash
-gem install phantomjscloud-sdk
+gem install voxgig-sdk-phantomjscloud
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "phantomjscloud-sdk"
+gem "voxgig-sdk-phantomjscloud"
 ```
 
 Then run:

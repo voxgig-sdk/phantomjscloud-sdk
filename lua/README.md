@@ -10,7 +10,7 @@ The Lua SDK for the Phantomjscloud API — an entity-oriented client using Lua c
 
 ## Install
 ```bash
-luarocks install phantomjscloud-sdk
+luarocks install voxgig-sdk-phantomjscloud
 ```
 
 If the module is not yet published, add the source directory to
