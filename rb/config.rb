@@ -69,6 +69,7 @@ module PhantomjscloudConfig
                         "orig" => "api_key",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                     "query" => [
@@ -203,6 +204,7 @@ module PhantomjscloudConfig
                         "orig" => "api_key",
                         "reqd" => true,
                         "type" => "`$STRING`",
+                        "index$" => 0,
                       },
                     ],
                   },

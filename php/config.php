@@ -74,6 +74,7 @@ class PhantomjscloudConfig
                         'orig' => 'api_key',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -208,6 +209,7 @@ class PhantomjscloudConfig
                         'orig' => 'api_key',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                   ],

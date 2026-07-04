@@ -9,9 +9,12 @@ The TypeScript SDK for the Phantomjscloud API — a type-safe, entity-oriented c
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/phantomjscloud
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/phantomjscloud-sdk/releases](https://github.com/voxgig-sdk/phantomjscloud-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,7 +23,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { PhantomjscloudSDK } from 'phantomjscloud'
+import { PhantomjscloudSDK } from '@voxgig-sdk/phantomjscloud'
 
 const client = new PhantomjscloudSDK({
   apikey: process.env.PHANTOMJSCLOUD_APIKEY,
@@ -30,7 +33,7 @@ const client = new PhantomjscloudSDK({
 ### 3. Load a renderpageget
 
 ```ts
-const result = await client.RenderPageGet().load({ id: 'example_id' })
+const result = await client.renderpageget.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = PhantomjscloudSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.renderpageget.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -96,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.renderpageget
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -288,7 +291,7 @@ API path: `/{apiKey}/`
 
 ### RenderPageGet
 
-Create an instance: `const render_page_get = client.RenderPageGet()`
+Create an instance: `const render_page_get = client.render_page_get`
 
 #### Operations
 
@@ -307,13 +310,13 @@ Create an instance: `const render_page_get = client.RenderPageGet()`
 #### Example: Load
 
 ```ts
-const render_page_get = await client.RenderPageGet().load({ id: 'render_page_get_id' })
+const render_page_get = await client.render_page_get.load({ id: 'render_page_get_id' })
 ```
 
 
 ### RenderPagePost
 
-Create an instance: `const render_page_post = client.RenderPagePost()`
+Create an instance: `const render_page_post = client.render_page_post`
 
 #### Operations
 
@@ -339,7 +342,7 @@ Create an instance: `const render_page_post = client.RenderPagePost()`
 #### Example: Create
 
 ```ts
-const render_page_post = await client.RenderPagePost().create({
+const render_page_post = await client.render_page_post.create({
   url: /* `$STRING` */,
 })
 ```
@@ -402,7 +405,7 @@ phantomjscloud/
 Import the SDK from the package root:
 
 ```ts
-import { PhantomjscloudSDK } from 'phantomjscloud'
+import { PhantomjscloudSDK } from '@voxgig-sdk/phantomjscloud'
 ```
 
 ### Entity state
@@ -412,11 +415,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const renderpageget = client.renderpageget
+await renderpageget.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// renderpageget.data() now returns the loaded renderpageget data
+// renderpageget.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

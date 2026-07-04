@@ -58,9 +58,11 @@ Return a deep copy of the current SDK options.
 
 Return a copy of the SDK utility object.
 
-#### `direct(fetchargs = {}) -> Hash, err`
+#### `direct(fetchargs = {}) -> Hash`
 
-Make a direct HTTP request to any API endpoint.
+Make a direct HTTP request to any API endpoint. Returns a result hash
+(`{ "ok" => ..., "status" => ..., "data" => ..., "err" => ... }`); it
+does not raise — inspect `result["ok"]`.
 
 **Parameters:**
 
@@ -74,14 +76,14 @@ Make a direct HTTP request to any API endpoint.
 | `fetchargs["body"]` | `any` | Request body (hashes are JSON-serialized). |
 | `fetchargs["ctrl"]` | `Hash` | Control options (e.g. `{ "explain" => true }`). |
 
-**Returns:** `Hash, err`
+**Returns:** `Hash`
 
-#### `prepare(fetchargs = {}) -> Hash, err`
+#### `prepare(fetchargs = {}) -> Hash`
 
 Prepare a fetch definition without sending the request. Accepts the
-same parameters as `direct()`.
+same parameters as `direct()`. Raises on error.
 
-**Returns:** `Hash, err`
+**Returns:** `Hash` (the fetch definition; raises on error)
 
 
 ---
@@ -89,7 +91,7 @@ same parameters as `direct()`.
 ## RenderPageGetEntity
 
 ```ruby
-render_page_get = client.RenderPageGet
+render_page_get = client.render_page_get
 ```
 
 ### Fields
@@ -102,12 +104,12 @@ render_page_get = client.RenderPageGet
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.RenderPageGet.load({ "id" => "render_page_get_id" })
+result = client.render_page_get.load({ "id" => "render_page_get_id" })
 ```
 
 ### Common Methods
@@ -143,7 +145,7 @@ Return the entity name.
 ## RenderPagePostEntity
 
 ```ruby
-render_page_post = client.RenderPagePost
+render_page_post = client.render_page_post
 ```
 
 ### Fields
@@ -163,12 +165,12 @@ render_page_post = client.RenderPagePost
 
 ### Operations
 
-#### `create(reqdata, ctrl = nil) -> result, err`
+#### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Raises on error.
 
 ```ruby
-result, err = client.RenderPagePost.create({
+result = client.render_page_post.create({
   "url" => # `$STRING`,
 })
 ```

@@ -83,6 +83,10 @@ end
 
 
 
+---@param reqdata RenderPagePostCreateData
+---@param ctrl? table
+---@return RenderPagePost
+---@return string? err
 function RenderPagePostEntity:create(reqdata, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

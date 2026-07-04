@@ -45,6 +45,7 @@ class RenderPagePostEntity
     end
   end
 
+  # @return [RenderPagePost, Hash] the current RenderPagePost data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class RenderPagePostEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of RenderPagePost fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -67,6 +69,11 @@ class RenderPagePostEntity
   
 
   
+  # Create a new RenderPagePost.
+  #
+  # @param reqdata [RenderPagePostCreateData, Hash, nil] body data
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [RenderPagePost, Hash] the created RenderPagePost; raises PhantomjscloudError on failure
   def create(reqdata, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

@@ -245,11 +245,17 @@ func (sdk *PhantomjscloudSDK) Direct(fetchargs map[string]any) (map[string]any, 
 }
 
 
+// RenderPageGet returns a RenderPageGet entity bound to this client.
+// Idiomatic usage: client.RenderPageGet(nil).List(nil, nil) or
+// client.RenderPageGet(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *PhantomjscloudSDK) RenderPageGet(data map[string]any) PhantomjscloudEntity {
 	return NewRenderPageGetEntityFunc(sdk, data)
 }
 
 
+// RenderPagePost returns a RenderPagePost entity bound to this client.
+// Idiomatic usage: client.RenderPagePost(nil).List(nil, nil) or
+// client.RenderPagePost(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *PhantomjscloudSDK) RenderPagePost(data map[string]any) PhantomjscloudEntity {
 	return NewRenderPagePostEntityFunc(sdk, data)
 }

@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  RenderPageGet,
+  RenderPageGetLoadMatch,
+} from '../PhantomjscloudTypes'
 
 // TODO: needs Entity superclass
-class RenderPageGetEntity extends PhantomjscloudEntityBase {
+class RenderPageGetEntity extends PhantomjscloudEntityBase<RenderPageGet> {
 
   constructor(client: PhantomjscloudSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class RenderPageGetEntity extends PhantomjscloudEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: RenderPageGetLoadMatch, ctrl?: Control): Promise<RenderPageGet> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class RenderPageGetEntity extends PhantomjscloudEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<RenderPageGet> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

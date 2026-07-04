@@ -244,12 +244,38 @@ end
 
 
 
+-- Idiomatic facade: client:render_page_get():list() / client:render_page_get():load({ id = ... })
+function PhantomjscloudSDK:render_page_get(data)
+  local EntityMod = require("entity.render_page_get_entity")
+  if data == nil then
+    if self._render_page_get == nil then
+      self._render_page_get = EntityMod.new(self, nil)
+    end
+    return self._render_page_get
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:render_page_get() instead.
 function PhantomjscloudSDK:RenderPageGet(data)
   local EntityMod = require("entity.render_page_get_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:render_page_post():list() / client:render_page_post():load({ id = ... })
+function PhantomjscloudSDK:render_page_post(data)
+  local EntityMod = require("entity.render_page_post_entity")
+  if data == nil then
+    if self._render_page_post == nil then
+      self._render_page_post = EntityMod.new(self, nil)
+    end
+    return self._render_page_post
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:render_page_post() instead.
 function PhantomjscloudSDK:RenderPagePost(data)
   local EntityMod = require("entity.render_page_post_entity")
   return EntityMod.new(self, data)

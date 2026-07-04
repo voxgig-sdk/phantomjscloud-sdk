@@ -88,7 +88,7 @@ same parameters as `direct()`.
 ## RenderPageGetEntity
 
 ```lua
-local render_page_get = client:RenderPageGet(nil)
+local render_page_get = client:render_page_get(nil)
 ```
 
 ### Fields
@@ -106,7 +106,7 @@ local render_page_get = client:RenderPageGet(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:RenderPageGet():load({ id = "render_page_get_id" })
+local result, err = client:render_page_get():load({ id = "render_page_get_id" })
 ```
 
 ### Common Methods
@@ -142,7 +142,7 @@ Return the entity name.
 ## RenderPagePostEntity
 
 ```lua
-local render_page_post = client:RenderPagePost(nil)
+local render_page_post = client:render_page_post(nil)
 ```
 
 ### Fields
@@ -167,7 +167,7 @@ local render_page_post = client:RenderPagePost(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:RenderPagePost():create({
+local result, err = client:render_page_post():create({
   url = --[[ `$STRING` ]],
 })
 ```

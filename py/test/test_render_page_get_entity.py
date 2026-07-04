@@ -49,8 +49,7 @@ class TestRenderPageGetEntity:
         # LOAD
         render_page_get_ref01_ent = client.RenderPageGet(None)
         render_page_get_ref01_match_dt0 = {}
-        render_page_get_ref01_data_dt0_loaded, err = render_page_get_ref01_ent.load(render_page_get_ref01_match_dt0, None)
-        assert err is None
+        render_page_get_ref01_data_dt0_loaded = render_page_get_ref01_ent.load(render_page_get_ref01_match_dt0, None)
         assert render_page_get_ref01_data_dt0_loaded is not None
 
 

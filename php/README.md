@@ -9,9 +9,10 @@ The PHP SDK for the Phantomjscloud API — an entity-oriented client using PHP c
 
 
 ## Install
-```bash
-composer require voxgig-sdk/phantomjscloud
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/phantomjscloud-sdk/releases](https://github.com/voxgig-sdk/phantomjscloud-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -33,9 +34,12 @@ $client = new PhantomjscloudSDK([
 ### 3. Load a renderpageget
 
 ```php
-[$result, $err] = $client->RenderPageGet()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->renderpageget()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 
@@ -46,28 +50,31 @@ print_r($result);
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -81,7 +88,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = PhantomjscloudSDK::test();
 
-[$result, $err] = $client->Phantomjscloud()->load(["id" => "test01"]);
+$result = $client->renderpageget()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -186,8 +193,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -238,7 +249,7 @@ API path: `/{apiKey}/`
 
 ### RenderPageGet
 
-Create an instance: `const render_page_get = client.RenderPageGet()`
+Create an instance: `const render_page_get = client.render_page_get`
 
 #### Operations
 
@@ -257,13 +268,13 @@ Create an instance: `const render_page_get = client.RenderPageGet()`
 #### Example: Load
 
 ```ts
-const render_page_get = await client.RenderPageGet().load({ id: 'render_page_get_id' })
+const render_page_get = await client.render_page_get.load({ id: 'render_page_get_id' })
 ```
 
 
 ### RenderPagePost
 
-Create an instance: `const render_page_post = client.RenderPagePost()`
+Create an instance: `const render_page_post = client.render_page_post`
 
 #### Operations
 
@@ -289,7 +300,7 @@ Create an instance: `const render_page_post = client.RenderPagePost()`
 #### Example: Create
 
 ```ts
-const render_page_post = await client.RenderPagePost().create({
+const render_page_post = await client.render_page_post.create({
   url: /* `$STRING` */,
 })
 ```
@@ -366,11 +377,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$renderpageget = $client->renderpageget();
+$renderpageget->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $renderpageget->dataGet() now returns the loaded renderpageget data
+// $renderpageget->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

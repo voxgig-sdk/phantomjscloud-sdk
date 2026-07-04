@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  RenderPagePost,
+  RenderPagePostCreateData,
+} from '../PhantomjscloudTypes'
 
 // TODO: needs Entity superclass
-class RenderPagePostEntity extends PhantomjscloudEntityBase {
+class RenderPagePostEntity extends PhantomjscloudEntityBase<RenderPagePost> {
 
   constructor(client: PhantomjscloudSDK, entopts: any) {
     super(client, entopts)
@@ -34,7 +38,7 @@ class RenderPagePostEntity extends PhantomjscloudEntityBase {
 
 
 
-  async create(this: any, reqdata?: any, ctrl?: Control) {
+  async create(this: any, reqdata?: RenderPagePostCreateData, ctrl?: Control): Promise<RenderPagePost> {
 
     const utility = this._utility
     const {
@@ -133,7 +137,9 @@ class RenderPagePostEntity extends PhantomjscloudEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<RenderPagePost> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

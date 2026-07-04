@@ -122,7 +122,7 @@ Alias for `PhantomjscloudSDK.test()`.
 ## RenderPageGetEntity
 
 ```ts
-const render_page_get = client.RenderPageGet()
+const render_page_get = client.render_page_get
 ```
 
 ### Fields
@@ -140,7 +140,7 @@ const render_page_get = client.RenderPageGet()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.RenderPageGet().load({ id: 'render_page_get_id' })
+const result = await client.render_page_get.load({ id: 'render_page_get_id' })
 ```
 
 ### Common Methods
@@ -174,7 +174,7 @@ Return a copy of the entity options.
 ## RenderPagePostEntity
 
 ```ts
-const render_page_post = client.RenderPagePost()
+const render_page_post = client.render_page_post
 ```
 
 ### Fields
@@ -199,7 +199,7 @@ const render_page_post = client.RenderPagePost()
 Create a new entity with the given data.
 
 ```ts
-const result = await client.RenderPagePost().create({
+const result = await client.render_page_post.create({
   url: /* `$STRING` */,
 })
 ```

@@ -3,6 +3,8 @@
 import { RenderPageGetEntity } from './entity/RenderPageGetEntity'
 import { RenderPagePostEntity } from './entity/RenderPagePostEntity'
 
+export type * from './PhantomjscloudTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -203,12 +205,28 @@ class PhantomjscloudSDK {
 
 
 
+  _render_page_get?: RenderPageGetEntity
+
+  // Idiomatic facade: `client.render_page_get.list()` / `client.render_page_get.load({ id })`.
+  get render_page_get(): RenderPageGetEntity {
+    return (this._render_page_get ??= new RenderPageGetEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.render_page_get` instead. */
   RenderPageGet(data?: any) {
     const self = this
     return new RenderPageGetEntity(self,data)
   }
 
 
+  _render_page_post?: RenderPagePostEntity
+
+  // Idiomatic facade: `client.render_page_post.list()` / `client.render_page_post.load({ id })`.
+  get render_page_post(): RenderPagePostEntity {
+    return (this._render_page_post ??= new RenderPagePostEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.render_page_post` instead. */
   RenderPagePost(data?: any) {
     const self = this
     return new RenderPagePostEntity(self,data)

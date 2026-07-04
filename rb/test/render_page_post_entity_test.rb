@@ -37,8 +37,7 @@ class RenderPagePostEntityTest < Minitest::Test
       Vs.getpath(setup[:data], "new.render_page_post"), "render_page_post_ref01"))
     render_page_post_ref01_data["api_key"] = setup[:idmap]["api_key01"]
 
-    render_page_post_ref01_data_result, err = render_page_post_ref01_ent.create(render_page_post_ref01_data, nil)
-    assert_nil err
+    render_page_post_ref01_data_result = render_page_post_ref01_ent.create(render_page_post_ref01_data, nil)
     render_page_post_ref01_data = Helpers.to_map(render_page_post_ref01_data_result)
     assert !render_page_post_ref01_data.nil?
 

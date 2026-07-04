@@ -9,12 +9,9 @@ The Lua SDK for the Phantomjscloud API — an entity-oriented client using Lua c
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-phantomjscloud
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/phantomjscloud-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -39,7 +36,7 @@ local client = sdk.new({
 ### 3. Load a renderpageget
 
 ```lua
-local result, err = client:RenderPageGet():load({ id = "example_id" })
+local result, err = client:renderpageget():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -87,7 +84,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Phantomjscloud():load({ id = "test01" })
+local result, err = client:renderpageget():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -243,7 +240,7 @@ API path: `/{apiKey}/`
 
 ### RenderPageGet
 
-Create an instance: `const render_page_get = client.RenderPageGet()`
+Create an instance: `const render_page_get = client.render_page_get`
 
 #### Operations
 
@@ -262,13 +259,13 @@ Create an instance: `const render_page_get = client.RenderPageGet()`
 #### Example: Load
 
 ```ts
-const render_page_get = await client.RenderPageGet().load({ id: 'render_page_get_id' })
+const render_page_get = await client.render_page_get.load({ id: 'render_page_get_id' })
 ```
 
 
 ### RenderPagePost
 
-Create an instance: `const render_page_post = client.RenderPagePost()`
+Create an instance: `const render_page_post = client.render_page_post`
 
 #### Operations
 
@@ -294,7 +291,7 @@ Create an instance: `const render_page_post = client.RenderPagePost()`
 #### Example: Create
 
 ```ts
-const render_page_post = await client.RenderPagePost().create({
+const render_page_post = await client.render_page_post.create({
   url: /* `$STRING` */,
 })
 ```
@@ -371,11 +368,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local renderpageget = client:renderpageget()
+renderpageget:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- renderpageget:data_get() now returns the loaded renderpageget data
+-- renderpageget:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

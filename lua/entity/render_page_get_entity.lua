@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch RenderPageGetLoadMatch
+---@param ctrl? table
+---@return RenderPageGet
+---@return string? err
 function RenderPageGetEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -42,8 +42,7 @@ class RenderPageGetEntityTest < Minitest::Test
     # LOAD
     render_page_get_ref01_ent = client.RenderPageGet(nil)
     render_page_get_ref01_match_dt0 = {}
-    render_page_get_ref01_data_dt0_loaded, err = render_page_get_ref01_ent.load(render_page_get_ref01_match_dt0, nil)
-    assert_nil err
+    render_page_get_ref01_data_dt0_loaded = render_page_get_ref01_ent.load(render_page_get_ref01_match_dt0, nil)
     assert !render_page_get_ref01_data_dt0_loaded.nil?
 
   end

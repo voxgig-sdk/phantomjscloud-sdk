@@ -100,7 +100,8 @@ class Config {
                     "name": "id",
                     "orig": "api_key",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -234,7 +235,8 @@ class Config {
                     "name": "id",
                     "orig": "api_key",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
