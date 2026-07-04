@@ -85,7 +85,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## RenderPageGetEntity
 
 ```python
-render_page_get = client.render_page_get
+render_page_get = client.RenderPageGet()
 ```
 
 ### Fields
@@ -103,7 +103,7 @@ render_page_get = client.render_page_get
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.render_page_get.load({"id": "render_page_get_id"})
+result = client.RenderPageGet().load({"id": "render_page_get_id"})
 ```
 
 ### Common Methods
@@ -138,7 +138,7 @@ Return the entity name.
 ## RenderPagePostEntity
 
 ```python
-render_page_post = client.render_page_post
+render_page_post = client.RenderPagePost()
 ```
 
 ### Fields
@@ -163,8 +163,8 @@ render_page_post = client.render_page_post
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.render_page_post.create({
-    "url": # `$STRING`,
+result = client.RenderPagePost().create({
+    "url": ...,  # `$STRING`
 })
 ```
 

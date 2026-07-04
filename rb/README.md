@@ -34,8 +34,9 @@ client = PhantomjscloudSDK.new({
 
 ```ruby
 begin
-  result = client.renderpageget.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare RenderPageGet record (raises on error).
+  renderpageget = client.RenderPageGet.load({ "id" => "example_id" })
+  puts renderpageget
 rescue => err
   warn "load failed: #{err}"
 end
@@ -82,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = PhantomjscloudSDK.test
+client = PhantomjscloudSDK.test({
+  "entity" => { "renderpageget" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.renderpageget.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+renderpageget = client.RenderPageGet.load({ "id" => "test01" })
+puts renderpageget
 ```
 
 ### Use a custom fetch function
@@ -244,7 +249,7 @@ API path: `/{apiKey}/`
 
 ### RenderPageGet
 
-Create an instance: `const render_page_get = client.render_page_get`
+Create an instance: `render_page_get = client.RenderPageGet`
 
 #### Operations
 
@@ -262,14 +267,15 @@ Create an instance: `const render_page_get = client.render_page_get`
 
 #### Example: Load
 
-```ts
-const render_page_get = await client.render_page_get.load({ id: 'render_page_get_id' })
+```ruby
+# load returns the bare RenderPageGet record (raises on error).
+render_page_get = client.RenderPageGet.load({ "id" => "render_page_get_id" })
 ```
 
 
 ### RenderPagePost
 
-Create an instance: `const render_page_post = client.render_page_post`
+Create an instance: `render_page_post = client.RenderPagePost`
 
 #### Operations
 
@@ -294,9 +300,9 @@ Create an instance: `const render_page_post = client.render_page_post`
 
 #### Example: Create
 
-```ts
-const render_page_post = await client.render_page_post.create({
-  url: /* `$STRING` */,
+```ruby
+render_page_post = client.RenderPagePost.create({
+  "url" => nil, # `$STRING`
 })
 ```
 
@@ -372,7 +378,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-renderpageget = client.renderpageget
+renderpageget = client.RenderPageGet
 renderpageget.load({ "id" => "example_id" })
 
 # renderpageget.data_get now returns the loaded renderpageget data

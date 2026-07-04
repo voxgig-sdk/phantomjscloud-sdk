@@ -90,7 +90,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## RenderPageGetEntity
 
 ```php
-$render_page_get = $client->render_page_get();
+$render_page_get = $client->RenderPageGet();
 ```
 
 ### Fields
@@ -108,7 +108,7 @@ $render_page_get = $client->render_page_get();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->render_page_get()->load(["id" => "render_page_get_id"]);
+$result = $client->RenderPageGet()->load(["id" => "render_page_get_id"]);
 ```
 
 ### Common Methods
@@ -144,7 +144,7 @@ Return the entity name.
 ## RenderPagePostEntity
 
 ```php
-$render_page_post = $client->render_page_post();
+$render_page_post = $client->RenderPagePost();
 ```
 
 ### Fields
@@ -169,7 +169,7 @@ $render_page_post = $client->render_page_post();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->render_page_post()->create([
+$result = $client->RenderPagePost()->create([
   "url" => /* `$STRING` */,
 ]);
 ```

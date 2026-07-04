@@ -220,41 +220,21 @@ class PhantomjscloudSDK:
         }
 
 
-    @property
-    def render_page_get(self):
-        """Idiomatic facade: client.render_page_get.list() / client.render_page_get.load({"id": ...})."""
-        from entity.render_page_get_entity import RenderPageGetEntity
-        cached = getattr(self, "_render_page_get", None)
-        if cached is None:
-            cached = RenderPageGetEntity(self, None)
-            self._render_page_get = cached
-        return cached
-
-    def RenderPageGet(self, data=None):
-        # Deprecated: use client.render_page_get instead.
+    def RenderPageGet(self, data=None) -> "RenderPageGetEntity":
+        """Entity factory: client.RenderPageGet().list({}) / client.RenderPageGet().load({"id": ...})."""
         from entity.render_page_get_entity import RenderPageGetEntity
         return RenderPageGetEntity(self, data)
 
 
-    @property
-    def render_page_post(self):
-        """Idiomatic facade: client.render_page_post.list() / client.render_page_post.load({"id": ...})."""
-        from entity.render_page_post_entity import RenderPagePostEntity
-        cached = getattr(self, "_render_page_post", None)
-        if cached is None:
-            cached = RenderPagePostEntity(self, None)
-            self._render_page_post = cached
-        return cached
-
-    def RenderPagePost(self, data=None):
-        # Deprecated: use client.render_page_post instead.
+    def RenderPagePost(self, data=None) -> "RenderPagePostEntity":
+        """Entity factory: client.RenderPagePost().list({}) / client.RenderPagePost().load({"id": ...})."""
         from entity.render_page_post_entity import RenderPagePostEntity
         return RenderPagePostEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "PhantomjscloudSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -274,3 +254,10 @@ class PhantomjscloudSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.render_page_get_entity import RenderPageGetEntity
+    from entity.render_page_post_entity import RenderPagePostEntity

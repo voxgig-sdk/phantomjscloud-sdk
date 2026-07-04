@@ -91,7 +91,7 @@ same parameters as `direct()`. Raises on error.
 ## RenderPageGetEntity
 
 ```ruby
-render_page_get = client.render_page_get
+render_page_get = client.RenderPageGet
 ```
 
 ### Fields
@@ -109,7 +109,7 @@ render_page_get = client.render_page_get
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.render_page_get.load({ "id" => "render_page_get_id" })
+result = client.RenderPageGet.load({ "id" => "render_page_get_id" })
 ```
 
 ### Common Methods
@@ -145,7 +145,7 @@ Return the entity name.
 ## RenderPagePostEntity
 
 ```ruby
-render_page_post = client.render_page_post
+render_page_post = client.RenderPagePost
 ```
 
 ### Fields
@@ -170,7 +170,7 @@ render_page_post = client.render_page_post
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.render_page_post.create({
+result = client.RenderPagePost.create({
   "url" => # `$STRING`,
 })
 ```

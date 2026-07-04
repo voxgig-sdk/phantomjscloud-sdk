@@ -28,9 +28,9 @@ const client = new PhantomjscloudSDK({
   apikey: process.env.PHANTOMJSCLOUD_APIKEY,
 })
 
-// Load renderpageget data
-const renderpageget = await client.renderpageget.load({})
-console.log(renderpageget.data)
+// Load renderpageget data (returns a RenderPageGet)
+const renderpageget = await client.RenderPageGet().load()
+console.log(renderpageget)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -90,8 +90,8 @@ client = PhantomjscloudSDK({
 })
 
 
-# Load a specific renderpageget
-renderpageget = client.renderpageget.load({"id": "example_id"})
+# Load a specific renderpageget (returns the record, raises on error)
+renderpageget = client.RenderPageGet().load({"id": "example_id"})
 print(renderpageget)
 ```
 
@@ -106,8 +106,8 @@ $client = new PhantomjscloudSDK([
 ]);
 
 
-// Load a specific renderpageget
-$renderpageget = $client->renderpageget()->load(["id" => "example_id"]);
+// Load a specific renderpageget (returns the bare record; throws on error)
+$renderpageget = $client->RenderPageGet()->load(["id" => "example_id"]);
 print_r($renderpageget);
 ```
 
@@ -135,8 +135,8 @@ client = PhantomjscloudSDK.new({
 })
 
 
-# Load a specific renderpageget
-renderpageget = client.renderpageget.load({ "id" => "example_id" })
+# Load a specific renderpageget (returns the bare record; raises on error)
+renderpageget = client.RenderPageGet.load({ "id" => "example_id" })
 puts renderpageget
 ```
 
@@ -151,7 +151,7 @@ local client = sdk.new({
 
 
 -- Load a specific renderpageget
-local renderpageget, err = client:renderpageget():load({ id = "example_id" })
+local renderpageget, err = client:RenderPageGet():load({ id = "example_id" })
 print(renderpageget)
 ```
 
@@ -164,22 +164,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = PhantomjscloudSDK.test()
-const result = await client.renderpageget.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const renderpageget = await client.RenderPageGet().load({ id: 'test01' })
+// renderpageget is a bare RenderPageGet populated with mock data
+console.log(renderpageget)
 ```
 
 ### Python
 
 ```python
 client = PhantomjscloudSDK.test()
-result = client.renderpageget.load({"id": "test01"})
+renderpageget = client.RenderPageGet().load({"id": "test01"})
+print(renderpageget)
 ```
 
 ### PHP
 
 ```php
-$client = PhantomjscloudSDK::test();
-$result = $client->renderpageget()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = PhantomjscloudSDK::test([
+    "entity" => ["renderpageget" => ["test01" => ["id" => "test01"]]],
+]);
+$renderpageget = $client->RenderPageGet()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -194,15 +199,18 @@ result, err := client.RenderPageGet(nil).Load(
 ### Ruby
 
 ```ruby
-client = PhantomjscloudSDK.test
-result = client.renderpageget.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = PhantomjscloudSDK.test({
+  "entity" => { "renderpageget" => { "test01" => { "id" => "test01" } } },
+})
+renderpageget = client.RenderPageGet.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:renderpageget():load({ id = "test01" })
+local result, err = client:RenderPageGet():load({ id = "test01" })
 ```
 
 ## How it works
@@ -250,6 +258,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

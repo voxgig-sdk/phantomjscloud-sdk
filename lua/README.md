@@ -36,9 +36,9 @@ local client = sdk.new({
 ### 3. Load a renderpageget
 
 ```lua
-local result, err = client:renderpageget():load({ id = "example_id" })
+local renderpageget, err = client:RenderPageGet():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(renderpageget)
 ```
 
 
@@ -84,8 +84,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:renderpageget():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:RenderPageGet():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -188,17 +188,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local render_page_get, err = client:RenderPageGet():load({ id = "example_id" })
+    if err then error(err) end
+    -- render_page_get is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -240,7 +245,7 @@ API path: `/{apiKey}/`
 
 ### RenderPageGet
 
-Create an instance: `const render_page_get = client.render_page_get`
+Create an instance: `local render_page_get = client:RenderPageGet(nil)`
 
 #### Operations
 
@@ -258,14 +263,14 @@ Create an instance: `const render_page_get = client.render_page_get`
 
 #### Example: Load
 
-```ts
-const render_page_get = await client.render_page_get.load({ id: 'render_page_get_id' })
+```lua
+local render_page_get, err = client:RenderPageGet():load({ id = "render_page_get_id" })
 ```
 
 
 ### RenderPagePost
 
-Create an instance: `const render_page_post = client.render_page_post`
+Create an instance: `local render_page_post = client:RenderPagePost(nil)`
 
 #### Operations
 
@@ -290,9 +295,9 @@ Create an instance: `const render_page_post = client.render_page_post`
 
 #### Example: Create
 
-```ts
-const render_page_post = await client.render_page_post.create({
-  url: /* `$STRING` */,
+```lua
+local render_page_post, err = client:RenderPagePost():create({
+  url = nil, -- `$STRING`
 })
 ```
 
@@ -368,7 +373,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local renderpageget = client:renderpageget()
+local renderpageget = client:RenderPageGet()
 renderpageget:load({ id = "example_id" })
 
 -- renderpageget:data_get() now returns the loaded renderpageget data

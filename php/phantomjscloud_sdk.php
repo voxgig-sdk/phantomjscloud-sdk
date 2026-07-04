@@ -233,10 +233,10 @@ class PhantomjscloudSDK
 
     private $_render_page_get = null;
 
-    // Idiomatic facade: $client->render_page_get()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias RenderPageGet() (PHP method
-    // names are case-insensitive).
-    public function render_page_get($data = null)
+    // Canonical facade: $client->RenderPageGet()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->render_page_get()
+    // resolves here too.
+    public function RenderPageGet($data = null)
     {
         require_once __DIR__ . '/entity/render_page_get_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class PhantomjscloudSDK
 
     private $_render_page_post = null;
 
-    // Idiomatic facade: $client->render_page_post()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias RenderPagePost() (PHP method
-    // names are case-insensitive).
-    public function render_page_post($data = null)
+    // Canonical facade: $client->RenderPagePost()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->render_page_post()
+    // resolves here too.
+    public function RenderPagePost($data = null)
     {
         require_once __DIR__ . '/entity/render_page_post_entity.php';
         if ($data === null) {

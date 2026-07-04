@@ -36,10 +36,12 @@ client = PhantomjscloudSDK({
 
 ### 3. Load a renderpageget
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.renderpageget.load({"id": "example_id"})
-    print(result)
+    renderpageget = client.RenderPageGet().load({"id": "example_id"})
+    print(renderpageget)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -87,8 +89,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = PhantomjscloudSDK.test()
 
-result = client.renderpageget.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+renderpageget = client.RenderPageGet().load({"id": "test01"})
+# renderpageget contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -245,7 +248,7 @@ API path: `/{apiKey}/`
 
 ### RenderPageGet
 
-Create an instance: `const render_page_get = client.render_page_get`
+Create an instance: `render_page_get = client.RenderPageGet()`
 
 #### Operations
 
@@ -263,14 +266,14 @@ Create an instance: `const render_page_get = client.render_page_get`
 
 #### Example: Load
 
-```ts
-const render_page_get = await client.render_page_get.load({ id: 'render_page_get_id' })
+```python
+render_page_get = client.RenderPageGet().load({"id": "render_page_get_id"})
 ```
 
 
 ### RenderPagePost
 
-Create an instance: `const render_page_post = client.render_page_post`
+Create an instance: `render_page_post = client.RenderPagePost()`
 
 #### Operations
 
@@ -295,9 +298,9 @@ Create an instance: `const render_page_post = client.render_page_post`
 
 #### Example: Create
 
-```ts
-const render_page_post = await client.render_page_post.create({
-  url: /* `$STRING` */,
+```python
+render_page_post = client.RenderPagePost().create({
+    "url": ...,  # `$STRING`
 })
 ```
 
@@ -372,7 +375,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-renderpageget = client.renderpageget
+renderpageget = client.RenderPageGet()
 renderpageget.load({"id": "example_id"})
 
 # renderpageget.data_get() now returns the loaded renderpageget data

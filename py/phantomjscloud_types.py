@@ -4,40 +4,43 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class RenderPageGet:
-    content: Optional[str] = None
-    page_response: Optional[dict] = None
-    status_code: Optional[int] = None
+class RenderPageGet(TypedDict, total=False):
+    content: str
+    page_response: dict
+    status_code: int
 
 
-@dataclass
-class RenderPageGetLoadMatch:
+class RenderPageGetLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class RenderPagePost:
+class RenderPagePostRequired(TypedDict):
     url: str
-    content: Optional[str] = None
-    output_as_json: Optional[bool] = None
-    overseer_script: Optional[str] = None
-    page_response: Optional[dict] = None
-    proxy: Optional[str] = None
-    render_type: Optional[str] = None
-    request_setting: Optional[dict] = None
-    status_code: Optional[int] = None
-    suppress_json: Optional[list] = None
 
 
-@dataclass
-class RenderPagePostCreateData:
+class RenderPagePost(RenderPagePostRequired, total=False):
+    content: str
+    output_as_json: bool
+    overseer_script: str
+    page_response: dict
+    proxy: str
+    render_type: str
+    request_setting: dict
+    status_code: int
+    suppress_json: list
+
+
+class RenderPagePostCreateData(TypedDict):
     id: str
-

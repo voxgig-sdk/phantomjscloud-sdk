@@ -208,26 +208,14 @@ class PhantomjscloudSDK
   end
 
 
-  # Idiomatic facade: client.render_page_get.list / client.render_page_get.load({ "id" => ... })
-  def render_page_get
-    require_relative 'entity/render_page_get_entity'
-    @render_page_get ||= RenderPageGetEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.render_page_get instead.
+  # Canonical facade: client.RenderPageGet.list / client.RenderPageGet.load({ "id" => ... })
   def RenderPageGet(data = nil)
     require_relative 'entity/render_page_get_entity'
     RenderPageGetEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.render_page_post.list / client.render_page_post.load({ "id" => ... })
-  def render_page_post
-    require_relative 'entity/render_page_post_entity'
-    @render_page_post ||= RenderPagePostEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.render_page_post instead.
+  # Canonical facade: client.RenderPagePost.list / client.RenderPagePost.load({ "id" => ... })
   def RenderPagePost(data = nil)
     require_relative 'entity/render_page_post_entity'
     RenderPagePostEntity.new(self, data)

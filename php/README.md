@@ -35,9 +35,10 @@ $client = new PhantomjscloudSDK([
 
 ```php
 try {
-    $result = $client->renderpageget()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare RenderPageGet record (throws on error).
+    $renderpageget = $client->RenderPageGet()->load(["id" => "example_id"]);
+    print_r($renderpageget);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -83,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = PhantomjscloudSDK::test();
+$client = PhantomjscloudSDK::test([
+    "entity" => ["renderpageget" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->renderpageget()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$renderpageget = $client->RenderPageGet()->load(["id" => "test01"]);
+print_r($renderpageget);
 ```
 
 ### Use a custom fetch function
@@ -249,7 +254,7 @@ API path: `/{apiKey}/`
 
 ### RenderPageGet
 
-Create an instance: `const render_page_get = client.render_page_get`
+Create an instance: `$render_page_get = $client->RenderPageGet();`
 
 #### Operations
 
@@ -267,14 +272,15 @@ Create an instance: `const render_page_get = client.render_page_get`
 
 #### Example: Load
 
-```ts
-const render_page_get = await client.render_page_get.load({ id: 'render_page_get_id' })
+```php
+// load() returns the bare RenderPageGet record (throws on error).
+$render_page_get = $client->RenderPageGet()->load(["id" => "render_page_get_id"]);
 ```
 
 
 ### RenderPagePost
 
-Create an instance: `const render_page_post = client.render_page_post`
+Create an instance: `$render_page_post = $client->RenderPagePost();`
 
 #### Operations
 
@@ -299,10 +305,10 @@ Create an instance: `const render_page_post = client.render_page_post`
 
 #### Example: Create
 
-```ts
-const render_page_post = await client.render_page_post.create({
-  url: /* `$STRING` */,
-})
+```php
+$render_page_post = $client->RenderPagePost()->create([
+    "url" => null, // `$STRING`
+]);
 ```
 
 
@@ -377,7 +383,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$renderpageget = $client->renderpageget();
+$renderpageget = $client->RenderPageGet();
 $renderpageget->load(["id" => "example_id"]);
 
 // $renderpageget->dataGet() now returns the loaded renderpageget data
