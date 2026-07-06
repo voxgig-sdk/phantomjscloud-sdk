@@ -50,11 +50,11 @@ Create a new `RenderPageGetEntity` instance. Pass `null` for no initial data.
 
 Create a new `RenderPagePostEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): PhantomjscloudUtility`
 
 Return a copy of the SDK utility object.
 
@@ -97,9 +97,9 @@ $render_page_get = $client->RenderPageGet();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$STRING`` | No |  |
-| `page_response` | ``$OBJECT`` | No |  |
-| `status_code` | ``$INTEGER`` | No |  |
+| `content` | `string` | No |  |
+| `page_response` | `array` | No |  |
+| `status_code` | `int` | No |  |
 
 ### Operations
 
@@ -113,19 +113,19 @@ $result = $client->RenderPageGet()->load(["id" => "render_page_get_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -134,7 +134,7 @@ Set the entity match criteria.
 Create a new `RenderPageGetEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -151,16 +151,16 @@ $render_page_post = $client->RenderPagePost();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$STRING`` | No |  |
-| `output_as_json` | ``$BOOLEAN`` | No |  |
-| `overseer_script` | ``$STRING`` | No |  |
-| `page_response` | ``$OBJECT`` | No |  |
-| `proxy` | ``$STRING`` | No |  |
-| `render_type` | ``$STRING`` | No |  |
-| `request_setting` | ``$OBJECT`` | No |  |
-| `status_code` | ``$INTEGER`` | No |  |
-| `suppress_json` | ``$ARRAY`` | No |  |
-| `url` | ``$STRING`` | Yes |  |
+| `content` | `string` | No |  |
+| `output_as_json` | `bool` | No |  |
+| `overseer_script` | `string` | No |  |
+| `page_response` | `array` | No |  |
+| `proxy` | `string` | No |  |
+| `render_type` | `string` | No |  |
+| `request_setting` | `array` | No |  |
+| `status_code` | `int` | No |  |
+| `suppress_json` | `array` | No |  |
+| `url` | `string` | Yes |  |
 
 ### Operations
 
@@ -170,25 +170,25 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->RenderPagePost()->create([
-  "url" => /* `$STRING` */,
+  "url" => null, // string
 ]);
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -197,7 +197,7 @@ Set the entity match criteria.
 Create a new `RenderPagePostEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

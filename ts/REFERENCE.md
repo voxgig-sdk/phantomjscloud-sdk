@@ -129,9 +129,9 @@ const render_page_get = client.RenderPageGet()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$STRING`` | No |  |
-| `page_response` | ``$OBJECT`` | No |  |
-| `status_code` | ``$INTEGER`` | No |  |
+| `content` | `string` | No |  |
+| `page_response` | `Record<string, any>` | No |  |
+| `status_code` | `number` | No |  |
 
 ### Operations
 
@@ -181,16 +181,16 @@ const render_page_post = client.RenderPagePost()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$STRING`` | No |  |
-| `output_as_json` | ``$BOOLEAN`` | No |  |
-| `overseer_script` | ``$STRING`` | No |  |
-| `page_response` | ``$OBJECT`` | No |  |
-| `proxy` | ``$STRING`` | No |  |
-| `render_type` | ``$STRING`` | No |  |
-| `request_setting` | ``$OBJECT`` | No |  |
-| `status_code` | ``$INTEGER`` | No |  |
-| `suppress_json` | ``$ARRAY`` | No |  |
-| `url` | ``$STRING`` | Yes |  |
+| `content` | `string` | No |  |
+| `output_as_json` | `boolean` | No |  |
+| `overseer_script` | `string` | No |  |
+| `page_response` | `Record<string, any>` | No |  |
+| `proxy` | `string` | No |  |
+| `render_type` | `string` | No |  |
+| `request_setting` | `Record<string, any>` | No |  |
+| `status_code` | `number` | No |  |
+| `suppress_json` | `any[]` | No |  |
+| `url` | `string` | Yes |  |
 
 ### Operations
 
@@ -200,7 +200,7 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.RenderPagePost().create({
-  url: /* `$STRING` */,
+  url: /* string */,
 })
 ```
 

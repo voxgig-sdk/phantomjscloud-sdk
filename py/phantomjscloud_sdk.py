@@ -221,13 +221,13 @@ class PhantomjscloudSDK:
 
 
     def RenderPageGet(self, data=None) -> "RenderPageGetEntity":
-        """Entity factory: client.RenderPageGet().list({}) / client.RenderPageGet().load({"id": ...})."""
+        """Entity factory: client.RenderPageGet().list() / client.RenderPageGet().load({"id": ...})."""
         from entity.render_page_get_entity import RenderPageGetEntity
         return RenderPageGetEntity(self, data)
 
 
     def RenderPagePost(self, data=None) -> "RenderPagePostEntity":
-        """Entity factory: client.RenderPagePost().list({}) / client.RenderPagePost().load({"id": ...})."""
+        """Entity factory: client.RenderPagePost().list() / client.RenderPagePost().load({"id": ...})."""
         from entity.render_page_post_entity import RenderPagePostEntity
         return RenderPagePostEntity(self, data)
 

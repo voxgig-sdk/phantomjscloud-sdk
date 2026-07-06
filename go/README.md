@@ -4,6 +4,8 @@
 
 The Golang SDK for the Phantomjscloud API — an entity-oriented client using standard Go conventions. No generics required; data flows as `map[string]any`.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client.RenderPageGet(nil)` — each with the same small set of operations (`Load`, `Create`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -52,12 +54,41 @@ func main() {
     })
 
     // Load a single renderpageget — the value is the loaded record.
-    renderpageget, err := client.RenderPageGet(nil).Load(map[string]any{"id": "example_id"}, nil)
+    renderpageget, err := client.RenderPageGet(nil).Load(map[string]any{"id": "example"}, nil)
     if err != nil {
         panic(err)
     }
     fmt.Println(renderpageget)
 }
+```
+
+
+## Error handling
+
+Every entity operation returns `(value, error)`. Check `err` before
+using the value — there is no exception to catch:
+
+```go
+renderpageget, err := client.RenderPageGet(nil).Load(map[string]any{"id": "example_id"}, nil)
+if err != nil {
+    // handle err
+    return
+}
+_ = renderpageget
+```
+
+`Direct` follows the same `(value, error)` convention:
+
+```go
+result, err := client.Direct(map[string]any{
+    "path":   "/api/resource/{id}",
+    "method": "GET",
+    "params": map[string]any{"id": "example_id"},
+})
+if err != nil {
+    // handle err
+}
+_ = result
 ```
 
 
@@ -113,7 +144,7 @@ renderpageget, err := client.RenderPageGet(nil).Load(
 if err != nil {
     panic(err)
 }
-fmt.Println(renderpageget) // the loaded mock data
+fmt.Println(renderpageget) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -202,10 +233,7 @@ All entities implement the `PhantomjscloudEntity` interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
-| `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria. |
 | `Create` | `(reqdata, ctrl map[string]any) (any, error)` | Create a new entity. |
-| `Update` | `(reqdata, ctrl map[string]any) (any, error)` | Update an existing entity. |
-| `Remove` | `(reqmatch, ctrl map[string]any) (any, error)` | Remove an entity. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
 | `Make` | `() Entity` | Create a new instance with the same options. |
@@ -218,8 +246,7 @@ operation's data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
-| `List` | a `[]any` of entity records |
+| `Load` / `Create` | the entity record (`map[string]any`) |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
@@ -227,7 +254,7 @@ slice):
 
     renderpageget, err := client.RenderPageGet(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil { /* handle */ }
-    // renderpageget is the loaded record
+    // renderpageget is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -284,9 +311,9 @@ Create an instance: `render_page_get := client.RenderPageGet(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | ``$STRING`` |  |
-| `page_response` | ``$OBJECT`` |  |
-| `status_code` | ``$INTEGER`` |  |
+| `content` | `string` |  |
+| `page_response` | `map[string]any` |  |
+| `status_code` | `int` |  |
 
 #### Example: Load
 
@@ -313,32 +340,36 @@ Create an instance: `render_page_post := client.RenderPagePost(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | ``$STRING`` |  |
-| `output_as_json` | ``$BOOLEAN`` |  |
-| `overseer_script` | ``$STRING`` |  |
-| `page_response` | ``$OBJECT`` |  |
-| `proxy` | ``$STRING`` |  |
-| `render_type` | ``$STRING`` |  |
-| `request_setting` | ``$OBJECT`` |  |
-| `status_code` | ``$INTEGER`` |  |
-| `suppress_json` | ``$ARRAY`` |  |
-| `url` | ``$STRING`` |  |
+| `content` | `string` |  |
+| `output_as_json` | `bool` |  |
+| `overseer_script` | `string` |  |
+| `page_response` | `map[string]any` |  |
+| `proxy` | `string` |  |
+| `render_type` | `string` |  |
+| `request_setting` | `map[string]any` |  |
+| `status_code` | `int` |  |
+| `suppress_json` | `[]any` |  |
+| `url` | `string` |  |
 
 #### Example: Create
 
 ```go
 result, err := client.RenderPagePost(nil).Create(map[string]any{
-    "url": /* `$STRING` */,
+    "url": /* string */,
 }, nil)
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -355,9 +386,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller. An unexpected panic triggers the
-`PreUnexpected` hook.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -405,7 +436,7 @@ stores the returned data and match criteria internally.
 renderpageget := client.RenderPageGet(nil)
 renderpageget.Load(map[string]any{"id": "example_id"}, nil)
 
-// renderpageget.Data() now returns the loaded renderpageget data
+// renderpageget.Data() now returns the renderpageget data from the last load
 // renderpageget.Match() returns the last match criteria
 ```
 

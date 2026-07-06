@@ -102,9 +102,9 @@ render_page_get := client.RenderPageGet(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$STRING`` | No |  |
-| `page_response` | ``$OBJECT`` | No |  |
-| `status_code` | ``$INTEGER`` | No |  |
+| `content` | `string` | No |  |
+| `page_response` | `map[string]any` | No |  |
+| `status_code` | `int` | No |  |
 
 ### Operations
 
@@ -150,16 +150,16 @@ render_page_post := client.RenderPagePost(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$STRING`` | No |  |
-| `output_as_json` | ``$BOOLEAN`` | No |  |
-| `overseer_script` | ``$STRING`` | No |  |
-| `page_response` | ``$OBJECT`` | No |  |
-| `proxy` | ``$STRING`` | No |  |
-| `render_type` | ``$STRING`` | No |  |
-| `request_setting` | ``$OBJECT`` | No |  |
-| `status_code` | ``$INTEGER`` | No |  |
-| `suppress_json` | ``$ARRAY`` | No |  |
-| `url` | ``$STRING`` | Yes |  |
+| `content` | `string` | No |  |
+| `output_as_json` | `bool` | No |  |
+| `overseer_script` | `string` | No |  |
+| `page_response` | `map[string]any` | No |  |
+| `proxy` | `string` | No |  |
+| `render_type` | `string` | No |  |
+| `request_setting` | `map[string]any` | No |  |
+| `status_code` | `int` | No |  |
+| `suppress_json` | `[]any` | No |  |
+| `url` | `string` | Yes |  |
 
 ### Operations
 
@@ -169,7 +169,7 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.RenderPagePost(nil).Create(map[string]any{
-    "url": /* `$STRING` */,
+    "url": /* string */,
 }, nil)
 ```
 

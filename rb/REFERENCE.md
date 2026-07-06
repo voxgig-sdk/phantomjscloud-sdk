@@ -8,7 +8,7 @@ Complete API reference for the Phantomjscloud Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'phantomjscloud_sdk'
+require_relative 'Phantomjscloud_sdk'
 
 client = PhantomjscloudSDK.new(options)
 ```
@@ -98,9 +98,9 @@ render_page_get = client.RenderPageGet
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$STRING`` | No |  |
-| `page_response` | ``$OBJECT`` | No |  |
-| `status_code` | ``$INTEGER`` | No |  |
+| `content` | `String` | No |  |
+| `page_response` | `Hash` | No |  |
+| `status_code` | `Integer` | No |  |
 
 ### Operations
 
@@ -152,16 +152,16 @@ render_page_post = client.RenderPagePost
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$STRING`` | No |  |
-| `output_as_json` | ``$BOOLEAN`` | No |  |
-| `overseer_script` | ``$STRING`` | No |  |
-| `page_response` | ``$OBJECT`` | No |  |
-| `proxy` | ``$STRING`` | No |  |
-| `render_type` | ``$STRING`` | No |  |
-| `request_setting` | ``$OBJECT`` | No |  |
-| `status_code` | ``$INTEGER`` | No |  |
-| `suppress_json` | ``$ARRAY`` | No |  |
-| `url` | ``$STRING`` | Yes |  |
+| `content` | `String` | No |  |
+| `output_as_json` | `Boolean` | No |  |
+| `overseer_script` | `String` | No |  |
+| `page_response` | `Hash` | No |  |
+| `proxy` | `String` | No |  |
+| `render_type` | `String` | No |  |
+| `request_setting` | `Hash` | No |  |
+| `status_code` | `Integer` | No |  |
+| `suppress_json` | `Array` | No |  |
+| `url` | `String` | Yes |  |
 
 ### Operations
 
@@ -171,7 +171,7 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.RenderPagePost.create({
-  "url" => # `$STRING`,
+  "url" => "example", # String
 })
 ```
 

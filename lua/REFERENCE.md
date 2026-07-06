@@ -95,9 +95,9 @@ local render_page_get = client:RenderPageGet(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$STRING`` | No |  |
-| `page_response` | ``$OBJECT`` | No |  |
-| `status_code` | ``$INTEGER`` | No |  |
+| `content` | `string` | No |  |
+| `page_response` | `table` | No |  |
+| `status_code` | `number` | No |  |
 
 ### Operations
 
@@ -149,16 +149,16 @@ local render_page_post = client:RenderPagePost(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$STRING`` | No |  |
-| `output_as_json` | ``$BOOLEAN`` | No |  |
-| `overseer_script` | ``$STRING`` | No |  |
-| `page_response` | ``$OBJECT`` | No |  |
-| `proxy` | ``$STRING`` | No |  |
-| `render_type` | ``$STRING`` | No |  |
-| `request_setting` | ``$OBJECT`` | No |  |
-| `status_code` | ``$INTEGER`` | No |  |
-| `suppress_json` | ``$ARRAY`` | No |  |
-| `url` | ``$STRING`` | Yes |  |
+| `content` | `string` | No |  |
+| `output_as_json` | `boolean` | No |  |
+| `overseer_script` | `string` | No |  |
+| `page_response` | `table` | No |  |
+| `proxy` | `string` | No |  |
+| `render_type` | `string` | No |  |
+| `request_setting` | `table` | No |  |
+| `status_code` | `number` | No |  |
+| `suppress_json` | `table` | No |  |
+| `url` | `string` | Yes |  |
 
 ### Operations
 
@@ -168,7 +168,7 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:RenderPagePost():create({
-  url = --[[ `$STRING` ]],
+  url = --[[ string ]],
 })
 ```
 

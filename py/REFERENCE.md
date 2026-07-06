@@ -92,9 +92,9 @@ render_page_get = client.RenderPageGet()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$STRING`` | No |  |
-| `page_response` | ``$OBJECT`` | No |  |
-| `status_code` | ``$INTEGER`` | No |  |
+| `content` | `str` | No |  |
+| `page_response` | `dict` | No |  |
+| `status_code` | `int` | No |  |
 
 ### Operations
 
@@ -145,16 +145,16 @@ render_page_post = client.RenderPagePost()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | ``$STRING`` | No |  |
-| `output_as_json` | ``$BOOLEAN`` | No |  |
-| `overseer_script` | ``$STRING`` | No |  |
-| `page_response` | ``$OBJECT`` | No |  |
-| `proxy` | ``$STRING`` | No |  |
-| `render_type` | ``$STRING`` | No |  |
-| `request_setting` | ``$OBJECT`` | No |  |
-| `status_code` | ``$INTEGER`` | No |  |
-| `suppress_json` | ``$ARRAY`` | No |  |
-| `url` | ``$STRING`` | Yes |  |
+| `content` | `str` | No |  |
+| `output_as_json` | `bool` | No |  |
+| `overseer_script` | `str` | No |  |
+| `page_response` | `dict` | No |  |
+| `proxy` | `str` | No |  |
+| `render_type` | `str` | No |  |
+| `request_setting` | `dict` | No |  |
+| `status_code` | `int` | No |  |
+| `suppress_json` | `list` | No |  |
+| `url` | `str` | Yes |  |
 
 ### Operations
 
@@ -164,7 +164,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.RenderPagePost().create({
-    "url": ...,  # `$STRING`
+    "url": "example",  # str
 })
 ```
 
