@@ -200,7 +200,7 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.RenderPagePost().create({
-  url: /* string */,
+  id: 'example_id',
 })
 ```
 

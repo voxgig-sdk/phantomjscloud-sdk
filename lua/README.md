@@ -317,7 +317,7 @@ Create an instance: `local render_page_post = client:RenderPagePost(nil)`
 
 ```lua
 local render_page_post, err = client:RenderPagePost():create({
-  url = nil, -- string
+  id = "example_id", -- string
 })
 ```
 

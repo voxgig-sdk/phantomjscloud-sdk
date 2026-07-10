@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -378,15 +375,25 @@
           "url": "https://phantomjscloud.com/docs/"
         },
         "description": "PhantomJsCloud API offers a REST-like, JSON-based interface for web page rendering and automation. It allows you to submit page requests and receive various output formats like JPEG, PNG, and PDF while handling page interactions via an automation API.",
+        "meta_source": "https://www.freepublicapis.com",
+        "security": {
+          "in": "path",
+          "name": "apiKey",
+          "prefix": "",
+          "scheme": "ApiKeyAuth",
+          "type": "apiKey"
+        },
         "servers": [
           {
             "description": "PhantomJsCloud API Server",
             "url": "https://phantomjscloud.com/api/browser/v2"
           }
         ],
+        "summary": "PhantomJsCloud API offers a REST-like, JSON-based interface for web page rendering and automation.",
         "termsOfService": "https://phantomjscloud.com/docs/",
         "title": "PhantomJsCloud API",
-        "version": "2.0.0"
+        "version": "2.0.0",
+        "website": "https://phantomjscloud.com/docs/"
       },
       "option": {},
       "target": {
@@ -439,6 +446,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -489,6 +499,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

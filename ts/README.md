@@ -378,7 +378,7 @@ Create an instance: `const render_page_post = client.RenderPagePost()`
 
 ```ts
 const render_page_post = await client.RenderPagePost().create({
-  url: /* string */,
+  id: 'example_id',
 })
 ```
 

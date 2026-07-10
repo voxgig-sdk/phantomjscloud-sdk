@@ -330,7 +330,7 @@ Create an instance: `render_page_post = client.RenderPagePost`
 
 ```ruby
 render_page_post = client.RenderPagePost.create({
-  "url" => "example", # String
+  "id" => "example_id", # String
 })
 ```
 

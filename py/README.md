@@ -333,7 +333,7 @@ Create an instance: `render_page_post = client.RenderPagePost()`
 
 ```python
 render_page_post = client.RenderPagePost().create({
-    "url": "example",  # str
+    "id": "example_id",  # str
 })
 ```
 

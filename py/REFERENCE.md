@@ -164,7 +164,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.RenderPagePost().create({
-    "url": "example",  # str
+    "id": "example_id",  # str
 })
 ```
 

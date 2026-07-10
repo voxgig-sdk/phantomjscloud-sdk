@@ -95,7 +95,8 @@ same parameters as `Direct()`.
 ## RenderPageGetEntity
 
 ```go
-render_page_get := client.RenderPageGet(nil)
+renderPageGet := client.RenderPageGet(nil)
+fmt.Println(renderPageGet.GetName()) // "render_page_get"
 ```
 
 ### Fields
@@ -114,6 +115,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.RenderPageGet(nil).Load(map[string]any{"id": "render_page_get_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -143,7 +148,8 @@ Return the entity name.
 ## RenderPagePostEntity
 
 ```go
-render_page_post := client.RenderPagePost(nil)
+renderPagePost := client.RenderPagePost(nil)
+fmt.Println(renderPagePost.GetName()) // "render_page_post"
 ```
 
 ### Fields
@@ -169,8 +175,12 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.RenderPagePost(nil).Create(map[string]any{
-    "url": /* string */,
+    "id": "example_id",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

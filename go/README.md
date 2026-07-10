@@ -53,12 +53,12 @@ func main() {
         "apikey": os.Getenv("PHANTOMJSCLOUD_APIKEY"),
     })
 
-    // Load a single renderpageget — the value is the loaded record.
-    renderpageget, err := client.RenderPageGet(nil).Load(map[string]any{"id": "example"}, nil)
+    // Load a single renderPageGet — the value is the loaded record.
+    renderPageGet, err := client.RenderPageGet(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(renderpageget)
+    fmt.Println(renderPageGet)
 }
 ```
 
@@ -138,13 +138,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-renderpageget, err := client.RenderPageGet(nil).Load(
+renderPageGet, err := client.RenderPageGet(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(renderpageget) // the returned mock data
+fmt.Println(renderPageGet) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -252,9 +252,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    renderpageget, err := client.RenderPageGet(nil).Load(map[string]any{"id": "example_id"}, nil)
+    renderPageGet, err := client.RenderPageGet(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil { /* handle */ }
-    // renderpageget is the returned record
+    // renderPageGet is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -299,7 +299,7 @@ API path: `/{apiKey}/`
 
 ### RenderPageGet
 
-Create an instance: `render_page_get := client.RenderPageGet(nil)`
+Create an instance: `renderPageGet := client.RenderPageGet(nil)`
 
 #### Operations
 
@@ -318,17 +318,17 @@ Create an instance: `render_page_get := client.RenderPageGet(nil)`
 #### Example: Load
 
 ```go
-render_page_get, err := client.RenderPageGet(nil).Load(map[string]any{"id": "render_page_get_id"}, nil)
+renderPageGet, err := client.RenderPageGet(nil).Load(map[string]any{"id": "render_page_get_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(render_page_get) // the loaded record
+fmt.Println(renderPageGet) // the loaded record
 ```
 
 
 ### RenderPagePost
 
-Create an instance: `render_page_post := client.RenderPagePost(nil)`
+Create an instance: `renderPagePost := client.RenderPagePost(nil)`
 
 #### Operations
 
@@ -355,8 +355,12 @@ Create an instance: `render_page_post := client.RenderPagePost(nil)`
 
 ```go
 result, err := client.RenderPagePost(nil).Create(map[string]any{
-    "url": /* string */,
+    "id": "example_id",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 

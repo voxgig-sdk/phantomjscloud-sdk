@@ -16,7 +16,7 @@ def make_config():
         "options": {
             "base": "https://phantomjscloud.com/api/browser/v2",
             "auth": {
-                "prefix": "Bearer",
+                "prefix": "",
             },
             "headers": {
         "content-type": "application/json",

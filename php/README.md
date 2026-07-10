@@ -340,7 +340,7 @@ Create an instance: `$render_page_post = $client->RenderPagePost();`
 
 ```php
 $render_page_post = $client->RenderPagePost()->create([
-    "url" => null, // string
+    "id" => null, // string
 ]);
 ```
 

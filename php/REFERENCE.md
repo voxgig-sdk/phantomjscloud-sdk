@@ -170,7 +170,7 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->RenderPagePost()->create([
-  "url" => null, // string
+  "id" => null, // string
 ]);
 ```
 

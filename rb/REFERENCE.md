@@ -171,7 +171,7 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.RenderPagePost.create({
-  "url" => "example", # String
+  "id" => "example_id", # String
 })
 ```
 
