@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Phantomjscloud SDK exists test
 
 local sdk = require("phantomjscloud_sdk")
 
