@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Phantomjscloud SDK exists test
 
 import pytest
 from phantomjscloud_sdk import PhantomjscloudSDK

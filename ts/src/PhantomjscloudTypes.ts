@@ -6,9 +6,7 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface RenderPageGet {
-  content?: string
-  page_response?: Record<string, any>
-  status_code?: number
+  events?: any[]
 }
 
 export interface RenderPageGetLoadMatch {
@@ -16,19 +14,25 @@ export interface RenderPageGetLoadMatch {
 }
 
 export interface RenderPagePost {
-  content?: string
-  output_as_json?: boolean
-  overseer_script?: string
-  page_response?: Record<string, any>
+  events?: any[]
+  outputAsJson?: boolean
+  overseerScript?: string
   proxy?: string
-  render_type?: string
-  request_setting?: Record<string, any>
-  status_code?: number
-  suppress_json?: any[]
+  renderType?: string
+  requestSettings?: Record<string, any>
+  suppressJson?: any[]
   url: string
 }
 
 export interface RenderPagePostCreateData {
   id: string
+  events?: any[]
+  outputAsJson?: boolean
+  overseerScript?: string
+  proxy?: string
+  renderType?: string
+  requestSettings?: Record<string, any>
+  suppressJson?: any[]
+  url: string
 }
 

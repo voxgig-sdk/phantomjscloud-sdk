@@ -23,7 +23,7 @@ support (`load`, `create`):
 
 ```ts
 const client = new PhantomjscloudSDK()
-const renderpageget = await client.RenderPageGet().load()
+const renderpageget = await client.RenderPageGet().load({ id: "example_id" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = PhantomjscloudSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = PhantomjscloudSDK.test({
+  entity: {
+    render_page_get: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const renderpageget = await client.RenderPageGet().load({ id: 'test01' })
-// renderpageget is a bare RenderPageGet populated with mock data
+// renderpageget is the RenderPageGet entity, populated with mock data
+// — call renderpageget.data() for the record itself
 console.log(renderpageget)
 ```
 
@@ -190,7 +199,7 @@ $client = new PhantomjscloudSDK([
 ]);
 
 
-// Load a specific renderpageget (returns the bare record; throws on error)
+// Load a specific renderpageget (returns the ENTITY; call data_get() for the record; throws on error)
 $renderpageget = $client->RenderPageGet()->load(["id" => "example_id"]);
 print_r($renderpageget);
 ```
@@ -222,7 +231,7 @@ client = PhantomjscloudSDK.new({
 })
 
 
-# Load a specific renderpageget (returns the bare record; raises on error)
+# Load a specific renderpageget (returns the ENTITY; call data_get for the record)
 renderpageget = client.RenderPageGet.load({ "id" => "example_id" })
 puts renderpageget
 ```
@@ -358,6 +367,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://phantomjscloud.com/docs/](https://phantomjscloud.com/docs/)
 

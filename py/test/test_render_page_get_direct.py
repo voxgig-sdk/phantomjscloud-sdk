@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from phantomjscloud_sdk.utility.voxgig_struct import voxgig_struct as vs
 from phantomjscloud_sdk import PhantomjscloudSDK
-from core import helpers
+from phantomjscloud_sdk.core import helpers
 from test import runner
 
 

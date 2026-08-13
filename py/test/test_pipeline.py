@@ -16,11 +16,11 @@
 import pytest
 
 from phantomjscloud_sdk import PhantomjscloudSDK
-from core.error import PhantomjscloudError
-from core.result import PhantomjscloudResult
-from core.response import PhantomjscloudResponse
-from core.spec import PhantomjscloudSpec
-from feature.base_feature import PhantomjscloudBaseFeature
+from phantomjscloud_sdk.core.error import PhantomjscloudError
+from phantomjscloud_sdk.core.result import PhantomjscloudResult
+from phantomjscloud_sdk.core.response import PhantomjscloudResponse
+from phantomjscloud_sdk.core.spec import PhantomjscloudSpec
+from phantomjscloud_sdk.feature.base_feature import PhantomjscloudBaseFeature
 
 
 def _client():

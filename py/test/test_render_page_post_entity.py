@@ -6,9 +6,9 @@ import time
 
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from phantomjscloud_sdk.utility.voxgig_struct import voxgig_struct as vs
 from phantomjscloud_sdk import PhantomjscloudSDK
-from core import helpers
+from phantomjscloud_sdk.core import helpers
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
@@ -45,7 +45,7 @@ class TestRenderPagePostEntity:
             vs.getpath(setup["data"], "new.render_page_post"), "render_page_post_ref01"))
         render_page_post_ref01_data["api_key"] = setup["idmap"]["api_key01"]
 
-        render_page_post_ref01_data = helpers.to_map(render_page_post_ref01_ent.create(render_page_post_ref01_data, None))
+        render_page_post_ref01_data = helpers.to_map(runner.entity_data(render_page_post_ref01_ent.create(render_page_post_ref01_data, None)))
         assert render_page_post_ref01_data is not None
 
 

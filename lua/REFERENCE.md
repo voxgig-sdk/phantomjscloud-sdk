@@ -95,9 +95,7 @@ local render_page_get = client:RenderPageGet(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | `string` | No |  |
-| `page_response` | `table` | No |  |
-| `status_code` | `number` | No |  |
+| `events` | `table` | No |  |
 
 ### Operations
 
@@ -149,15 +147,13 @@ local render_page_post = client:RenderPagePost(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | `string` | No |  |
-| `output_as_json` | `boolean` | No |  |
-| `overseer_script` | `string` | No |  |
-| `page_response` | `table` | No |  |
+| `events` | `table` | No |  |
+| `outputAsJson` | `boolean` | No |  |
+| `overseerScript` | `string` | No |  |
 | `proxy` | `string` | No |  |
-| `render_type` | `string` | No |  |
-| `request_setting` | `table` | No |  |
-| `status_code` | `number` | No |  |
-| `suppress_json` | `table` | No |  |
+| `renderType` | `string` | No |  |
+| `requestSettings` | `table` | No |  |
+| `suppressJson` | `table` | No |  |
 | `url` | `string` | Yes |  |
 
 ### Operations
@@ -169,6 +165,7 @@ Create a new entity with the given data.
 ```lua
 local result, err = client:RenderPagePost():create({
   id = --[[ string ]],
+  url = --[[ string ]],
 })
 ```
 

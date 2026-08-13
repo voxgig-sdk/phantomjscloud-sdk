@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import PhantomjscloudControl
-from core.error import PhantomjscloudError
-from core.result import PhantomjscloudResult
-from core.spec import PhantomjscloudSpec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import PhantomjscloudControl
+from projectname_sdk.core.error import PhantomjscloudError
+from projectname_sdk.core.result import PhantomjscloudResult
+from projectname_sdk.core.spec import PhantomjscloudSpec
 
 
 # True when this SDK was generated with the named feature.

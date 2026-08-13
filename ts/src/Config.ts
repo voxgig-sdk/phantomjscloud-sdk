@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'Phantomjscloud',
   }
 
 
@@ -63,24 +63,10 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "content",
+          "name": "events",
           "req": false,
-          "type": "`$STRING`",
+          "type": "`$ARRAY`",
           "index$": 0
-        },
-        {
-          "active": true,
-          "name": "page_response",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 1
-        },
-        {
-          "active": true,
-          "name": "status_code",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 2
         }
       ],
       "name": "render_page_get",
@@ -115,6 +101,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/{apiKey}/",
               "parts": [
@@ -133,7 +120,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.pageResponses`"
               },
               "index$": 0
             }
@@ -149,73 +136,59 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "content",
+          "name": "events",
           "req": false,
-          "type": "`$STRING`",
+          "type": "`$ARRAY`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "output_as_json",
+          "name": "outputAsJson",
           "req": false,
           "type": "`$BOOLEAN`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "overseer_script",
+          "name": "overseerScript",
           "req": false,
           "type": "`$STRING`",
           "index$": 2
         },
         {
           "active": true,
-          "name": "page_response",
+          "name": "proxy",
           "req": false,
-          "type": "`$OBJECT`",
+          "type": "`$STRING`",
           "index$": 3
         },
         {
           "active": true,
-          "name": "proxy",
+          "name": "renderType",
           "req": false,
           "type": "`$STRING`",
           "index$": 4
         },
         {
           "active": true,
-          "name": "render_type",
+          "name": "requestSettings",
           "req": false,
-          "type": "`$STRING`",
+          "type": "`$OBJECT`",
           "index$": 5
         },
         {
           "active": true,
-          "name": "request_setting",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 6
-        },
-        {
-          "active": true,
-          "name": "status_code",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 7
-        },
-        {
-          "active": true,
-          "name": "suppress_json",
+          "name": "suppressJson",
           "req": false,
           "type": "`$ARRAY`",
-          "index$": 8
+          "index$": 6
         },
         {
           "active": true,
           "name": "url",
           "req": true,
           "type": "`$STRING`",
-          "index$": 9
+          "index$": 7
         }
       ],
       "name": "render_page_post",
@@ -240,6 +213,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "POST",
               "orig": "/{apiKey}/",
               "parts": [
@@ -257,7 +231,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.pageResponses`"
               },
               "index$": 0
             }

@@ -36,7 +36,7 @@ client = PhantomjscloudSDK.new({
 
 ```ruby
 begin
-  # load returns the bare RenderPageGet record (raises on error).
+  # load returns the ENTITY — call data_get for the RenderPageGet record (raises on error).
   renderpageget = client.RenderPageGet.load({ "id" => "example_id" })
   puts renderpageget
 rescue => err
@@ -122,7 +122,8 @@ client = PhantomjscloudSDK.test({
   "entity" => { "renderpageget" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 renderpageget = client.RenderPageGet.load({ "id" => "test01" })
 puts renderpageget
 ```
@@ -243,9 +244,7 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `content` |  |
-| `page_response` |  |
-| `status_code` |  |
+| `events` |  |
 
 Operations: Load.
 
@@ -255,15 +254,13 @@ API path: `/{apiKey}/`
 
 | Field | Description |
 | --- | --- |
-| `content` |  |
-| `output_as_json` |  |
-| `overseer_script` |  |
-| `page_response` |  |
+| `events` |  |
+| `outputAsJson` |  |
+| `overseerScript` |  |
 | `proxy` |  |
-| `render_type` |  |
-| `request_setting` |  |
-| `status_code` |  |
-| `suppress_json` |  |
+| `renderType` |  |
+| `requestSettings` |  |
+| `suppressJson` |  |
 | `url` |  |
 
 Operations: Create.
@@ -289,14 +286,12 @@ Create an instance: `render_page_get = client.RenderPageGet`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | `String` |  |
-| `page_response` | `Hash` |  |
-| `status_code` | `Integer` |  |
+| `events` | `Array` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare RenderPageGet record (raises on error).
+# load returns the ENTITY — call data_get for the RenderPageGet record (raises on error).
 render_page_get = client.RenderPageGet.load({ "id" => "render_page_get_id" })
 ```
 
@@ -315,15 +310,13 @@ Create an instance: `render_page_post = client.RenderPagePost`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | `String` |  |
-| `output_as_json` | `Boolean` |  |
-| `overseer_script` | `String` |  |
-| `page_response` | `Hash` |  |
+| `events` | `Array` |  |
+| `outputAsJson` | `Boolean` |  |
+| `overseerScript` | `String` |  |
 | `proxy` | `String` |  |
-| `render_type` | `String` |  |
-| `request_setting` | `Hash` |  |
-| `status_code` | `Integer` |  |
-| `suppress_json` | `Array` |  |
+| `renderType` | `String` |  |
+| `requestSettings` | `Hash` |  |
+| `suppressJson` | `Array` |  |
 | `url` | `String` |  |
 
 #### Example: Create
@@ -331,6 +324,7 @@ Create an instance: `render_page_post = client.RenderPagePost`
 ```ruby
 render_page_post = client.RenderPagePost.create({
   "id" => "example_id", # String
+  "url" => "example_url", # String
 })
 ```
 

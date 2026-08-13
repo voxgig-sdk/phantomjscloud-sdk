@@ -15,9 +15,7 @@ declare(strict_types=1);
 /** RenderPageGet entity data model. */
 class RenderPageGet
 {
-    public ?string $content = null;
-    public ?array $page_response = null;
-    public ?int $status_code = null;
+    public ?array $events = null;
 }
 
 /** Request payload for RenderPageGet#load. */
@@ -29,15 +27,13 @@ class RenderPageGetLoadMatch
 /** RenderPagePost entity data model. */
 class RenderPagePost
 {
-    public ?string $content = null;
-    public ?bool $output_as_json = null;
-    public ?string $overseer_script = null;
-    public ?array $page_response = null;
+    public ?array $events = null;
+    public ?bool $outputAsJson = null;
+    public ?string $overseerScript = null;
     public ?string $proxy = null;
-    public ?string $render_type = null;
-    public ?array $request_setting = null;
-    public ?int $status_code = null;
-    public ?array $suppress_json = null;
+    public ?string $renderType = null;
+    public ?array $requestSettings = null;
+    public ?array $suppressJson = null;
     public string $url;
 }
 
@@ -45,5 +41,13 @@ class RenderPagePost
 class RenderPagePostCreateData
 {
     public string $id;
+    public ?array $events = null;
+    public ?bool $outputAsJson = null;
+    public ?string $overseerScript = null;
+    public ?string $proxy = null;
+    public ?string $renderType = null;
+    public ?array $requestSettings = null;
+    public ?array $suppressJson = null;
+    public string $url;
 }
 

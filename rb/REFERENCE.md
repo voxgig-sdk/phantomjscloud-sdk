@@ -98,9 +98,7 @@ render_page_get = client.RenderPageGet
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | `String` | No |  |
-| `page_response` | `Hash` | No |  |
-| `status_code` | `Integer` | No |  |
+| `events` | `Array` | No |  |
 
 ### Operations
 
@@ -152,15 +150,13 @@ render_page_post = client.RenderPagePost
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | `String` | No |  |
-| `output_as_json` | `Boolean` | No |  |
-| `overseer_script` | `String` | No |  |
-| `page_response` | `Hash` | No |  |
+| `events` | `Array` | No |  |
+| `outputAsJson` | `Boolean` | No |  |
+| `overseerScript` | `String` | No |  |
 | `proxy` | `String` | No |  |
-| `render_type` | `String` | No |  |
-| `request_setting` | `Hash` | No |  |
-| `status_code` | `Integer` | No |  |
-| `suppress_json` | `Array` | No |  |
+| `renderType` | `String` | No |  |
+| `requestSettings` | `Hash` | No |  |
+| `suppressJson` | `Array` | No |  |
 | `url` | `String` | Yes |  |
 
 ### Operations
@@ -172,6 +168,7 @@ Create a new entity with the given data. Raises on error.
 ```ruby
 result = client.RenderPagePost.create({
   "id" => "example_id", # String
+  "url" => "example_url", # String
 })
 ```
 

@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ PhantomjscloudUtility::setRegistrar(function (PhantomjscloudUtility $u): void {
     $u->prepare_params = [PhantomjscloudPrepareParams::class, 'call'];
     $u->prepare_path = [PhantomjscloudPreparePath::class, 'call'];
     $u->prepare_query = [PhantomjscloudPrepareQuery::class, 'call'];
+    $u->graphql_body = [PhantomjscloudGraphql::class, 'body'];
+    $u->graphql_errors = [PhantomjscloudGraphql::class, 'errors'];
     $u->result_basic = [PhantomjscloudResultBasic::class, 'call'];
     $u->result_body = [PhantomjscloudResultBody::class, 'call'];
     $u->result_headers = [PhantomjscloudResultHeaders::class, 'call'];

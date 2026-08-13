@@ -9,6 +9,7 @@ guide: {
     path: "/{apiKey}/": {
       rename: param: "apiKey": *"id"
       op: load: method: *GET
+      op: load: transform: res: *("`body.pageResponses`")|top
     }
   }
 
@@ -16,6 +17,7 @@ guide: {
     path: "/{apiKey}/": {
       rename: param: "apiKey": *"id"
       op: create: method: *POST
+      op: create: transform: res: *("`body.pageResponses`")|top
     }
   }
 

@@ -265,9 +265,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"content"` |  |
-| `"page_response"` |  |
-| `"status_code"` |  |
+| `"events"` |  |
 
 Operations: Load.
 
@@ -277,15 +275,13 @@ API path: `/{apiKey}/`
 
 | Field | Description |
 | --- | --- |
-| `"content"` |  |
-| `"output_as_json"` |  |
-| `"overseer_script"` |  |
-| `"page_response"` |  |
+| `"events"` |  |
+| `"outputAsJson"` |  |
+| `"overseerScript"` |  |
 | `"proxy"` |  |
-| `"render_type"` |  |
-| `"request_setting"` |  |
-| `"status_code"` |  |
-| `"suppress_json"` |  |
+| `"renderType"` |  |
+| `"requestSettings"` |  |
+| `"suppressJson"` |  |
 | `"url"` |  |
 
 Operations: Create.
@@ -311,9 +307,7 @@ Create an instance: `renderPageGet := client.RenderPageGet(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | `string` |  |
-| `page_response` | `map[string]any` |  |
-| `status_code` | `int` |  |
+| `events` | `[]any` |  |
 
 #### Example: Load
 
@@ -340,15 +334,13 @@ Create an instance: `renderPagePost := client.RenderPagePost(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | `string` |  |
-| `output_as_json` | `bool` |  |
-| `overseer_script` | `string` |  |
-| `page_response` | `map[string]any` |  |
+| `events` | `[]any` |  |
+| `outputAsJson` | `bool` |  |
+| `overseerScript` | `string` |  |
 | `proxy` | `string` |  |
-| `render_type` | `string` |  |
-| `request_setting` | `map[string]any` |  |
-| `status_code` | `int` |  |
-| `suppress_json` | `[]any` |  |
+| `renderType` | `string` |  |
+| `requestSettings` | `map[string]any` |  |
+| `suppressJson` | `[]any` |  |
 | `url` | `string` |  |
 
 #### Example: Create
@@ -356,6 +348,7 @@ Create an instance: `renderPagePost := client.RenderPagePost(nil)`
 ```go
 result, err := client.RenderPagePost(nil).Create(map[string]any{
     "id": "example_id",
+    "url": "example_url",
 }, nil)
 if err != nil {
     panic(err)

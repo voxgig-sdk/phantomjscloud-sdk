@@ -7,27 +7,31 @@
 -- edit by hand.
 
 ---@class RenderPageGet
----@field content? string
----@field page_response? table
----@field status_code? number
+---@field events? table
 
 ---@class RenderPageGetLoadMatch
 ---@field id string
 
 ---@class RenderPagePost
----@field content? string
----@field output_as_json? boolean
----@field overseer_script? string
----@field page_response? table
+---@field events? table
+---@field outputAsJson? boolean
+---@field overseerScript? string
 ---@field proxy? string
----@field render_type? string
----@field request_setting? table
----@field status_code? number
----@field suppress_json? table
+---@field renderType? string
+---@field requestSettings? table
+---@field suppressJson? table
 ---@field url string
 
 ---@class RenderPagePostCreateData
 ---@field id string
+---@field events? table
+---@field outputAsJson? boolean
+---@field overseerScript? string
+---@field proxy? string
+---@field renderType? string
+---@field requestSettings? table
+---@field suppressJson? table
+---@field url string
 
 local M = {}
 

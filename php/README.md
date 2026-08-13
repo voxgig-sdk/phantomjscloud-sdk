@@ -37,7 +37,7 @@ $client = new PhantomjscloudSDK([
 
 ```php
 try {
-    // load() returns the bare RenderPageGet record (throws on error).
+    // load() returns the ENTITY — call data_get() for the RenderPageGet record (throws on error).
     $renderpageget = $client->RenderPageGet()->load(["id" => "example_id"]);
     print_r($renderpageget);
 } catch (\Throwable $err) {
@@ -128,7 +128,8 @@ $client = PhantomjscloudSDK::test([
     "entity" => ["renderpageget" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $renderpageget = $client->RenderPageGet()->load(["id" => "test01"]);
 print_r($renderpageget);
 ```
@@ -231,7 +232,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -253,9 +254,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `content` |  |
-| `page_response` |  |
-| `status_code` |  |
+| `events` |  |
 
 Operations: Load.
 
@@ -265,15 +264,13 @@ API path: `/{apiKey}/`
 
 | Field | Description |
 | --- | --- |
-| `content` |  |
-| `output_as_json` |  |
-| `overseer_script` |  |
-| `page_response` |  |
+| `events` |  |
+| `outputAsJson` |  |
+| `overseerScript` |  |
 | `proxy` |  |
-| `render_type` |  |
-| `request_setting` |  |
-| `status_code` |  |
-| `suppress_json` |  |
+| `renderType` |  |
+| `requestSettings` |  |
+| `suppressJson` |  |
 | `url` |  |
 
 Operations: Create.
@@ -299,14 +296,12 @@ Create an instance: `$render_page_get = $client->RenderPageGet();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | `string` |  |
-| `page_response` | `array` |  |
-| `status_code` | `int` |  |
+| `events` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare RenderPageGet record (throws on error).
+// load() returns the ENTITY — call data_get() for the RenderPageGet record (throws on error).
 $render_page_get = $client->RenderPageGet()->load(["id" => "render_page_get_id"]);
 ```
 
@@ -325,15 +320,13 @@ Create an instance: `$render_page_post = $client->RenderPagePost();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | `string` |  |
-| `output_as_json` | `bool` |  |
-| `overseer_script` | `string` |  |
-| `page_response` | `array` |  |
+| `events` | `array` |  |
+| `outputAsJson` | `bool` |  |
+| `overseerScript` | `string` |  |
 | `proxy` | `string` |  |
-| `render_type` | `string` |  |
-| `request_setting` | `array` |  |
-| `status_code` | `int` |  |
-| `suppress_json` | `array` |  |
+| `renderType` | `string` |  |
+| `requestSettings` | `array` |  |
+| `suppressJson` | `array` |  |
 | `url` | `string` |  |
 
 #### Example: Create
@@ -341,6 +334,7 @@ Create an instance: `$render_page_post = $client->RenderPagePost();`
 ```php
 $render_page_post = $client->RenderPagePost()->create([
     "id" => null, // string
+    "url" => null, // string
 ]);
 ```
 

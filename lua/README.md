@@ -231,9 +231,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `content` |  |
-| `page_response` |  |
-| `status_code` |  |
+| `events` |  |
 
 Operations: Load.
 
@@ -243,15 +241,13 @@ API path: `/{apiKey}/`
 
 | Field | Description |
 | --- | --- |
-| `content` |  |
-| `output_as_json` |  |
-| `overseer_script` |  |
-| `page_response` |  |
+| `events` |  |
+| `outputAsJson` |  |
+| `overseerScript` |  |
 | `proxy` |  |
-| `render_type` |  |
-| `request_setting` |  |
-| `status_code` |  |
-| `suppress_json` |  |
+| `renderType` |  |
+| `requestSettings` |  |
+| `suppressJson` |  |
 | `url` |  |
 
 Operations: Create.
@@ -277,9 +273,7 @@ Create an instance: `local render_page_get = client:RenderPageGet(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | `string` |  |
-| `page_response` | `table` |  |
-| `status_code` | `number` |  |
+| `events` | `table` |  |
 
 #### Example: Load
 
@@ -302,15 +296,13 @@ Create an instance: `local render_page_post = client:RenderPagePost(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | `string` |  |
-| `output_as_json` | `boolean` |  |
-| `overseer_script` | `string` |  |
-| `page_response` | `table` |  |
+| `events` | `table` |  |
+| `outputAsJson` | `boolean` |  |
+| `overseerScript` | `string` |  |
 | `proxy` | `string` |  |
-| `render_type` | `string` |  |
-| `request_setting` | `table` |  |
-| `status_code` | `number` |  |
-| `suppress_json` | `table` |  |
+| `renderType` | `string` |  |
+| `requestSettings` | `table` |  |
+| `suppressJson` | `table` |  |
 | `url` | `string` |  |
 
 #### Example: Create
@@ -318,6 +310,7 @@ Create an instance: `local render_page_post = client:RenderPagePost(nil)`
 ```lua
 local render_page_post, err = client:RenderPagePost():create({
   id = "example_id", -- string
+  url = "example_url", -- string
 })
 ```
 

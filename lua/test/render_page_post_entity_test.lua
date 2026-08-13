@@ -42,7 +42,7 @@ describe("RenderPagePostEntity", function()
 
     local render_page_post_ref01_data_result, err = render_page_post_ref01_ent:create(render_page_post_ref01_data, nil)
     assert.is_nil(err)
-    render_page_post_ref01_data = helpers.to_map(render_page_post_ref01_data_result)
+    render_page_post_ref01_data = helpers.to_map(type(render_page_post_ref01_data_result) == 'table' and render_page_post_ref01_data_result.data_get and render_page_post_ref01_data_result:data_get() or render_page_post_ref01_data_result)
     assert.is_not_nil(render_page_post_ref01_data)
 
   end)

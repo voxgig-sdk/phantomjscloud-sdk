@@ -129,9 +129,7 @@ const render_page_get = client.RenderPageGet()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | `string` | No |  |
-| `page_response` | `Record<string, any>` | No |  |
-| `status_code` | `number` | No |  |
+| `events` | `any[]` | No |  |
 
 ### Operations
 
@@ -181,15 +179,13 @@ const render_page_post = client.RenderPagePost()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | `string` | No |  |
-| `output_as_json` | `boolean` | No |  |
-| `overseer_script` | `string` | No |  |
-| `page_response` | `Record<string, any>` | No |  |
+| `events` | `any[]` | No |  |
+| `outputAsJson` | `boolean` | No |  |
+| `overseerScript` | `string` | No |  |
 | `proxy` | `string` | No |  |
-| `render_type` | `string` | No |  |
-| `request_setting` | `Record<string, any>` | No |  |
-| `status_code` | `number` | No |  |
-| `suppress_json` | `any[]` | No |  |
+| `renderType` | `string` | No |  |
+| `requestSettings` | `Record<string, any>` | No |  |
+| `suppressJson` | `any[]` | No |  |
 | `url` | `string` | Yes |  |
 
 ### Operations
@@ -201,6 +197,7 @@ Create a new entity with the given data.
 ```ts
 const result = await client.RenderPagePost().create({
   id: 'example_id',
+  url: 'example_url',
 })
 ```
 

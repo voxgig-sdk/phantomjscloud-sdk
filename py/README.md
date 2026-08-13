@@ -41,7 +41,7 @@ client = PhantomjscloudSDK({
 
 ### 3. Load a renderpageget
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -125,7 +125,8 @@ Create a mock client for unit testing — no server required:
 ```python
 client = PhantomjscloudSDK.test()
 
-# Entity ops return the bare record and raise on error.
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
 renderpageget = client.RenderPageGet().load({"id": "test01"})
 # renderpageget contains the mock response record
 ```
@@ -225,7 +226,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -247,9 +248,7 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `content` |  |
-| `page_response` |  |
-| `status_code` |  |
+| `events` |  |
 
 Operations: Load.
 
@@ -259,15 +258,13 @@ API path: `/{apiKey}/`
 
 | Field | Description |
 | --- | --- |
-| `content` |  |
-| `output_as_json` |  |
-| `overseer_script` |  |
-| `page_response` |  |
+| `events` |  |
+| `outputAsJson` |  |
+| `overseerScript` |  |
 | `proxy` |  |
-| `render_type` |  |
-| `request_setting` |  |
-| `status_code` |  |
-| `suppress_json` |  |
+| `renderType` |  |
+| `requestSettings` |  |
+| `suppressJson` |  |
 | `url` |  |
 
 Operations: Create.
@@ -293,9 +290,7 @@ Create an instance: `render_page_get = client.RenderPageGet()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | `str` |  |
-| `page_response` | `dict` |  |
-| `status_code` | `int` |  |
+| `events` | `list` |  |
 
 #### Example: Load
 
@@ -318,15 +313,13 @@ Create an instance: `render_page_post = client.RenderPagePost()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | `str` |  |
-| `output_as_json` | `bool` |  |
-| `overseer_script` | `str` |  |
-| `page_response` | `dict` |  |
+| `events` | `list` |  |
+| `outputAsJson` | `bool` |  |
+| `overseerScript` | `str` |  |
 | `proxy` | `str` |  |
-| `render_type` | `str` |  |
-| `request_setting` | `dict` |  |
-| `status_code` | `int` |  |
-| `suppress_json` | `list` |  |
+| `renderType` | `str` |  |
+| `requestSettings` | `dict` |  |
+| `suppressJson` | `list` |  |
 | `url` | `str` |  |
 
 #### Example: Create
@@ -334,6 +327,7 @@ Create an instance: `render_page_post = client.RenderPagePost()`
 ```python
 render_page_post = client.RenderPagePost().create({
     "id": "example_id",  # str
+    "url": "example_url",  # str
 })
 ```
 

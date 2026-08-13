@@ -10,18 +10,10 @@
 
 # RenderPageGet entity data model.
 #
-# @!attribute [rw] content
-#   @return [String, nil]
-#
-# @!attribute [rw] page_response
-#   @return [Hash, nil]
-#
-# @!attribute [rw] status_code
-#   @return [Integer, nil]
+# @!attribute [rw] events
+#   @return [Array, nil]
 RenderPageGet = Struct.new(
-  :content,
-  :page_response,
-  :status_code,
+  :events,
   keyword_init: true
 )
 
@@ -36,45 +28,37 @@ RenderPageGetLoadMatch = Struct.new(
 
 # RenderPagePost entity data model.
 #
-# @!attribute [rw] content
-#   @return [String, nil]
+# @!attribute [rw] events
+#   @return [Array, nil]
 #
-# @!attribute [rw] output_as_json
+# @!attribute [rw] outputAsJson
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] overseer_script
+# @!attribute [rw] overseerScript
 #   @return [String, nil]
-#
-# @!attribute [rw] page_response
-#   @return [Hash, nil]
 #
 # @!attribute [rw] proxy
 #   @return [String, nil]
 #
-# @!attribute [rw] render_type
+# @!attribute [rw] renderType
 #   @return [String, nil]
 #
-# @!attribute [rw] request_setting
+# @!attribute [rw] requestSettings
 #   @return [Hash, nil]
 #
-# @!attribute [rw] status_code
-#   @return [Integer, nil]
-#
-# @!attribute [rw] suppress_json
+# @!attribute [rw] suppressJson
 #   @return [Array, nil]
 #
 # @!attribute [rw] url
 #   @return [String]
 RenderPagePost = Struct.new(
-  :content,
-  :output_as_json,
-  :overseer_script,
-  :page_response,
+  :events,
+  :outputAsJson,
+  :overseerScript,
   :proxy,
-  :render_type,
-  :request_setting,
-  :status_code,
-  :suppress_json,
+  :renderType,
+  :requestSettings,
+  :suppressJson,
   :url,
   keyword_init: true
 )
@@ -83,8 +67,40 @@ RenderPagePost = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] events
+#   @return [Array, nil]
+#
+# @!attribute [rw] outputAsJson
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] overseerScript
+#   @return [String, nil]
+#
+# @!attribute [rw] proxy
+#   @return [String, nil]
+#
+# @!attribute [rw] renderType
+#   @return [String, nil]
+#
+# @!attribute [rw] requestSettings
+#   @return [Hash, nil]
+#
+# @!attribute [rw] suppressJson
+#   @return [Array, nil]
+#
+# @!attribute [rw] url
+#   @return [String]
 RenderPagePostCreateData = Struct.new(
   :id,
+  :events,
+  :outputAsJson,
+  :overseerScript,
+  :proxy,
+  :renderType,
+  :requestSettings,
+  :suppressJson,
+  :url,
   keyword_init: true
 )
 

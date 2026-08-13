@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ PhantomjscloudUtility.registrar = ->(u) {
   u.prepare_params = PhantomjscloudUtilities::PrepareParams
   u.prepare_path = PhantomjscloudUtilities::PreparePath
   u.prepare_query = PhantomjscloudUtilities::PrepareQuery
+  u.graphql_body = PhantomjscloudUtilities::GraphqlBody
+  u.graphql_errors = PhantomjscloudUtilities::GraphqlErrors
   u.result_basic = PhantomjscloudUtilities::ResultBasic
   u.result_body = PhantomjscloudUtilities::ResultBody
   u.result_headers = PhantomjscloudUtilities::ResultHeaders

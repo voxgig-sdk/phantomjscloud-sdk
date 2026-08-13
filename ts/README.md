@@ -123,7 +123,8 @@ Create a mock client for unit testing — no server required:
 const client = PhantomjscloudSDK.test()
 
 const renderpageget = await client.RenderPageGet().load({ id: 'test01' })
-// renderpageget is a bare entity populated with mock response data
+// renderpageget is the entity, populated with mock response data
+// — call renderpageget.data() for the record itself
 console.log(renderpageget)
 ```
 
@@ -292,9 +293,7 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `content` |  |
-| `page_response` |  |
-| `status_code` |  |
+| `events` |  |
 
 Operations: load.
 
@@ -304,15 +303,13 @@ API path: `/{apiKey}/`
 
 | Field | Description |
 | --- | --- |
-| `content` |  |
-| `output_as_json` |  |
-| `overseer_script` |  |
-| `page_response` |  |
+| `events` |  |
+| `outputAsJson` |  |
+| `overseerScript` |  |
 | `proxy` |  |
-| `render_type` |  |
-| `request_setting` |  |
-| `status_code` |  |
-| `suppress_json` |  |
+| `renderType` |  |
+| `requestSettings` |  |
+| `suppressJson` |  |
 | `url` |  |
 
 Operations: create.
@@ -338,9 +335,7 @@ Create an instance: `const render_page_get = client.RenderPageGet()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | `string` |  |
-| `page_response` | `Record<string, any>` |  |
-| `status_code` | `number` |  |
+| `events` | `any[]` |  |
 
 #### Example: Load
 
@@ -363,15 +358,13 @@ Create an instance: `const render_page_post = client.RenderPagePost()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `content` | `string` |  |
-| `output_as_json` | `boolean` |  |
-| `overseer_script` | `string` |  |
-| `page_response` | `Record<string, any>` |  |
+| `events` | `any[]` |  |
+| `outputAsJson` | `boolean` |  |
+| `overseerScript` | `string` |  |
 | `proxy` | `string` |  |
-| `render_type` | `string` |  |
-| `request_setting` | `Record<string, any>` |  |
-| `status_code` | `number` |  |
-| `suppress_json` | `any[]` |  |
+| `renderType` | `string` |  |
+| `requestSettings` | `Record<string, any>` |  |
+| `suppressJson` | `any[]` |  |
 | `url` | `string` |  |
 
 #### Example: Create
@@ -379,6 +372,7 @@ Create an instance: `const render_page_post = client.RenderPagePost()`
 ```ts
 const render_page_post = await client.RenderPagePost().create({
   id: 'example_id',
+  url: 'example_url',
 })
 ```
 

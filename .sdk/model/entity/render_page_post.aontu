@@ -6,24 +6,19 @@ main: kit: entity: render_page_post: {
 
   fields: [
     {
-      name: "content"
+      name: "events"
       req: false
-      type: "`$STRING`"
+      type: "`$ARRAY`"
     }
     {
-      name: "output_as_json"
+      name: "outputAsJson"
       req: false
       type: "`$BOOLEAN`"
     }
     {
-      name: "overseer_script"
+      name: "overseerScript"
       req: false
       type: "`$STRING`"
-    }
-    {
-      name: "page_response"
-      req: false
-      type: "`$OBJECT`"
     }
     {
       name: "proxy"
@@ -31,22 +26,17 @@ main: kit: entity: render_page_post: {
       type: "`$STRING`"
     }
     {
-      name: "render_type"
+      name: "renderType"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "request_setting"
+      name: "requestSettings"
       req: false
       type: "`$OBJECT`"
     }
     {
-      name: "status_code"
-      req: false
-      type: "`$INTEGER`"
-    }
-    {
-      name: "suppress_json"
+      name: "suppressJson"
       req: false
       type: "`$ARRAY`"
     }
@@ -92,7 +82,7 @@ main: kit: entity: render_page_post: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.pageResponses`"
           }
         }
       ]

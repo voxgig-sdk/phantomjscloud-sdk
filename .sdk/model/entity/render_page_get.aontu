@@ -6,19 +6,9 @@ main: kit: entity: render_page_get: {
 
   fields: [
     {
-      name: "content"
+      name: "events"
       req: false
-      type: "`$STRING`"
-    }
-    {
-      name: "page_response"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
-      name: "status_code"
-      req: false
-      type: "`$INTEGER`"
+      type: "`$ARRAY`"
     }
   ]
 
@@ -67,7 +57,7 @@ main: kit: entity: render_page_get: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.pageResponses`"
           }
         }
       ]

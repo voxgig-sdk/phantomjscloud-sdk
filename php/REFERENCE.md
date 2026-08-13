@@ -97,9 +97,7 @@ $render_page_get = $client->RenderPageGet();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | `string` | No |  |
-| `page_response` | `array` | No |  |
-| `status_code` | `int` | No |  |
+| `events` | `array` | No |  |
 
 ### Operations
 
@@ -151,15 +149,13 @@ $render_page_post = $client->RenderPagePost();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | `string` | No |  |
-| `output_as_json` | `bool` | No |  |
-| `overseer_script` | `string` | No |  |
-| `page_response` | `array` | No |  |
+| `events` | `array` | No |  |
+| `outputAsJson` | `bool` | No |  |
+| `overseerScript` | `string` | No |  |
 | `proxy` | `string` | No |  |
-| `render_type` | `string` | No |  |
-| `request_setting` | `array` | No |  |
-| `status_code` | `int` | No |  |
-| `suppress_json` | `array` | No |  |
+| `renderType` | `string` | No |  |
+| `requestSettings` | `array` | No |  |
+| `suppressJson` | `array` | No |  |
 | `url` | `string` | Yes |  |
 
 ### Operations
@@ -171,6 +167,7 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->RenderPagePost()->create([
   "id" => null, // string
+  "url" => null, // string
 ]);
 ```
 

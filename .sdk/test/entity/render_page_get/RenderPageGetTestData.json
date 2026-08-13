@@ -2,21 +2,15 @@
   "existing": {
     "render_page_get": {
       "RENDER_PAGE_GET00": {
-        "content": "s1e",
-        "page_response": {},
-        "status_code": "s20",
+        "events": [],
         "id": "RENDER_PAGE_GET00"
       },
       "RENDER_PAGE_GET01": {
-        "content": "s3c",
-        "page_response": {},
-        "status_code": "s3e",
+        "events": [],
         "id": "RENDER_PAGE_GET01"
       },
       "RENDER_PAGE_GET02": {
-        "content": "s5a",
-        "page_response": {},
-        "status_code": "s5c",
+        "events": [],
         "id": "RENDER_PAGE_GET02"
       }
     }
@@ -24,9 +18,7 @@
   "new": {
     "render_page_get": {
       "render_page_get_ref01": {
-        "content": "s78",
-        "page_response": {},
-        "status_code": "s7a"
+        "events": []
       }
     }
   }

@@ -103,9 +103,7 @@ fmt.Println(renderPageGet.GetName()) // "render_page_get"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | `string` | No |  |
-| `page_response` | `map[string]any` | No |  |
-| `status_code` | `int` | No |  |
+| `events` | `[]any` | No |  |
 
 ### Operations
 
@@ -156,15 +154,13 @@ fmt.Println(renderPagePost.GetName()) // "render_page_post"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `content` | `string` | No |  |
-| `output_as_json` | `bool` | No |  |
-| `overseer_script` | `string` | No |  |
-| `page_response` | `map[string]any` | No |  |
+| `events` | `[]any` | No |  |
+| `outputAsJson` | `bool` | No |  |
+| `overseerScript` | `string` | No |  |
 | `proxy` | `string` | No |  |
-| `render_type` | `string` | No |  |
-| `request_setting` | `map[string]any` | No |  |
-| `status_code` | `int` | No |  |
-| `suppress_json` | `[]any` | No |  |
+| `renderType` | `string` | No |  |
+| `requestSettings` | `map[string]any` | No |  |
+| `suppressJson` | `[]any` | No |  |
 | `url` | `string` | Yes |  |
 
 ### Operations
@@ -176,6 +172,7 @@ Create a new entity with the given data.
 ```go
 result, err := client.RenderPagePost(nil).Create(map[string]any{
     "id": "example_id",
+    "url": "example_url",
 }, nil)
 if err != nil {
     panic(err)

@@ -59,7 +59,7 @@ func TestRenderPagePostEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("create failed: %v", err)
 		}
-		renderPagePostRef01Data = core.ToMapAny(renderPagePostRef01DataResult)
+		renderPagePostRef01Data = core.ToMapAny(entityData(renderPagePostRef01DataResult))
 		if renderPagePostRef01Data == nil {
 			t.Fatal("expected create result to be a map")
 		}

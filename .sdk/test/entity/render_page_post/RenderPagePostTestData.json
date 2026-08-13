@@ -2,42 +2,36 @@
   "existing": {
     "render_page_post": {
       "RENDER_PAGE_POST00": {
-        "content": "s64",
-        "output_as_json": false,
-        "overseer_script": "s66",
-        "page_response": {},
-        "proxy": "s68",
-        "render_type": "s69",
-        "request_setting": {},
-        "status_code": "s6b",
-        "suppress_json": [],
-        "url": "s6d",
+        "events": [],
+        "outputAsJson": false,
+        "overseerScript": "s52",
+        "proxy": "s53",
+        "renderType": "s54",
+        "requestSettings": {},
+        "suppressJson": [],
+        "url": "s57",
         "id": "RENDER_PAGE_POST00"
       },
       "RENDER_PAGE_POST01": {
-        "content": "sc8",
-        "output_as_json": false,
-        "overseer_script": "sca",
-        "page_response": {},
-        "proxy": "scc",
-        "render_type": "scd",
-        "request_setting": {},
-        "status_code": "scf",
-        "suppress_json": [],
-        "url": "sd1",
+        "events": [],
+        "outputAsJson": false,
+        "overseerScript": "sa2",
+        "proxy": "sa3",
+        "renderType": "sa4",
+        "requestSettings": {},
+        "suppressJson": [],
+        "url": "sa7",
         "id": "RENDER_PAGE_POST01"
       },
       "RENDER_PAGE_POST02": {
-        "content": "s12c",
-        "output_as_json": false,
-        "overseer_script": "s12e",
-        "page_response": {},
-        "proxy": "s130",
-        "render_type": "s131",
-        "request_setting": {},
-        "status_code": "s133",
-        "suppress_json": [],
-        "url": "s135",
+        "events": [],
+        "outputAsJson": false,
+        "overseerScript": "sf2",
+        "proxy": "sf3",
+        "renderType": "sf4",
+        "requestSettings": {},
+        "suppressJson": [],
+        "url": "sf7",
         "id": "RENDER_PAGE_POST02"
       }
     }
@@ -45,16 +39,14 @@
   "new": {
     "render_page_post": {
       "render_page_post_ref01": {
-        "content": "s190",
-        "output_as_json": false,
-        "overseer_script": "s192",
-        "page_response": {},
-        "proxy": "s194",
-        "render_type": "s195",
-        "request_setting": {},
-        "status_code": "s197",
-        "suppress_json": [],
-        "url": "s199"
+        "events": [],
+        "outputAsJson": false,
+        "overseerScript": "s142",
+        "proxy": "s143",
+        "renderType": "s144",
+        "requestSettings": {},
+        "suppressJson": [],
+        "url": "s147"
       }
     }
   }
