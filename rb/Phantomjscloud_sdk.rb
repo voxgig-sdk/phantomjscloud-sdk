@@ -28,7 +28,7 @@ class PhantomjscloudSDK
     utility = PhantomjscloudUtility.new
     @_utility = utility
 
-    config = PhantomjscloudConfig.make_config
+    config = PhantomjscloudConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

@@ -40,7 +40,7 @@ class PhantomjscloudSDK
         $utility = new PhantomjscloudUtility();
         $this->_utility = $utility;
 
-        $config = PhantomjscloudConfig::make_config();
+        $config = PhantomjscloudConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

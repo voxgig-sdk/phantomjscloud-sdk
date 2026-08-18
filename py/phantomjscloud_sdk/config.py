@@ -1,7 +1,30 @@
 # Phantomjscloud SDK configuration
 
 
+_shared_config = None
+
+
+def shared_config():
+    """Return the process-wide config, built once on first use.
+
+    The SDK reads the config on every request and never writes to it, so one
+    instance is shared by every client rather than rebuilt per client.
+
+    The returned dict is shared: treat it as read-only. Callers that need to
+    mutate should use make_config, which always returns a fresh copy.
+    """
+    global _shared_config
+    if _shared_config is None:
+        _shared_config = make_config()
+    return _shared_config
+
+
 def make_config():
+    """Build a fresh, fully materialised config dict.
+
+    Every call rebuilds the whole structure, so prefer shared_config unless
+    you need a private copy you intend to mutate.
+    """
     return {
         "main": {
             "name": "Phantomjscloud",
@@ -30,11 +53,8 @@ def make_config():
       "render_page_get": {
         "fields": [
           {
-            "active": True,
             "name": "events",
-            "req": False,
             "type": "`$ARRAY`",
-            "index$": 0,
           },
         ],
         "name": "render_page_get",
@@ -44,27 +64,22 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "active": True,
                 "args": {
                   "params": [
                     {
-                      "active": True,
                       "example": "ak-012345-abcde-012345-abcde-012345",
                       "kind": "param",
                       "name": "id",
                       "orig": "api_key",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "index$": 0,
                     },
                   ],
                   "query": [
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "request",
                       "orig": "request",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                   ],
@@ -90,10 +105,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.pageResponses`",
                 },
-                "index$": 0,
               },
             ],
-            "key$": "load",
           },
         },
         "relations": {
@@ -103,60 +116,37 @@ def make_config():
       "render_page_post": {
         "fields": [
           {
-            "active": True,
             "name": "events",
-            "req": False,
             "type": "`$ARRAY`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "outputAsJson",
-            "req": False,
             "type": "`$BOOLEAN`",
-            "index$": 1,
           },
           {
-            "active": True,
             "name": "overseerScript",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 2,
           },
           {
-            "active": True,
             "name": "proxy",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 3,
           },
           {
-            "active": True,
             "name": "renderType",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 4,
           },
           {
-            "active": True,
             "name": "requestSettings",
-            "req": False,
             "type": "`$OBJECT`",
-            "index$": 5,
           },
           {
-            "active": True,
             "name": "suppressJson",
-            "req": False,
             "type": "`$ARRAY`",
-            "index$": 6,
           },
           {
-            "active": True,
             "name": "url",
             "req": True,
             "type": "`$STRING`",
-            "index$": 7,
           },
         ],
         "name": "render_page_post",
@@ -166,18 +156,15 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "active": True,
                 "args": {
                   "params": [
                     {
-                      "active": True,
                       "example": "ak-012345-abcde-012345-abcde-012345",
                       "kind": "param",
                       "name": "id",
                       "orig": "api_key",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "index$": 0,
                     },
                   ],
                 },
@@ -201,10 +188,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.pageResponses`",
                 },
-                "index$": 0,
               },
             ],
-            "key$": "create",
           },
         },
         "relations": {

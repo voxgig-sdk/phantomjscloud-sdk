@@ -1,5 +1,12 @@
 package core
 
+import (
+	"sync"
+)
+
+// MakeConfig builds a fresh, fully materialised config map. Every call
+// rebuilds the whole structure, so prefer SharedConfig unless you need a
+// private copy you intend to mutate.
 func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
@@ -29,11 +36,8 @@ func MakeConfig() map[string]any {
 			"render_page_get": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"active": true,
 						"name": "events",
-						"req": false,
 						"type": "`$ARRAY`",
-						"index$": 0,
 					},
 				},
 				"name": "render_page_get",
@@ -43,27 +47,22 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"active": true,
 								"args": map[string]any{
 									"params": []any{
 										map[string]any{
-											"active": true,
 											"example": "ak-012345-abcde-012345-abcde-012345",
 											"kind": "param",
 											"name": "id",
 											"orig": "api_key",
 											"reqd": true,
 											"type": "`$STRING`",
-											"index$": 0,
 										},
 									},
 									"query": []any{
 										map[string]any{
-											"active": true,
 											"kind": "query",
 											"name": "request",
 											"orig": "request",
-											"reqd": false,
 											"type": "`$STRING`",
 										},
 									},
@@ -89,7 +88,6 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body.pageResponses`",
 								},
-								"index$": 0,
 							},
 						},
 					},
@@ -101,60 +99,37 @@ func MakeConfig() map[string]any {
 			"render_page_post": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"active": true,
 						"name": "events",
-						"req": false,
 						"type": "`$ARRAY`",
-						"index$": 0,
 					},
 					map[string]any{
-						"active": true,
 						"name": "outputAsJson",
-						"req": false,
 						"type": "`$BOOLEAN`",
-						"index$": 1,
 					},
 					map[string]any{
-						"active": true,
 						"name": "overseerScript",
-						"req": false,
 						"type": "`$STRING`",
-						"index$": 2,
 					},
 					map[string]any{
-						"active": true,
 						"name": "proxy",
-						"req": false,
 						"type": "`$STRING`",
-						"index$": 3,
 					},
 					map[string]any{
-						"active": true,
 						"name": "renderType",
-						"req": false,
 						"type": "`$STRING`",
-						"index$": 4,
 					},
 					map[string]any{
-						"active": true,
 						"name": "requestSettings",
-						"req": false,
 						"type": "`$OBJECT`",
-						"index$": 5,
 					},
 					map[string]any{
-						"active": true,
 						"name": "suppressJson",
-						"req": false,
 						"type": "`$ARRAY`",
-						"index$": 6,
 					},
 					map[string]any{
-						"active": true,
 						"name": "url",
 						"req": true,
 						"type": "`$STRING`",
-						"index$": 7,
 					},
 				},
 				"name": "render_page_post",
@@ -164,18 +139,15 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"active": true,
 								"args": map[string]any{
 									"params": []any{
 										map[string]any{
-											"active": true,
 											"example": "ak-012345-abcde-012345-abcde-012345",
 											"kind": "param",
 											"name": "id",
 											"orig": "api_key",
 											"reqd": true,
 											"type": "`$STRING`",
-											"index$": 0,
 										},
 									},
 								},
@@ -199,7 +171,6 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body.pageResponses`",
 								},
-								"index$": 0,
 							},
 						},
 					},
@@ -210,6 +181,24 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+var (
+	sharedConfigOnce sync.Once
+	sharedConfigVal  map[string]any
+)
+
+// SharedConfig returns the process-wide config, built once on first use.
+// The SDK reads the config on every request and never writes to it, so one
+// instance is shared by every client rather than rebuilt per client.
+//
+// The returned map is shared: treat it as read-only. Callers that need to
+// mutate should use MakeConfig, which always returns a fresh copy.
+func SharedConfig() map[string]any {
+	sharedConfigOnce.Do(func() {
+		sharedConfigVal = MakeConfig()
+	})
+	return sharedConfigVal
 }
 
 func makeFeature(name string) Feature {

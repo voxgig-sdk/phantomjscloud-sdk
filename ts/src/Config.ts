@@ -36,7 +36,7 @@ class Config {
 
 
   options = {
-    base: 'https://phantomjscloud.com/api/browser/v2',
+    base: "https://phantomjscloud.com/api/browser/v2",
 
     auth: {
       prefix: '',
@@ -62,11 +62,8 @@ class Config {
     "render_page_get": {
       "fields": [
         {
-          "active": true,
           "name": "events",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 0
+          "type": "`$ARRAY`"
         }
       ],
       "name": "render_page_get",
@@ -76,27 +73,22 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "example": "ak-012345-abcde-012345-abcde-012345",
                     "kind": "param",
                     "name": "id",
                     "orig": "api_key",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "request",
                     "orig": "request",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -121,11 +113,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.pageResponses`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -135,60 +125,37 @@ class Config {
     "render_page_post": {
       "fields": [
         {
-          "active": true,
           "name": "events",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 0
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "outputAsJson",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 1
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "overseerScript",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 2
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "proxy",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 3
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "renderType",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 4
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "requestSettings",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 5
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "suppressJson",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 6
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "url",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         }
       ],
       "name": "render_page_post",
@@ -198,18 +165,15 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "example": "ak-012345-abcde-012345-abcde-012345",
                     "kind": "param",
                     "name": "id",
                     "orig": "api_key",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -232,11 +196,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.pageResponses`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {

@@ -1,6 +1,20 @@
 # Phantomjscloud SDK configuration
 
 module PhantomjscloudConfig
+  # Return the process-wide config, built once on first use. The SDK reads
+  # the config on every request and never writes to it, so one instance is
+  # shared by every client rather than rebuilt per client.
+  #
+  # The returned hash is shared: treat it as read-only. Callers that need to
+  # mutate should use make_config, which always returns a fresh copy.
+  def self.shared_config
+    @shared_config ||= make_config
+  end
+
+
+  # Build a fresh, fully materialised config hash. Every call rebuilds the
+  # whole structure, so prefer shared_config unless you need a private copy
+  # you intend to mutate.
   def self.make_config
     {
       "main" => {
@@ -30,11 +44,8 @@ module PhantomjscloudConfig
         "render_page_get" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "events",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 0,
             },
           ],
           "name" => "render_page_get",
@@ -44,27 +55,22 @@ module PhantomjscloudConfig
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => "ak-012345-abcde-012345-abcde-012345",
                         "kind" => "param",
                         "name" => "id",
                         "orig" => "api_key",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "request",
                         "orig" => "request",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                     ],
@@ -90,10 +96,8 @@ module PhantomjscloudConfig
                     "req" => "`reqdata`",
                     "res" => "`body.pageResponses`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
@@ -103,60 +107,37 @@ module PhantomjscloudConfig
         "render_page_post" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "events",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "outputAsJson",
-              "req" => false,
               "type" => "`$BOOLEAN`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "overseerScript",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "proxy",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "renderType",
-              "req" => false,
               "type" => "`$STRING`",
-              "index$" => 4,
             },
             {
-              "active" => true,
               "name" => "requestSettings",
-              "req" => false,
               "type" => "`$OBJECT`",
-              "index$" => 5,
             },
             {
-              "active" => true,
               "name" => "suppressJson",
-              "req" => false,
               "type" => "`$ARRAY`",
-              "index$" => 6,
             },
             {
-              "active" => true,
               "name" => "url",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 7,
             },
           ],
           "name" => "render_page_post",
@@ -166,18 +147,15 @@ module PhantomjscloudConfig
               "name" => "create",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "params" => [
                       {
-                        "active" => true,
                         "example" => "ak-012345-abcde-012345-abcde-012345",
                         "kind" => "param",
                         "name" => "id",
                         "orig" => "api_key",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "index$" => 0,
                       },
                     ],
                   },
@@ -201,10 +179,8 @@ module PhantomjscloudConfig
                     "req" => "`reqdata`",
                     "res" => "`body.pageResponses`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "create",
             },
           },
           "relations" => {
