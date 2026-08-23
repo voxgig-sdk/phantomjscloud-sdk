@@ -231,7 +231,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `events` |  |
+| `events` | Array of events that occurred during page load |
 
 Operations: Load.
 
@@ -241,14 +241,14 @@ API path: `/{apiKey}/`
 
 | Field | Description |
 | --- | --- |
-| `events` |  |
-| `outputAsJson` |  |
-| `overseerScript` |  |
-| `proxy` |  |
-| `renderType` |  |
+| `events` | Array of events that occurred during page load |
+| `outputAsJson` | Return response metadata as JSON including page events, resources loaded, errors, etc. |
+| `overseerScript` | JavaScript code for page automation (ES2018 syntax). |
+| `proxy` | Proxy configuration: 'anon-any' (anonymous worldwide), 'anon-{country}' (country-specific), 'geo-{country}' (static IP), or 'custom-{url}:{port}:{user}:{pass}' |
+| `renderType` | Output format: plainText (web scraping), jpg/jpeg/png (screenshots), pdf (archiving), html (native form), automation (advanced control) |
 | `requestSettings` |  |
-| `suppressJson` |  |
-| `url` |  |
+| `suppressJson` | List of JSON response fields to suppress for reduced verbosity |
+| `url` | The URL of the page to render |
 
 Operations: Create.
 
@@ -273,7 +273,7 @@ Create an instance: `local render_page_get = client:RenderPageGet(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `events` | `table` |  |
+| `events` | `table` | Array of events that occurred during page load |
 
 #### Example: Load
 
@@ -296,14 +296,14 @@ Create an instance: `local render_page_post = client:RenderPagePost(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `events` | `table` |  |
-| `outputAsJson` | `boolean` |  |
-| `overseerScript` | `string` |  |
-| `proxy` | `string` |  |
-| `renderType` | `string` |  |
+| `events` | `table` | Array of events that occurred during page load |
+| `outputAsJson` | `boolean` | Return response metadata as JSON including page events, resources loaded, errors, etc. |
+| `overseerScript` | `string` | JavaScript code for page automation (ES2018 syntax). |
+| `proxy` | `string` | Proxy configuration: 'anon-any' (anonymous worldwide), 'anon-{country}' (country-specific), 'geo-{country}' (static IP), or 'custom-{url}:{port}:{user}:{pass}' |
+| `renderType` | `string` | Output format: plainText (web scraping), jpg/jpeg/png (screenshots), pdf (archiving), html (native form), automation (advanced control) |
 | `requestSettings` | `table` |  |
-| `suppressJson` | `table` |  |
-| `url` | `string` |  |
+| `suppressJson` | `table` | List of JSON response fields to suppress for reduced verbosity |
+| `url` | `string` | The URL of the page to render |
 
 #### Example: Create
 

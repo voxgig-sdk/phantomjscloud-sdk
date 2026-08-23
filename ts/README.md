@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -293,7 +293,7 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `events` |  |
+| `events` | Array of events that occurred during page load |
 
 Operations: load.
 
@@ -303,14 +303,14 @@ API path: `/{apiKey}/`
 
 | Field | Description |
 | --- | --- |
-| `events` |  |
-| `outputAsJson` |  |
-| `overseerScript` |  |
-| `proxy` |  |
-| `renderType` |  |
+| `events` | Array of events that occurred during page load |
+| `outputAsJson` | Return response metadata as JSON including page events, resources loaded, errors, etc. |
+| `overseerScript` | JavaScript code for page automation (ES2018 syntax). |
+| `proxy` | Proxy configuration: 'anon-any' (anonymous worldwide), 'anon-{country}' (country-specific), 'geo-{country}' (static IP), or 'custom-{url}:{port}:{user}:{pass}' |
+| `renderType` | Output format: plainText (web scraping), jpg/jpeg/png (screenshots), pdf (archiving), html (native form), automation (advanced control) |
 | `requestSettings` |  |
-| `suppressJson` |  |
-| `url` |  |
+| `suppressJson` | List of JSON response fields to suppress for reduced verbosity |
+| `url` | The URL of the page to render |
 
 Operations: create.
 
@@ -335,7 +335,7 @@ Create an instance: `const render_page_get = client.RenderPageGet()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `events` | `any[]` |  |
+| `events` | `any[]` | Array of events that occurred during page load |
 
 #### Example: Load
 
@@ -358,14 +358,14 @@ Create an instance: `const render_page_post = client.RenderPagePost()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `events` | `any[]` |  |
-| `outputAsJson` | `boolean` |  |
-| `overseerScript` | `string` |  |
-| `proxy` | `string` |  |
-| `renderType` | `string` |  |
+| `events` | `any[]` | Array of events that occurred during page load |
+| `outputAsJson` | `boolean` | Return response metadata as JSON including page events, resources loaded, errors, etc. |
+| `overseerScript` | `string` | JavaScript code for page automation (ES2018 syntax). |
+| `proxy` | `string` | Proxy configuration: 'anon-any' (anonymous worldwide), 'anon-{country}' (country-specific), 'geo-{country}' (static IP), or 'custom-{url}:{port}:{user}:{pass}' |
+| `renderType` | `string` | Output format: plainText (web scraping), jpg/jpeg/png (screenshots), pdf (archiving), html (native form), automation (advanced control) |
 | `requestSettings` | `Record<string, any>` |  |
-| `suppressJson` | `any[]` |  |
-| `url` | `string` |  |
+| `suppressJson` | `any[]` | List of JSON response fields to suppress for reduced verbosity |
+| `url` | `string` | The URL of the page to render |
 
 #### Example: Create
 

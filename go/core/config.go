@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "Phantomjscloud",
+			"slug": "phantomjscloud",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -37,6 +40,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "events",
+						"short": "Array of events that occurred during page load",
 						"type": "`$ARRAY`",
 					},
 				},
@@ -100,22 +104,27 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "events",
+						"short": "Array of events that occurred during page load",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "outputAsJson",
+						"short": "Return response metadata as JSON including page events, resources loaded, errors, etc.",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "overseerScript",
+						"short": "JavaScript code for page automation (ES2018 syntax).",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "proxy",
+						"short": "Proxy configuration: 'anon-any' (anonymous worldwide), 'anon-{country}' (country-specific), 'geo-{country}' (static IP), or 'custom-{url}:{port}:{user}:{pass}'",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "renderType",
+						"short": "Output format: plainText (web scraping), jpg/jpeg/png (screenshots), pdf (archiving), html (native form), automation (advanced control)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -124,11 +133,13 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "suppressJson",
+						"short": "List of JSON response fields to suppress for reduced verbosity",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "url",
 						"req": true,
+						"short": "The URL of the page to render",
 						"type": "`$STRING`",
 					},
 				},

@@ -6,7 +6,7 @@ The Golang SDK for the Phantomjscloud API — an entity-oriented client using st
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.RenderPageGet(nil)` — each with the same small set of operations (`Load`, `Create`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -265,7 +265,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"events"` |  |
+| `"events"` | Array of events that occurred during page load |
 
 Operations: Load.
 
@@ -275,14 +275,14 @@ API path: `/{apiKey}/`
 
 | Field | Description |
 | --- | --- |
-| `"events"` |  |
-| `"outputAsJson"` |  |
-| `"overseerScript"` |  |
-| `"proxy"` |  |
-| `"renderType"` |  |
+| `"events"` | Array of events that occurred during page load |
+| `"outputAsJson"` | Return response metadata as JSON including page events, resources loaded, errors, etc. |
+| `"overseerScript"` | JavaScript code for page automation (ES2018 syntax). |
+| `"proxy"` | Proxy configuration: 'anon-any' (anonymous worldwide), 'anon-{country}' (country-specific), 'geo-{country}' (static IP), or 'custom-{url}:{port}:{user}:{pass}' |
+| `"renderType"` | Output format: plainText (web scraping), jpg/jpeg/png (screenshots), pdf (archiving), html (native form), automation (advanced control) |
 | `"requestSettings"` |  |
-| `"suppressJson"` |  |
-| `"url"` |  |
+| `"suppressJson"` | List of JSON response fields to suppress for reduced verbosity |
+| `"url"` | The URL of the page to render |
 
 Operations: Create.
 
@@ -307,7 +307,7 @@ Create an instance: `renderPageGet := client.RenderPageGet(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `events` | `[]any` |  |
+| `events` | `[]any` | Array of events that occurred during page load |
 
 #### Example: Load
 
@@ -334,14 +334,14 @@ Create an instance: `renderPagePost := client.RenderPagePost(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `events` | `[]any` |  |
-| `outputAsJson` | `bool` |  |
-| `overseerScript` | `string` |  |
-| `proxy` | `string` |  |
-| `renderType` | `string` |  |
+| `events` | `[]any` | Array of events that occurred during page load |
+| `outputAsJson` | `bool` | Return response metadata as JSON including page events, resources loaded, errors, etc. |
+| `overseerScript` | `string` | JavaScript code for page automation (ES2018 syntax). |
+| `proxy` | `string` | Proxy configuration: 'anon-any' (anonymous worldwide), 'anon-{country}' (country-specific), 'geo-{country}' (static IP), or 'custom-{url}:{port}:{user}:{pass}' |
+| `renderType` | `string` | Output format: plainText (web scraping), jpg/jpeg/png (screenshots), pdf (archiving), html (native form), automation (advanced control) |
 | `requestSettings` | `map[string]any` |  |
-| `suppressJson` | `[]any` |  |
-| `url` | `string` |  |
+| `suppressJson` | `[]any` | List of JSON response fields to suppress for reduced verbosity |
+| `url` | `string` | The URL of the page to render |
 
 #### Example: Create
 

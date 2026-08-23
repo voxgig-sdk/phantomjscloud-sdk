@@ -97,7 +97,7 @@ $render_page_get = $client->RenderPageGet();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `events` | `array` | No |  |
+| `events` | `array` | No | Array of events that occurred during page load |
 
 ### Operations
 
@@ -149,14 +149,14 @@ $render_page_post = $client->RenderPagePost();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `events` | `array` | No |  |
-| `outputAsJson` | `bool` | No |  |
-| `overseerScript` | `string` | No |  |
-| `proxy` | `string` | No |  |
-| `renderType` | `string` | No |  |
+| `events` | `array` | No | Array of events that occurred during page load |
+| `outputAsJson` | `bool` | No | Return response metadata as JSON including page events, resources loaded, errors, etc. |
+| `overseerScript` | `string` | No | JavaScript code for page automation (ES2018 syntax). |
+| `proxy` | `string` | No | Proxy configuration: 'anon-any' (anonymous worldwide), 'anon-{country}' (country-specific), 'geo-{country}' (static IP), or 'custom-{url}:{port}:{user}:{pass}' |
+| `renderType` | `string` | No | Output format: plainText (web scraping), jpg/jpeg/png (screenshots), pdf (archiving), html (native form), automation (advanced control) |
 | `requestSettings` | `array` | No |  |
-| `suppressJson` | `array` | No |  |
-| `url` | `string` | Yes |  |
+| `suppressJson` | `array` | No | List of JSON response fields to suppress for reduced verbosity |
+| `url` | `string` | Yes | The URL of the page to render |
 
 ### Operations
 

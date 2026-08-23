@@ -92,7 +92,7 @@ render_page_get = client.RenderPageGet()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `events` | `list` | No |  |
+| `events` | `list` | No | Array of events that occurred during page load |
 
 ### Operations
 
@@ -143,14 +143,14 @@ render_page_post = client.RenderPagePost()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `events` | `list` | No |  |
-| `outputAsJson` | `bool` | No |  |
-| `overseerScript` | `str` | No |  |
-| `proxy` | `str` | No |  |
-| `renderType` | `str` | No |  |
+| `events` | `list` | No | Array of events that occurred during page load |
+| `outputAsJson` | `bool` | No | Return response metadata as JSON including page events, resources loaded, errors, etc. |
+| `overseerScript` | `str` | No | JavaScript code for page automation (ES2018 syntax). |
+| `proxy` | `str` | No | Proxy configuration: 'anon-any' (anonymous worldwide), 'anon-{country}' (country-specific), 'geo-{country}' (static IP), or 'custom-{url}:{port}:{user}:{pass}' |
+| `renderType` | `str` | No | Output format: plainText (web scraping), jpg/jpeg/png (screenshots), pdf (archiving), html (native form), automation (advanced control) |
 | `requestSettings` | `dict` | No |  |
-| `suppressJson` | `list` | No |  |
-| `url` | `str` | Yes |  |
+| `suppressJson` | `list` | No | List of JSON response fields to suppress for reduced verbosity |
+| `url` | `str` | Yes | The URL of the page to render |
 
 ### Operations
 

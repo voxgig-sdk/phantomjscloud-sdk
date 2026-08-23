@@ -248,7 +248,7 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `events` |  |
+| `events` | Array of events that occurred during page load |
 
 Operations: Load.
 
@@ -258,14 +258,14 @@ API path: `/{apiKey}/`
 
 | Field | Description |
 | --- | --- |
-| `events` |  |
-| `outputAsJson` |  |
-| `overseerScript` |  |
-| `proxy` |  |
-| `renderType` |  |
+| `events` | Array of events that occurred during page load |
+| `outputAsJson` | Return response metadata as JSON including page events, resources loaded, errors, etc. |
+| `overseerScript` | JavaScript code for page automation (ES2018 syntax). |
+| `proxy` | Proxy configuration: 'anon-any' (anonymous worldwide), 'anon-{country}' (country-specific), 'geo-{country}' (static IP), or 'custom-{url}:{port}:{user}:{pass}' |
+| `renderType` | Output format: plainText (web scraping), jpg/jpeg/png (screenshots), pdf (archiving), html (native form), automation (advanced control) |
 | `requestSettings` |  |
-| `suppressJson` |  |
-| `url` |  |
+| `suppressJson` | List of JSON response fields to suppress for reduced verbosity |
+| `url` | The URL of the page to render |
 
 Operations: Create.
 
@@ -290,7 +290,7 @@ Create an instance: `render_page_get = client.RenderPageGet()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `events` | `list` |  |
+| `events` | `list` | Array of events that occurred during page load |
 
 #### Example: Load
 
@@ -313,14 +313,14 @@ Create an instance: `render_page_post = client.RenderPagePost()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `events` | `list` |  |
-| `outputAsJson` | `bool` |  |
-| `overseerScript` | `str` |  |
-| `proxy` | `str` |  |
-| `renderType` | `str` |  |
+| `events` | `list` | Array of events that occurred during page load |
+| `outputAsJson` | `bool` | Return response metadata as JSON including page events, resources loaded, errors, etc. |
+| `overseerScript` | `str` | JavaScript code for page automation (ES2018 syntax). |
+| `proxy` | `str` | Proxy configuration: 'anon-any' (anonymous worldwide), 'anon-{country}' (country-specific), 'geo-{country}' (static IP), or 'custom-{url}:{port}:{user}:{pass}' |
+| `renderType` | `str` | Output format: plainText (web scraping), jpg/jpeg/png (screenshots), pdf (archiving), html (native form), automation (advanced control) |
 | `requestSettings` | `dict` |  |
-| `suppressJson` | `list` |  |
-| `url` | `str` |  |
+| `suppressJson` | `list` | List of JSON response fields to suppress for reduced verbosity |
+| `url` | `str` | The URL of the page to render |
 
 #### Example: Create
 

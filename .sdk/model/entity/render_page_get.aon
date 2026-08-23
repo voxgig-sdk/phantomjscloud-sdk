@@ -8,6 +8,7 @@ main: kit: entity: render_page_get: {
     {
       name: "events"
       req: false
+      short: "Array of events that occurred during page load"
       type: "`$ARRAY`"
     }
   ]

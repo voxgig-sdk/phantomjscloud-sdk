@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "Phantomjscloud",
+            "slug": "phantomjscloud",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -54,6 +57,7 @@ def make_config():
         "fields": [
           {
             "name": "events",
+            "short": "Array of events that occurred during page load",
             "type": "`$ARRAY`",
           },
         ],
@@ -117,22 +121,27 @@ def make_config():
         "fields": [
           {
             "name": "events",
+            "short": "Array of events that occurred during page load",
             "type": "`$ARRAY`",
           },
           {
             "name": "outputAsJson",
+            "short": "Return response metadata as JSON including page events, resources loaded, errors, etc.",
             "type": "`$BOOLEAN`",
           },
           {
             "name": "overseerScript",
+            "short": "JavaScript code for page automation (ES2018 syntax).",
             "type": "`$STRING`",
           },
           {
             "name": "proxy",
+            "short": "Proxy configuration: 'anon-any' (anonymous worldwide), 'anon-{country}' (country-specific), 'geo-{country}' (static IP), or 'custom-{url}:{port}:{user}:{pass}'",
             "type": "`$STRING`",
           },
           {
             "name": "renderType",
+            "short": "Output format: plainText (web scraping), jpg/jpeg/png (screenshots), pdf (archiving), html (native form), automation (advanced control)",
             "type": "`$STRING`",
           },
           {
@@ -141,11 +150,13 @@ def make_config():
           },
           {
             "name": "suppressJson",
+            "short": "List of JSON response fields to suppress for reduced verbosity",
             "type": "`$ARRAY`",
           },
           {
             "name": "url",
             "req": True,
+            "short": "The URL of the page to render",
             "type": "`$STRING`",
           },
         ],
