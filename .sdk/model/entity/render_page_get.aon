@@ -11,7 +11,17 @@ main: kit: entity: render_page_get: {
       short: "Array of events that occurred during page load"
       type: "`$ARRAY`"
     }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "render_page_get"
   op: {

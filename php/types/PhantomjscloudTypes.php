@@ -16,6 +16,7 @@ declare(strict_types=1);
 class RenderPageGet
 {
     public ?array $events = null;
+    public ?string $id = null;
 }
 
 /** Request payload for RenderPageGet#load. */
@@ -28,6 +29,7 @@ class RenderPageGetLoadMatch
 class RenderPagePost
 {
     public ?array $events = null;
+    public ?string $id = null;
     public ?bool $outputAsJson = null;
     public ?string $overseerScript = null;
     public ?string $proxy = null;

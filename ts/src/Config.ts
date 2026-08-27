@@ -40,7 +40,8 @@ class Config {
      test:     {
       "options": {
         "active": false
-      }
+      },
+      "transport": "base"
     },
 
   }
@@ -76,6 +77,10 @@ class Config {
           "name": "events",
           "short": "Array of events that occurred during page load",
           "type": "`$ARRAY`"
+        },
+        {
+          "name": "id",
+          "type": "`$STRING`"
         }
       ],
       "name": "render_page_get",
@@ -140,6 +145,10 @@ class Config {
           "name": "events",
           "short": "Array of events that occurred during page load",
           "type": "`$ARRAY`"
+        },
+        {
+          "name": "id",
+          "type": "`$STRING`"
         },
         {
           "name": "outputAsJson",

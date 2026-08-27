@@ -28,6 +28,7 @@ module PhantomjscloudConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -50,6 +51,10 @@ module PhantomjscloudConfig
               "name" => "events",
               "short" => "Array of events that occurred during page load",
               "type" => "`$ARRAY`",
+            },
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
             },
           ],
           "name" => "render_page_get",
@@ -114,6 +119,10 @@ module PhantomjscloudConfig
               "name" => "events",
               "short" => "Array of events that occurred during page load",
               "type" => "`$ARRAY`",
+            },
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
             },
             {
               "name" => "outputAsJson",

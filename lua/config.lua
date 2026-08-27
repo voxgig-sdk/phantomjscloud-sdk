@@ -16,6 +16,7 @@ local function make_config()
         ["options"] = {
           ["active"] = false,
         },
+        ["transport"] = "base",
       },
     },
     options = {
@@ -38,6 +39,10 @@ local function make_config()
             ["name"] = "events",
             ["short"] = "Array of events that occurred during page load",
             ["type"] = "`$ARRAY`",
+          },
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
           },
         },
         ["name"] = "render_page_get",
@@ -102,6 +107,10 @@ local function make_config()
             ["name"] = "events",
             ["short"] = "Array of events that occurred during page load",
             ["type"] = "`$ARRAY`",
+          },
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "outputAsJson",

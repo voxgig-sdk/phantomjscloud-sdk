@@ -7,6 +7,7 @@
 
 export interface RenderPageGet {
   events?: any[]
+  id?: string
 }
 
 export interface RenderPageGetLoadMatch {
@@ -15,6 +16,7 @@ export interface RenderPageGetLoadMatch {
 
 export interface RenderPagePost {
   events?: any[]
+  id?: string
   outputAsJson?: boolean
   overseerScript?: string
   proxy?: string

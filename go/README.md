@@ -266,6 +266,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | Field | Description |
 | --- | --- |
 | `"events"` | Array of events that occurred during page load |
+| `"id"` |  |
 
 Operations: Load.
 
@@ -276,6 +277,7 @@ API path: `/{apiKey}/`
 | Field | Description |
 | --- | --- |
 | `"events"` | Array of events that occurred during page load |
+| `"id"` |  |
 | `"outputAsJson"` | Return response metadata as JSON including page events, resources loaded, errors, etc. |
 | `"overseerScript"` | JavaScript code for page automation (ES2018 syntax). |
 | `"proxy"` | Proxy configuration: 'anon-any' (anonymous worldwide), 'anon-{country}' (country-specific), 'geo-{country}' (static IP), or 'custom-{url}:{port}:{user}:{pass}' |
@@ -308,6 +310,7 @@ Create an instance: `renderPageGet := client.RenderPageGet(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `events` | `[]any` | Array of events that occurred during page load |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -335,6 +338,7 @@ Create an instance: `renderPagePost := client.RenderPagePost(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `events` | `[]any` | Array of events that occurred during page load |
+| `id` | `string` |  |
 | `outputAsJson` | `bool` | Return response metadata as JSON including page events, resources loaded, errors, etc. |
 | `overseerScript` | `string` | JavaScript code for page automation (ES2018 syntax). |
 | `proxy` | `string` | Proxy configuration: 'anon-any' (anonymous worldwide), 'anon-{country}' (country-specific), 'geo-{country}' (static IP), or 'custom-{url}:{port}:{user}:{pass}' |

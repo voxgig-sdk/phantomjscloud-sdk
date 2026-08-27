@@ -18,6 +18,7 @@ from typing import TypedDict, Any
 
 class RenderPageGet(TypedDict, total=False):
     events: list
+    id: str
 
 
 class RenderPageGetLoadMatch(TypedDict):
@@ -30,6 +31,7 @@ class RenderPagePostRequired(TypedDict):
 
 class RenderPagePost(RenderPagePostRequired, total=False):
     events: list
+    id: str
     outputAsJson: bool
     overseerScript: str
     proxy: str

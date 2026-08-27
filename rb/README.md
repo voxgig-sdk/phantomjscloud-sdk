@@ -245,6 +245,7 @@ returns a result `Hash` with these keys:
 | Field | Description |
 | --- | --- |
 | `events` | Array of events that occurred during page load |
+| `id` |  |
 
 Operations: Load.
 
@@ -255,6 +256,7 @@ API path: `/{apiKey}/`
 | Field | Description |
 | --- | --- |
 | `events` | Array of events that occurred during page load |
+| `id` |  |
 | `outputAsJson` | Return response metadata as JSON including page events, resources loaded, errors, etc. |
 | `overseerScript` | JavaScript code for page automation (ES2018 syntax). |
 | `proxy` | Proxy configuration: 'anon-any' (anonymous worldwide), 'anon-{country}' (country-specific), 'geo-{country}' (static IP), or 'custom-{url}:{port}:{user}:{pass}' |
@@ -287,6 +289,7 @@ Create an instance: `render_page_get = client.RenderPageGet`
 | Field | Type | Description |
 | --- | --- | --- |
 | `events` | `Array` | Array of events that occurred during page load |
+| `id` | `String` |  |
 
 #### Example: Load
 
@@ -311,6 +314,7 @@ Create an instance: `render_page_post = client.RenderPagePost`
 | Field | Type | Description |
 | --- | --- | --- |
 | `events` | `Array` | Array of events that occurred during page load |
+| `id` | `String` |  |
 | `outputAsJson` | `Boolean` | Return response metadata as JSON including page events, resources loaded, errors, etc. |
 | `overseerScript` | `String` | JavaScript code for page automation (ES2018 syntax). |
 | `proxy` | `String` | Proxy configuration: 'anon-any' (anonymous worldwide), 'anon-{country}' (country-specific), 'geo-{country}' (static IP), or 'custom-{url}:{port}:{user}:{pass}' |

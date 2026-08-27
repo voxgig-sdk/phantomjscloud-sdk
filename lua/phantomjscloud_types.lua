@@ -8,12 +8,14 @@
 
 ---@class RenderPageGet
 ---@field events? table
+---@field id? string
 
 ---@class RenderPageGetLoadMatch
 ---@field id string
 
 ---@class RenderPagePost
 ---@field events? table
+---@field id? string
 ---@field outputAsJson? boolean
 ---@field overseerScript? string
 ---@field proxy? string

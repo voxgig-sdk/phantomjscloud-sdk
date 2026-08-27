@@ -130,6 +130,7 @@ const render_page_get = client.RenderPageGet()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `events` | `any[]` | No | Array of events that occurred during page load |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -180,6 +181,7 @@ const render_page_post = client.RenderPagePost()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `events` | `any[]` | No | Array of events that occurred during page load |
+| `id` | `string` | No |  |
 | `outputAsJson` | `boolean` | No | Return response metadata as JSON including page events, resources loaded, errors, etc. |
 | `overseerScript` | `string` | No | JavaScript code for page automation (ES2018 syntax). |
 | `proxy` | `string` | No | Proxy configuration: 'anon-any' (anonymous worldwide), 'anon-{country}' (country-specific), 'geo-{country}' (static IP), or 'custom-{url}:{port}:{user}:{pass}' |

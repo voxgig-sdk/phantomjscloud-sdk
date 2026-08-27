@@ -15,6 +15,7 @@ import (
 // RenderPageGet is the typed data model for the render_page_get entity.
 type RenderPageGet struct {
 	Events *[]any `json:"events,omitempty"`
+	Id *string `json:"id,omitempty"`
 }
 
 // RenderPageGetLoadMatch is the typed request payload for RenderPageGet.LoadTyped.
@@ -25,6 +26,7 @@ type RenderPageGetLoadMatch struct {
 // RenderPagePost is the typed data model for the render_page_post entity.
 type RenderPagePost struct {
 	Events *[]any `json:"events,omitempty"`
+	Id *string `json:"id,omitempty"`
 	OutputAsJson *bool `json:"outputAsJson,omitempty"`
 	OverseerScript *string `json:"overseerScript,omitempty"`
 	Proxy *string `json:"proxy,omitempty"`

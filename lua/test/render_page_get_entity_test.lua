@@ -44,10 +44,14 @@ describe("RenderPageGetEntity", function()
 
     -- LOAD
     local render_page_get_ref01_ent = client:RenderPageGet(nil)
-    local render_page_get_ref01_match_dt0 = {}
+    local render_page_get_ref01_match_dt0 = {
+      id = render_page_get_ref01_data["id"],
+    }
     local render_page_get_ref01_data_dt0_loaded, err = render_page_get_ref01_ent:load(render_page_get_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(render_page_get_ref01_data_dt0_loaded)
+    local render_page_get_ref01_data_dt0_load_result = helpers.to_map(type(render_page_get_ref01_data_dt0_loaded) == 'table' and render_page_get_ref01_data_dt0_loaded.data_get and render_page_get_ref01_data_dt0_loaded:data_get() or render_page_get_ref01_data_dt0_loaded)
+    assert.is_not_nil(render_page_get_ref01_data_dt0_load_result)
+    assert.are.equal(render_page_get_ref01_data_dt0_load_result["id"], render_page_get_ref01_data["id"])
 
   end)
 end)

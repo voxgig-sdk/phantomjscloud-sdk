@@ -48,9 +48,13 @@ class RenderPageGetEntityTest extends TestCase
 
         // LOAD
         $render_page_get_ref01_ent = $client->RenderPageGet(null);
-        $render_page_get_ref01_match_dt0 = [];
+        $render_page_get_ref01_match_dt0 = [
+            "id" => $render_page_get_ref01_data["id"],
+        ];
         $render_page_get_ref01_data_dt0_loaded = $render_page_get_ref01_ent->load($render_page_get_ref01_match_dt0, null);
-        $this->assertNotNull($render_page_get_ref01_data_dt0_loaded);
+        $render_page_get_ref01_data_dt0_load_result = Helpers::to_map(is_object($render_page_get_ref01_data_dt0_loaded) && method_exists($render_page_get_ref01_data_dt0_loaded, 'data_get') ? $render_page_get_ref01_data_dt0_loaded->data_get() : $render_page_get_ref01_data_dt0_loaded);
+        $this->assertNotNull($render_page_get_ref01_data_dt0_load_result);
+        $this->assertEquals($render_page_get_ref01_data_dt0_load_result["id"], $render_page_get_ref01_data["id"]);
 
     }
 }

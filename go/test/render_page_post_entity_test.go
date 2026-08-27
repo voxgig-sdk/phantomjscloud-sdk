@@ -63,6 +63,9 @@ func TestRenderPagePostEntity(t *testing.T) {
 		if renderPagePostRef01Data == nil {
 			t.Fatal("expected create result to be a map")
 		}
+		if renderPagePostRef01Data["id"] == nil {
+			t.Fatal("expected created entity to have an id")
+		}
 
 	})
 }

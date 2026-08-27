@@ -48,9 +48,13 @@ class TestRenderPageGetEntity:
 
         # LOAD
         render_page_get_ref01_ent = client.RenderPageGet(None)
-        render_page_get_ref01_match_dt0 = {}
+        render_page_get_ref01_match_dt0 = {
+            "id": render_page_get_ref01_data["id"],
+        }
         render_page_get_ref01_data_dt0_loaded = render_page_get_ref01_ent.load(render_page_get_ref01_match_dt0, None)
-        assert render_page_get_ref01_data_dt0_loaded is not None
+        render_page_get_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(render_page_get_ref01_data_dt0_loaded))
+        assert render_page_get_ref01_data_dt0_load_result is not None
+        assert render_page_get_ref01_data_dt0_load_result["id"] == render_page_get_ref01_data["id"]
 
 
 

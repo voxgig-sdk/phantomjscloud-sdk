@@ -59,9 +59,12 @@ describe('RenderPageGetEntity', async () => {
 
     let render_page_get_ref01_data = Object.values(setup.data.existing.render_page_get)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const render_page_get_ref01_ent = client.RenderPageGet()
+    const render_page_get_ref01_match_dt0: any = {}
+    render_page_get_ref01_match_dt0.id = render_page_get_ref01_data.id
+    const render_page_get_ref01_data_dt0 = (await render_page_get_ref01_ent.load(render_page_get_ref01_match_dt0)).data()
+    assert(render_page_get_ref01_data_dt0.id === render_page_get_ref01_data.id)
 
 
   })

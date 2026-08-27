@@ -20,6 +20,7 @@ func MakeConfig() map[string]any {
 				"options": map[string]any{
 					"active": false,
 				},
+				"transport": "base",
 			},
 		},
 		"options": map[string]any{
@@ -42,6 +43,10 @@ func MakeConfig() map[string]any {
 						"name": "events",
 						"short": "Array of events that occurred during page load",
 						"type": "`$ARRAY`",
+					},
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
 					},
 				},
 				"name": "render_page_get",
@@ -106,6 +111,10 @@ func MakeConfig() map[string]any {
 						"name": "events",
 						"short": "Array of events that occurred during page load",
 						"type": "`$ARRAY`",
+					},
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "outputAsJson",

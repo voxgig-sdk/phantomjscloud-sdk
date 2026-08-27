@@ -47,6 +47,7 @@ class RenderPagePostEntityTest extends TestCase
         $render_page_post_ref01_data_result = $render_page_post_ref01_ent->create($render_page_post_ref01_data, null);
         $render_page_post_ref01_data = Helpers::to_map(is_object($render_page_post_ref01_data_result) && method_exists($render_page_post_ref01_data_result, 'data_get') ? $render_page_post_ref01_data_result->data_get() : $render_page_post_ref01_data_result);
         $this->assertNotNull($render_page_post_ref01_data);
+        $this->assertNotNull($render_page_post_ref01_data["id"]);
 
     }
 }

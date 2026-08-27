@@ -249,6 +249,7 @@ On error, `ok` is `False` and `err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `events` | Array of events that occurred during page load |
+| `id` |  |
 
 Operations: Load.
 
@@ -259,6 +260,7 @@ API path: `/{apiKey}/`
 | Field | Description |
 | --- | --- |
 | `events` | Array of events that occurred during page load |
+| `id` |  |
 | `outputAsJson` | Return response metadata as JSON including page events, resources loaded, errors, etc. |
 | `overseerScript` | JavaScript code for page automation (ES2018 syntax). |
 | `proxy` | Proxy configuration: 'anon-any' (anonymous worldwide), 'anon-{country}' (country-specific), 'geo-{country}' (static IP), or 'custom-{url}:{port}:{user}:{pass}' |
@@ -291,6 +293,7 @@ Create an instance: `render_page_get = client.RenderPageGet()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `events` | `list` | Array of events that occurred during page load |
+| `id` | `str` |  |
 
 #### Example: Load
 
@@ -314,6 +317,7 @@ Create an instance: `render_page_post = client.RenderPagePost()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `events` | `list` | Array of events that occurred during page load |
+| `id` | `str` |  |
 | `outputAsJson` | `bool` | Return response metadata as JSON including page events, resources loaded, errors, etc. |
 | `overseerScript` | `str` | JavaScript code for page automation (ES2018 syntax). |
 | `proxy` | `str` | Proxy configuration: 'anon-any' (anonymous worldwide), 'anon-{country}' (country-specific), 'geo-{country}' (static IP), or 'custom-{url}:{port}:{user}:{pass}' |

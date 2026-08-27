@@ -44,6 +44,7 @@ describe("RenderPagePostEntity", function()
     assert.is_nil(err)
     render_page_post_ref01_data = helpers.to_map(type(render_page_post_ref01_data_result) == 'table' and render_page_post_ref01_data_result.data_get and render_page_post_ref01_data_result:data_get() or render_page_post_ref01_data_result)
     assert.is_not_nil(render_page_post_ref01_data)
+    assert.is_not_nil(render_page_post_ref01_data["id"])
 
   end)
 end)

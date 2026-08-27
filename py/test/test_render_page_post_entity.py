@@ -47,6 +47,7 @@ class TestRenderPagePostEntity:
 
         render_page_post_ref01_data = helpers.to_map(runner.entity_data(render_page_post_ref01_ent.create(render_page_post_ref01_data, None)))
         assert render_page_post_ref01_data is not None
+        assert render_page_post_ref01_data["id"] is not None
 
 
 

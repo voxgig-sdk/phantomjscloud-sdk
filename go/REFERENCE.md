@@ -104,6 +104,7 @@ fmt.Println(renderPageGet.GetName()) // "render_page_get"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `events` | `[]any` | No | Array of events that occurred during page load |
+| `id` | `string` | No |  |
 
 ### Operations
 
@@ -155,6 +156,7 @@ fmt.Println(renderPagePost.GetName()) // "render_page_post"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `events` | `[]any` | No | Array of events that occurred during page load |
+| `id` | `string` | No |  |
 | `outputAsJson` | `bool` | No | Return response metadata as JSON including page events, resources loaded, errors, etc. |
 | `overseerScript` | `string` | No | JavaScript code for page automation (ES2018 syntax). |
 | `proxy` | `string` | No | Proxy configuration: 'anon-any' (anonymous worldwide), 'anon-{country}' (country-specific), 'geo-{country}' (static IP), or 'custom-{url}:{port}:{user}:{pass}' |

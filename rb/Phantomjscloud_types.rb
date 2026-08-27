@@ -12,8 +12,12 @@
 #
 # @!attribute [rw] events
 #   @return [Array, nil]
+#
+# @!attribute [rw] id
+#   @return [String, nil]
 RenderPageGet = Struct.new(
   :events,
+  :id,
   keyword_init: true
 )
 
@@ -30,6 +34,9 @@ RenderPageGetLoadMatch = Struct.new(
 #
 # @!attribute [rw] events
 #   @return [Array, nil]
+#
+# @!attribute [rw] id
+#   @return [String, nil]
 #
 # @!attribute [rw] outputAsJson
 #   @return [Boolean, nil]
@@ -53,6 +60,7 @@ RenderPageGetLoadMatch = Struct.new(
 #   @return [String]
 RenderPagePost = Struct.new(
   :events,
+  :id,
   :outputAsJson,
   :overseerScript,
   :proxy,

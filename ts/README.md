@@ -147,7 +147,7 @@ await entity.load({ id: 'example' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data)
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -294,6 +294,7 @@ The `prepare()` method returns:
 | Field | Description |
 | --- | --- |
 | `events` | Array of events that occurred during page load |
+| `id` |  |
 
 Operations: load.
 
@@ -304,6 +305,7 @@ API path: `/{apiKey}/`
 | Field | Description |
 | --- | --- |
 | `events` | Array of events that occurred during page load |
+| `id` |  |
 | `outputAsJson` | Return response metadata as JSON including page events, resources loaded, errors, etc. |
 | `overseerScript` | JavaScript code for page automation (ES2018 syntax). |
 | `proxy` | Proxy configuration: 'anon-any' (anonymous worldwide), 'anon-{country}' (country-specific), 'geo-{country}' (static IP), or 'custom-{url}:{port}:{user}:{pass}' |
@@ -336,6 +338,7 @@ Create an instance: `const render_page_get = client.RenderPageGet()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `events` | `any[]` | Array of events that occurred during page load |
+| `id` | `string` |  |
 
 #### Example: Load
 
@@ -359,6 +362,7 @@ Create an instance: `const render_page_post = client.RenderPagePost()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `events` | `any[]` | Array of events that occurred during page load |
+| `id` | `string` |  |
 | `outputAsJson` | `boolean` | Return response metadata as JSON including page events, resources loaded, errors, etc. |
 | `overseerScript` | `string` | JavaScript code for page automation (ES2018 syntax). |
 | `proxy` | `string` | Proxy configuration: 'anon-any' (anonymous worldwide), 'anon-{country}' (country-specific), 'geo-{country}' (static IP), or 'custom-{url}:{port}:{user}:{pass}' |

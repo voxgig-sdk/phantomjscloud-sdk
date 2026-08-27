@@ -12,6 +12,11 @@ main: kit: entity: render_page_post: {
       type: "`$ARRAY`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "outputAsJson"
       req: false
       short: "Return response metadata as JSON including page events, resources loaded, errors, etc."
@@ -53,6 +58,11 @@ main: kit: entity: render_page_post: {
       type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "render_page_post"
   op: {

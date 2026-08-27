@@ -41,9 +41,13 @@ class RenderPageGetEntityTest < Minitest::Test
 
     # LOAD
     render_page_get_ref01_ent = client.RenderPageGet(nil)
-    render_page_get_ref01_match_dt0 = {}
+    render_page_get_ref01_match_dt0 = {
+      "id" => render_page_get_ref01_data["id"],
+    }
     render_page_get_ref01_data_dt0_loaded = render_page_get_ref01_ent.load(render_page_get_ref01_match_dt0, nil)
-    assert !render_page_get_ref01_data_dt0_loaded.nil?
+    render_page_get_ref01_data_dt0_load_result = Helpers.to_map(render_page_get_ref01_data_dt0_loaded.respond_to?(:data_get) ? render_page_get_ref01_data_dt0_loaded.data_get : render_page_get_ref01_data_dt0_loaded)
+    assert !render_page_get_ref01_data_dt0_load_result.nil?
+    assert_equal render_page_get_ref01_data_dt0_load_result["id"], render_page_get_ref01_data["id"]
 
   end
 end

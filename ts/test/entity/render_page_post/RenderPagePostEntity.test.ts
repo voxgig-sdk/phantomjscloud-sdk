@@ -64,7 +64,7 @@ describe('RenderPagePostEntity', async () => {
     render_page_post_ref01_data['api_key'] = setup.idmap['api_key01']
 
     render_page_post_ref01_data = (await render_page_post_ref01_ent.create(render_page_post_ref01_data)).data()
-    assert(null != render_page_post_ref01_data)
+    assert(null != render_page_post_ref01_data.id)
 
 
   })
