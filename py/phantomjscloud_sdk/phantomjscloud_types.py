@@ -21,8 +21,12 @@ class RenderPageGet(TypedDict, total=False):
     id: str
 
 
-class RenderPageGetLoadMatch(TypedDict):
+class RenderPageGetLoadMatchRequired(TypedDict):
     id: str
+
+
+class RenderPageGetLoadMatch(RenderPageGetLoadMatchRequired, total=False):
+    request: str
 
 
 class RenderPagePostRequired(TypedDict):

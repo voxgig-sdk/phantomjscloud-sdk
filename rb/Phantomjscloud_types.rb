@@ -25,8 +25,12 @@ RenderPageGet = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] request
+#   @return [String, nil]
 RenderPageGetLoadMatch = Struct.new(
   :id,
+  :request,
   keyword_init: true
 )
 

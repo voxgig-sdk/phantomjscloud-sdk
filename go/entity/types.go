@@ -21,6 +21,7 @@ type RenderPageGet struct {
 // RenderPageGetLoadMatch is the typed request payload for RenderPageGet.LoadTyped.
 type RenderPageGetLoadMatch struct {
 	Id string `json:"id"`
+	Request *string `json:"request,omitempty"`
 }
 
 // RenderPagePost is the typed data model for the render_page_post entity.

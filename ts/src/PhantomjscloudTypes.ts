@@ -12,6 +12,7 @@ export interface RenderPageGet {
 
 export interface RenderPageGetLoadMatch {
   id: string
+  request?: string
 }
 
 export interface RenderPagePost {

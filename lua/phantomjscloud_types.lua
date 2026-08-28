@@ -12,6 +12,7 @@
 
 ---@class RenderPageGetLoadMatch
 ---@field id string
+---@field request? string
 
 ---@class RenderPagePost
 ---@field events? table

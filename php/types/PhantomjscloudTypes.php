@@ -23,6 +23,7 @@ class RenderPageGet
 class RenderPageGetLoadMatch
 {
     public string $id;
+    public ?string $request = null;
 }
 
 /** RenderPagePost entity data model. */
