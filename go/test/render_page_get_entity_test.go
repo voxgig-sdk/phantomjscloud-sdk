@@ -50,7 +50,7 @@ func TestRenderPageGetEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		renderPageGetRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.render_page_get", setup.data)))
+		renderPageGetRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.render_page_get")))
 		var renderPageGetRef01Data map[string]any
 		if len(renderPageGetRef01DataRaw) > 0 {
 			renderPageGetRef01Data = core.ToMapAny(renderPageGetRef01DataRaw[0][1])
@@ -103,7 +103,7 @@ func render_page_getBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"render_page_get01", "render_page_get02", "render_page_get03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -123,7 +123,7 @@ func render_page_getBasicSetup(extra map[string]any) *entityTestSetup {
 		"PHANTOMJSCLOUD_TEST_RENDER_PAGE_GET_ENTID": idmap,
 		"PHANTOMJSCLOUD_TEST_LIVE":      "FALSE",
 		"PHANTOMJSCLOUD_TEST_EXPLAIN":   "FALSE",
-		"PHANTOMJSCLOUD_APIKEY":         "NONE",
+		"PHANTOMJSCLOUD_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["PHANTOMJSCLOUD_TEST_RENDER_PAGE_GET_ENTID"])
@@ -132,11 +132,23 @@ func render_page_getBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["PHANTOMJSCLOUD_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["PHANTOMJSCLOUD_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewPhantomjscloudSDK(core.ToMapAny(mergedOpts))
 	}

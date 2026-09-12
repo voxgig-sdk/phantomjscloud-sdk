@@ -57,6 +57,10 @@ module PhantomjscloudConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "render_page_get",
           "op" => {
             "load" => {
@@ -87,14 +91,16 @@ module PhantomjscloudConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/{apiKey}/",
-                  "parts" => [
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "apiKey" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -105,6 +111,9 @@ module PhantomjscloudConfig
                     "req" => "`reqdata`",
                     "res" => "`body.pageResponses`",
                   },
+                  "parts" => [
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -160,6 +169,10 @@ module PhantomjscloudConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "render_page_post",
           "op" => {
             "create" => {
@@ -182,14 +195,16 @@ module PhantomjscloudConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/{apiKey}/",
-                  "parts" => [
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "apiKey" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -199,6 +214,9 @@ module PhantomjscloudConfig
                     "req" => "`reqdata`",
                     "res" => "`body.pageResponses`",
                   },
+                  "parts" => [
+                    "{id}",
+                  ],
                 },
               ],
             },

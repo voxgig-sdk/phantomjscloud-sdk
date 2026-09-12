@@ -52,14 +52,16 @@ main: kit: entity: render_page_get: {
           }
           method: "GET"
           orig: "/{apiKey}/"
-          parts: [
-            "{id}"
-          ]
           rename: {
             param: {
               apiKey: "id"
             }
           }
+          segments: [
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

@@ -71,6 +71,10 @@ class PhantomjscloudConfig
               'type' => '`$STRING`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'render_page_get',
           'op' => [
             'load' => [
@@ -101,12 +105,14 @@ class PhantomjscloudConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/{apiKey}/',
-                  'parts' => [
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'apiKey' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -118,6 +124,9 @@ class PhantomjscloudConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.pageResponses`',
+                  ],
+                  'parts' => [
+                    '{id}',
                   ],
                 ],
               ],
@@ -174,6 +183,10 @@ class PhantomjscloudConfig
               'type' => '`$STRING`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'render_page_post',
           'op' => [
             'create' => [
@@ -196,12 +209,14 @@ class PhantomjscloudConfig
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/{apiKey}/',
-                  'parts' => [
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'apiKey' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -212,6 +227,9 @@ class PhantomjscloudConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.pageResponses`',
+                  ],
+                  'parts' => [
+                    '{id}',
                   ],
                 ],
               ],
