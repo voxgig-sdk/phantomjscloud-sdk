@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { PhantomjscloudSDK } from '@voxgig-sdk/phantomjscloud'
+import { PhantomjscloudSDK } from '@voxgig-sdk/phantomjscloud-sdk'
 
 const client = new PhantomjscloudSDK({
   apikey: process.env.PHANTOMJSCLOUD_APIKEY,
@@ -463,7 +463,7 @@ phantomjscloud/
 Import the SDK from the package root:
 
 ```ts
-import { PhantomjscloudSDK } from '@voxgig-sdk/phantomjscloud'
+import { PhantomjscloudSDK } from '@voxgig-sdk/phantomjscloud-sdk'
 ```
 
 ### Entity state

@@ -105,7 +105,7 @@ local result, err = client:RenderPageGet():load({ id = "test01" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/phantomjscloud` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phantomjscloud-sdk/releases) |
+| TypeScript | `@voxgig-sdk/phantomjscloud-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phantomjscloud-sdk/releases) |
 | Python | `voxgig-sdk-phantomjscloud` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phantomjscloud-sdk/releases) |
 | PHP | `voxgig-sdk/phantomjscloud` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phantomjscloud-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/phantomjscloud-sdk/go` | `go get github.com/voxgig-sdk/phantomjscloud-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:RenderPageGet():load({ id = "test01" })
 ### TypeScript
 
 ```ts
-import { PhantomjscloudSDK } from '@voxgig-sdk/phantomjscloud'
+import { PhantomjscloudSDK } from '@voxgig-sdk/phantomjscloud-sdk'
 
 const client = new PhantomjscloudSDK({
   apikey: process.env.PHANTOMJSCLOUD_APIKEY,
