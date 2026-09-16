@@ -1,12 +1,18 @@
 # Phantomjscloud SDK feature factory
 
 from phantomjscloud_sdk.feature.base_feature import PhantomjscloudBaseFeature
+from phantomjscloud_sdk.feature.ratelimit_feature import PhantomjscloudRatelimitFeature
+from phantomjscloud_sdk.feature.retry_feature import PhantomjscloudRetryFeature
 from phantomjscloud_sdk.feature.test_feature import PhantomjscloudTestFeature
+from phantomjscloud_sdk.feature.timeout_feature import PhantomjscloudTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: PhantomjscloudBaseFeature(),
+    "ratelimit": lambda: PhantomjscloudRatelimitFeature(),
+    "retry": lambda: PhantomjscloudRetryFeature(),
     "test": lambda: PhantomjscloudTestFeature(),
+    "timeout": lambda: PhantomjscloudTimeoutFeature(),
 }
 
 

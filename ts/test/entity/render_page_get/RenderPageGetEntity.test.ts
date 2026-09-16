@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { PhantomjscloudSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('RenderPageGetEntity', async () => {
 
     const live = 'TRUE' === process.env.PHANTOMJSCLOUD_TEST_LIVE
     for (const op of ['load']) {
-      if (maybeSkipControl(t, 'entityOp', 'render_page_get.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'render_page_get.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set PHANTOMJSCLOUD_TEST_RENDER_PAGE_GET_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"events","req":false,"short":"Array of events that occurred during page load","type":"`$ARRAY`","index$":0},{"active":true,"name":"id","req":false,"type":"`$STRING`","index$":1}],"id":{"field":"id","name":"id"},"name":"render_page_get","op":{"load":{"input":"data","name":"load","points":[{"active":true,"args":{"params":[{"active":true,"example":"ak-012345-abcde-012345-abcde-012345","kind":"param","name":"id","orig":"api_key","reqd":true,"type":"`$STRING`","index$":0}],"query":[{"active":true,"kind":"query","name":"request","orig":"request","reqd":false,"type":"`$STRING`","index$":0}]},"contract":{"id":"GET /{apiKey}/","json":"{\"operationId\":\"renderPageGet\",\"parameters\":[{\"description\":\"Your API key for authentication. Use 'a-demo-key-with-low-quota-per-ip-address' for demo (limited to 100 requests/day)\",\"example\":\"ak-012345-abcde-012345-abcde-012345\",\"in\":\"path\",\"name\":\"apiKey\",\"required\":true,\"schema\":{\"type\":\"string\"}},{\"description\":\"JSON-encoded PageRequest object containing rendering parameters\",\"in\":\"query\",\"name\":\"request\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"description\":\"Response when outputAsJson is true\",\"properties\":{\"content\":{\"description\":\"Rendered content based on renderType\",\"type\":\"string\"},\"pageResponses\":{\"properties\":{\"events\":{\"description\":\"Array of events that occurred during page load\",\"items\":{\"properties\":{\"key\":{\"description\":\"Type of event\",\"enum\":[\"resourceRequested\",\"resourceReceived\",\"browserError\"],\"type\":\"string\"},\"time\":{\"description\":\"Timestamp of the event\",\"format\":\"date-time\",\"type\":\"string\"},\"value\":{\"description\":\"Event-specific data\",\"type\":\"object\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"},\"statusCode\":{\"description\":\"HTTP status code of the rendered page\",\"type\":\"integer\"}},\"type\":\"object\"}},\"application/pdf\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}},\"image/jpeg\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}},\"image/png\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}},\"text/html\":{\"schema\":{\"type\":\"string\"}},\"text/plain\":{\"schema\":{\"type\":\"string\"}}},\"description\":\"Successful page render\",\"headers\":{\"X-PhantomJsCloud-Page-Cost\":{\"description\":\"Cost of the page request in credits\",\"schema\":{\"type\":\"string\"}},\"X-PhantomJsCloud-Remaining-Quota\":{\"description\":\"Remaining quota for your API key\",\"schema\":{\"type\":\"string\"}}}},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"message\":{\"description\":\"Detailed error description\",\"type\":\"string\"},\"statusCode\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Bad Request - Invalid parameters\"},\"401\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"message\":{\"description\":\"Detailed error description\",\"type\":\"string\"},\"statusCode\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Unauthorized - Invalid API key\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"message\":{\"description\":\"Detailed error description\",\"type\":\"string\"},\"statusCode\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Too Many Requests - Quota exceeded\"},\"502\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"},\"message\":{\"description\":\"Detailed error description\",\"type\":\"string\"},\"statusCode\":{\"description\":\"HTTP status code\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Bad Gateway - Server error (check ExpectContinue header)\"}},\"security\":[{\"ApiKeyAuth\":[]}],\"securitySchemes\":{\"ApiKeyAuth\":{\"description\":\"API key for authentication. Obtain from Dashboard.PhantomJsCloud.com. Demo key: 'a-demo-key-with-low-quota-per-ip-address' (100 requests/day limit)\",\"in\":\"path\",\"name\":\"apiKey\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/{apiKey}/","rename":{"param":{"apiKey":"id"}},"segments":[{"var":"id"}],"select":{"exist":["id","request"]},"transform":{"req":"`reqdata`","res":"`body.pageResponses`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"render_page_get","name__orig":"render_page_get","Name":"RenderPageGet","name_":"render_page_get","name-":"render-page-get","NAME":"RENDER_PAGE_GET","index$":0}, {"active":true,"entity":"render_page_get","key$":"BasicRenderPageGetFlow","kind":"basic","name":"BasicRenderPageGetFlow","param":{},"step":[{"active":true,"data":{},"input":{"ref":"render_page_get_ref01","srcdatavar":"render_page_get_ref01_data","suffix":"_dt0"},"match":{"id":"render_page_get01"},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-render_page_get_ref01"}}],"index$":0}]}, 'RenderPageGet')
     }
     const client = setup.client
     const struct = setup.struct
@@ -110,13 +109,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['PHANTOMJSCLOUD_TEST_RENDER_PAGE_GET_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'PHANTOMJSCLOUD_TEST_RENDER_PAGE_GET_ENTID': idmap,
     'PHANTOMJSCLOUD_TEST_LIVE': 'FALSE',
@@ -128,7 +120,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.PHANTOMJSCLOUD_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['PHANTOMJSCLOUD_TEST_RENDER_PAGE_GET_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new PhantomjscloudSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -141,7 +139,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -154,7 +153,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.PHANTOMJSCLOUD_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

@@ -4,7 +4,10 @@ declare(strict_types=1);
 // Phantomjscloud SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class PhantomjscloudFeatures
@@ -14,8 +17,14 @@ class PhantomjscloudFeatures
         switch ($name) {
             case "base":
                 return new PhantomjscloudBaseFeature();
+            case "ratelimit":
+                return new PhantomjscloudRatelimitFeature();
+            case "retry":
+                return new PhantomjscloudRetryFeature();
             case "test":
                 return new PhantomjscloudTestFeature();
+            case "timeout":
+                return new PhantomjscloudTimeoutFeature();
             default:
                 return new PhantomjscloudBaseFeature();
         }
@@ -31,7 +40,10 @@ class PhantomjscloudFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

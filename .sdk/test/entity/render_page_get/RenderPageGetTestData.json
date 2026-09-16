@@ -21,5 +21,242 @@
         "events": []
       }
     }
+  },
+  "requests": {
+    "GET /{apiKey}/": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "renderPageGet",
+        "parameters": [
+          {
+            "description": "Your API key for authentication. Use 'a-demo-key-with-low-quota-per-ip-address' for demo (limited to 100 requests/day)",
+            "example": "ak-012345-abcde-012345-abcde-012345",
+            "in": "path",
+            "name": "apiKey",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "JSON-encoded PageRequest object containing rendering parameters",
+            "in": "query",
+            "name": "request",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Response when outputAsJson is true",
+                  "properties": {
+                    "content": {
+                      "description": "Rendered content based on renderType",
+                      "type": "string"
+                    },
+                    "pageResponses": {
+                      "properties": {
+                        "events": {
+                          "description": "Array of events that occurred during page load",
+                          "items": {
+                            "properties": {
+                              "key": {
+                                "description": "Type of event",
+                                "enum": [
+                                  "resourceRequested",
+                                  "resourceReceived",
+                                  "browserError"
+                                ],
+                                "type": "string"
+                              },
+                              "time": {
+                                "description": "Timestamp of the event",
+                                "format": "date-time",
+                                "type": "string"
+                              },
+                              "value": {
+                                "description": "Event-specific data",
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "statusCode": {
+                      "description": "HTTP status code of the rendered page",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "application/pdf": {
+                "schema": {
+                  "format": "binary",
+                  "type": "string"
+                }
+              },
+              "image/jpeg": {
+                "schema": {
+                  "format": "binary",
+                  "type": "string"
+                }
+              },
+              "image/png": {
+                "schema": {
+                  "format": "binary",
+                  "type": "string"
+                }
+              },
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Successful page render",
+            "headers": {
+              "X-PhantomJsCloud-Page-Cost": {
+                "description": "Cost of the page request in credits",
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-PhantomJsCloud-Remaining-Quota": {
+                "description": "Remaining quota for your API key",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    },
+                    "statusCode": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad Request - Invalid parameters"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    },
+                    "statusCode": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Unauthorized - Invalid API key"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    },
+                    "statusCode": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Too Many Requests - Quota exceeded"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Detailed error description",
+                      "type": "string"
+                    },
+                    "statusCode": {
+                      "description": "HTTP status code",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad Gateway - Server error (check ExpectContinue header)"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "securitySchemes": {
+          "ApiKeyAuth": {
+            "description": "API key for authentication. Obtain from Dashboard.PhantomJsCloud.com. Demo key: 'a-demo-key-with-low-quota-per-ip-address' (100 requests/day limit)",
+            "in": "path",
+            "name": "apiKey",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }
