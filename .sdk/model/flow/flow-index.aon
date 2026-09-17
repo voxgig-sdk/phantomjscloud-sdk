@@ -1,4 +1,4 @@
 # Flows
 
-@"BasicRenderPageGetFlow.aon"
-@"BasicRenderPagePostFlow.aon"
+@"./BasicRenderPageGetFlow.aon"
+@"./BasicRenderPagePostFlow.aon"

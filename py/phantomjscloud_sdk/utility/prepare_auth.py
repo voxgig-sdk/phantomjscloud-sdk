@@ -3,7 +3,7 @@
 from __future__ import annotations
 from phantomjscloud_sdk.utility.voxgig_struct import voxgig_struct as vs
 
-HEADER_AUTH = "authorization"
+HEADER_AUTH = "apikey"
 OPTION_APIKEY = "apikey"
 NOT_FOUND = "__NOTFOUND__"
 

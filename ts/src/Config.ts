@@ -123,6 +123,8 @@ class Config {
 
     auth: {
       prefix: '',
+      in: 'path',
+      name: 'apiKey',
     },
 
     headers: {
@@ -131,12 +133,12 @@ class Config {
 
     entity: {
       
-      render_page_get: {
-      },
-
-      render_page_post: {
-      },
-
+        render_page_get: {
+        },
+  
+        render_page_post: {
+        },
+  
     }
   }
 

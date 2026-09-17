@@ -106,6 +106,8 @@ def make_config():
             "base": "https://phantomjscloud.com/api/browser/v2",
             "auth": {
                 "prefix": "",
+                "in": "path",
+                "name": "apiKey",
             },
             "headers": {
         "content-type": "application/json",

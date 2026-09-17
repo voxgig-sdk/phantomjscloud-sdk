@@ -1,7 +1,7 @@
 # Phantomjscloud SDK utility: prepare_auth
 require_relative 'struct/voxgig_struct'
 module PhantomjscloudUtilities
-  HEADER_AUTH = "authorization"
+  HEADER_AUTH = "apikey"
   OPTION_APIKEY = "apikey"
   NOT_FOUND = "__NOTFOUND__"
 

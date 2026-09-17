@@ -105,12 +105,12 @@ local result, err = client:RenderPageGet():load({ id = "test01" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/phantomjscloud-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phantomjscloud-sdk/releases) |
-| Python | `voxgig-sdk-phantomjscloud` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phantomjscloud-sdk/releases) |
-| PHP | `voxgig-sdk/phantomjscloud` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phantomjscloud-sdk/releases) |
+| TypeScript | `@voxgig-sdk/phantomjscloud-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phantomjscloud-sdk/tags) |
+| Python | `voxgig-sdk-phantomjscloud` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phantomjscloud-sdk/tags) |
+| PHP | `voxgig-sdk/phantomjscloud` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phantomjscloud-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/phantomjscloud-sdk/go` | `go get github.com/voxgig-sdk/phantomjscloud-sdk/go@latest` |
-| Ruby | `voxgig-sdk-phantomjscloud` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phantomjscloud-sdk/releases) |
-| Lua | `voxgig-sdk-phantomjscloud` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phantomjscloud-sdk/releases) |
+| Ruby | `voxgig-sdk-phantomjscloud` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phantomjscloud-sdk/tags) |
+| Lua | `voxgig-sdk-phantomjscloud` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phantomjscloud-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/phantomjscloud-sdk/go-cli` | `go install github.com/voxgig-sdk/phantomjscloud-sdk/go-cli/cmd/phantomjscloud@latest` |
 | Go MCP server | `github.com/voxgig-sdk/phantomjscloud-sdk/go-mcp` | `go get github.com/voxgig-sdk/phantomjscloud-sdk/go-mcp@latest` |
 

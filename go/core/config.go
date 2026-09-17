@@ -81,6 +81,8 @@ func MakeConfig() map[string]any {
 			"base": "https://phantomjscloud.com/api/browser/v2",
 			"auth": map[string]any{
 				"prefix": "",
+				"in": "path",
+				"name": "apiKey",
 			},
 			"headers": map[string]any{
 				"content-type": "application/json",
